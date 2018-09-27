@@ -5,7 +5,6 @@ class User_model extends CI_Model {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->database();
 	}
 
 	/*
@@ -15,7 +14,7 @@ class User_model extends CI_Model {
 	*/
 
 	public function create_user($data) {
-		if ($this->db->insert('usuarios', $data)){
+		if ($this->db->insert('users', $data)){
 			return TRUE;
 		}
 		else{
@@ -33,23 +32,9 @@ class User_model extends CI_Model {
 	}
 
 	public function delete_user($id) {
-		if ( $this->db->delete('users', array('id' => $id)) ) {
+		$this->db->where('id', $id);
+		if ($this->db->update('users',array('excluded' => 1))) {
 			return TRUE;
-		}
-		else{
-			return FALSE;
-		}
-	}
-
-		/*
-	* =====================================================================
-	* Outros
-	* =====================================================================
-	*/
-
-	public function get_permission_groups() {
-		if ($result = $this->db->get('permission_groups')->result_array()){
-			return $result;
 		}else{
 			return FALSE;
 		}

@@ -58,3 +58,5 @@ $route['api/user']['get']           = 'api/user/get';
 $route['api/user/(:num)']['get']    = 'api/user/get/$1' ;
 $route['api/user/(:num)']['put']    = 'api/user/put/$1';
 $route['api/user/(:num)']['delete'] = 'api/user/delete/$1';
+
+$route['api/session']['post'] = 'api/session/post';
