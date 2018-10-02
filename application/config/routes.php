@@ -53,9 +53,16 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = 'welcome/not_found';
 $route['translate_uri_dashes'] = FALSE;
 
+// Rotas de usuário
 $route['api/user']['post']   = 'api/user/register_user';
 $route['api/user']['get']    = 'api/user/get_user';
 $route['api/user']['put']    = 'api/user/update_user';
 $route['api/user']['delete'] = 'api/user/delete_user';
 
 $route['api/session']['post'] = 'api/session/post';
+
+// Rotas de tipo de problemas
+$route['api/type-problem']['post']   = 'api/type_problem/add_type_problem';
+$route['api/type-problem']['get']    = 'api/type_problem/get_user';
+$route['api/type-problem']['put']    = 'api/type_problem/update_user';
+$route['api/type-problem']['delete'] = 'api/type_problem/delete_user';

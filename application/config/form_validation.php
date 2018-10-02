@@ -14,20 +14,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	login_erro => 10 (dados incorrétos ou usuário excluído)
 	name
 
-required | max_length[100]
-registry
-required | numeric | is_unique[users.registry]
-identity
-required | numeric
-date_birth
-required
-email
-required | valid_email | is_unique[usuarios.email]
-password
-required | min_length[6]
-conf_password
-required | matches[password]
-
 */
 
 
@@ -115,6 +101,17 @@ $config = array(
 			'errors' => array(
 				'required' => 1,
 				'min_length' => 3,
+			),
+		),
+	),
+	'add_type_problem' => array(
+		array(
+			'field' => 'type',
+			'label' => 'Tipo de Problema',
+			'rules' => 'required|max_length[50]',
+			'errors' => array(
+				'required' => 1,
+				'max_length' => 2,
 			),
 		),
 	),
