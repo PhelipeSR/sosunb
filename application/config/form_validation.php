@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	matches => 7 (campos não são iguáis)
 	not_unb => 8 (não é aluno da UnB)
 	erro_banco => 9 (erro genérico do banco)
-	login_erro => 10 (dados incorrétos)
+	login_erro => 10 (dados incorrétos ou usuário excluído)
 	name
 
 required | max_length[100]
