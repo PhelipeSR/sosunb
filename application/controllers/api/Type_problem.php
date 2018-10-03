@@ -33,4 +33,19 @@ class Type_problem extends CI_Controller {
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
 	}
+
+	public function get_type_problem() {
+	if ($result = $this->Type_problem_model->get_type_problem() ) {
+				$this->response['dados'] = $result;
+				$this->status_header = 200;
+			}else {
+				$this->response['erro']['get_problem'] = 9;
+			}
+
+		$this->output
+			->set_content_type('application/json')
+			->set_status_header($this->status_header)
+			->set_output(json_encode($this->response));
+	}
+
 }

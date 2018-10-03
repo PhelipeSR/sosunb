@@ -63,6 +63,6 @@ $route['api/session']['post'] = 'api/session/post';
 
 // Rotas de tipo de problemas
 $route['api/type-problem']['post']   = 'api/type_problem/add_type_problem';
-$route['api/type-problem']['get']    = 'api/type_problem/get_user';
+$route['api/type-problem']['get']    = 'api/type_problem/get_type_problem';
 $route['api/type-problem']['put']    = 'api/type_problem/update_user';
 $route['api/type-problem']['delete'] = 'api/type_problem/delete_user';
