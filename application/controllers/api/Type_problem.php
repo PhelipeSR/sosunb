@@ -16,7 +16,7 @@ class Type_problem extends CI_Controller {
 	public function add_type_problem() {
 		if( $this->form_validation->run('add_type_problem') ) {
 			$database = array(
-				'tipo' => $this->input->post('type')
+				'type' => $this->input->post('type')
 			);
 			if ($this->Type_problem_model->create_type_problem($database) ) {
 				$this->response['dados'] = 'cadastrado';
@@ -35,17 +35,16 @@ class Type_problem extends CI_Controller {
 	}
 
 	public function get_type_problem() {
-	if ($result = $this->Type_problem_model->get_type_problem() ) {
-				$this->response['dados'] = $result;
-				$this->status_header = 200;
-			}else {
-				$this->response['erro']['get_problem'] = 9;
-			}
+		if ($result = $this->Type_problem_model->get_type_problem() ) {
+			$this->response['dados'] = $result;
+			$this->status_header = 200;
+		}else {
+			$this->response['erro']['get_problem'] = 9;
+		}
 
 		$this->output
 			->set_content_type('application/json')
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
 	}
-
 }

@@ -14,7 +14,7 @@ class Type_problem_model extends CI_Model {
 	*/
 
 	public function create_type_problem($data) {
-		if ($this->db->insert('type_problem', $data)){
+		if ($this->db->insert('type_problems', $data)){
 			return TRUE;
 		}
 		else{
@@ -24,9 +24,9 @@ class Type_problem_model extends CI_Model {
 
 	public function get_type_problem() {
 		$this->db
-			->select('*');
-		  // ->where(1);
-		if ( $result = $this->db->get('type_problem')->row()){
+			->select('*')
+			->where('excluded !=', 1);
+		if ( $result = $this->db->get('type_problems')->result()){
 			return $result;
 		}
 		else{
