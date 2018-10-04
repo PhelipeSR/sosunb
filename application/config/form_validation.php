@@ -61,7 +61,7 @@ $config = array(
 			'rules' => 'required|valid_email|is_unique[users.email]',
 			'errors' => array(
 				'required' => 1,
-				'numeric' => 4,
+				'valid_email' => 6,
 				'is_unique' => 5
 			),
 		),
@@ -81,6 +81,17 @@ $config = array(
 			'errors' => array(
 				'required' => 1,
 				'matches' => 7,
+			),
+		),
+	),
+	'update_user' => array(
+		array(
+			'field' => 'email',
+			'label' => 'Email',
+			'rules' => 'required|valid_email',
+			'errors' => array(
+				'required' => 1,
+				'valid_email' => 6,
 			),
 		),
 	),

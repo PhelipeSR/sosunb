@@ -98,15 +98,21 @@ class User extends CI_Controller {
 			$database = array(
 				'email' => $this->input->input_stream('email'),
 			);
-			if ($result = $this->User_model->update_user($database, $payload['sub'])) {
-				$this->response['dados'] = 'Atualizado';
-				$this->status_header = 200;
-			}else{
-				$this->response['erro']['update'] = 9;
+			$this->form_validation->set_data($database);
+			if( $this->form_validation->run('update_user') ) {
+				if ($result = $this->User_model->update_user($database, $payload['sub'])) {
+					$this->response['dados'] = 'Atualizado';
+					$this->status_header = 200;
+				}else{
+					$this->response['erro']['update'] = 9;
+				}
+			}
+			else {
+				$this->response['erro'] = $this->form_validation->error_array();
 			}
 		}
 		$this->output
-			// ->set_content_type('application/json')
+			->set_content_type('application/json')
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
 	}
