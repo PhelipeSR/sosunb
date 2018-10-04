@@ -34,4 +34,13 @@ class Type_problem_model extends CI_Model {
 		}
 	}
 
+	public function update_type_problem($data, $id) {
+		$this->db->where('id', $id);
+		if ($this->db->update('type_problems',$data)) {
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
 }
