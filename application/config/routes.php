@@ -66,3 +66,9 @@ $route['api/type-problem']['post']   = 'api/type_problem/add_type_problem';
 $route['api/type-problem']['get']    = 'api/type_problem/get_type_problem';
 $route['api/type-problem']['put']    = 'api/type_problem/update_type_problem';
 $route['api/type-problem']['delete'] = 'api/type_problem/delete_type_problem';
+
+// Rotas de status
+$route['api/status']['post']   = 'api/status/add_status';
+$route['api/status']['get']    = 'api/status/get_status';
+$route['api/status']['put']    = 'api/status/update_status';
+$route['api/status']['delete'] = 'api/status/delete_status';

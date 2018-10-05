@@ -157,4 +157,46 @@ $config = array(
 			),
 		),
 	),
+	'add_status' => array(
+		array(
+			'field' => 'name',
+			'label' => 'Nome Status',
+			'rules' => 'required|max_length[50]',
+			'errors' => array(
+				'required' => 1,
+				'max_length' => 2,
+			),
+		),
+	),
+	'update_status' => array(
+		array(
+				'field' => 'name',
+				'label' => 'Nome do Status',
+				'rules' => 'required|max_length[50]',
+				'errors' => array(
+					'required' => 1,
+					'max_length' => 2,
+				),
+			),
+			array(
+					'field' => 'id',
+					'label' => 'id do Status',
+					'rules' => 'required|numeric',
+					'errors' => array(
+						'required' => 1,
+						'numeric' => 4,
+			),
+		),
+	),
+	'delete_status' => array(
+			array(
+					'field' => 'id',
+					'label' => 'id do Status',
+					'rules' => 'required|numeric',
+					'errors' => array(
+						'required' => 1,
+						'numeric' => 4,
+			),
+		),
+	),
 );
