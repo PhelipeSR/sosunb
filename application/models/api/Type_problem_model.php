@@ -43,4 +43,12 @@ class Type_problem_model extends CI_Model {
 		}
 	}
 
+	public function delete_type_problem($id) {
+		$this->db->where('id', $id);
+		if ($this->db->update('type_problems',array('excluded' => 1))) {
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
 }
