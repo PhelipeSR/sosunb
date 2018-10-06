@@ -128,21 +128,21 @@ $config = array(
 	),
 	'update_type_problem' => array(
 		array(
-				'field' => 'type',
-				'label' => 'Tipo de Problema',
-				'rules' => 'required|max_length[50]',
-				'errors' => array(
-					'required' => 1,
-					'max_length' => 2,
-				),
+			'field' => 'type',
+			'label' => 'Tipo de Problema',
+			'rules' => 'required|max_length[50]',
+			'errors' => array(
+				'required' => 1,
+				'max_length' => 2,
 			),
-			array(
-					'field' => 'id',
-					'label' => 'id do Tipo de Problema',
-					'rules' => 'required|numeric',
-					'errors' => array(
-						'required' => 1,
-						'numeric' => 4,
+		),
+		array(
+			'field' => 'id',
+			'label' => 'id do Tipo de Problema',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
 			),
 		),
 	),

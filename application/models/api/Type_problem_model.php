@@ -42,5 +42,4 @@ class Type_problem_model extends CI_Model {
 			return FALSE;
 		}
 	}
-
 }

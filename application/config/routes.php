@@ -66,3 +66,9 @@ $route['api/type-problem']['post']   = 'api/type_problem/add_type_problem';
 $route['api/type-problem']['get']    = 'api/type_problem/get_type_problem';
 $route['api/type-problem']['put']    = 'api/type_problem/update_type_problem';
 $route['api/type-problem']['delete'] = 'api/type_problem/delete_user';
+
+// Rotas de tipo de problemas
+$route['api/type-demand']['post']   = 'api/type_demand/add_type_demand';
+$route['api/type-demand']['get']    = 'api/type_demand/get_type_demand';
+$route['api/type-demand']['put']    = 'api/type_demand/update_type_demand';
+$route['api/type-demand']['delete'] = 'api/type_demand/delete_demand';
