@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Type_problem extends CI_Controller {
+class Status extends CI_Controller {
 
 	private $status_header = 400;
 	private $response = array();
@@ -9,16 +9,16 @@ class Type_problem extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->library('form_validation');
-		$this->load->model('api/Type_problem_model');
+		$this->load->model('api/Status_model');
 	}
 
-	// Cadastra novo tipo de problema
-	public function add_type_problem() {
-		if( $this->form_validation->run('add_type_problem') ) {
+	// Cadastra novo status
+	public function add_status() {
+		if( $this->form_validation->run('add_status') ) {
 			$database = array(
-				'type' => $this->input->post('type')
+				'name' => $this->input->post('name')
 			);
-			if ($this->Type_problem_model->create_type_problem($database) ) {
+			if ($this->Status_model->create_status($database) ) {
 				$this->response['dados'] = 'cadastrado';
 				$this->status_header = 200;
 			}else {
@@ -34,13 +34,13 @@ class Type_problem extends CI_Controller {
 			->set_output(json_encode($this->response));
 	}
 
-	//get type problem
-	public function get_type_problem() {
-		if ($result = $this->Type_problem_model->get_type_problem() ) {
+//get status
+	public function get_status() {
+		if ($result = $this->Status_model->get_status() ) {
 			$this->response['dados'] = $result;
 			$this->status_header = 200;
 		}else {
-			$this->response['erro']['get_problem'] = 9;
+			$this->response['erro']['get_status'] = 9;
 		}
 
 		$this->output
@@ -49,20 +49,20 @@ class Type_problem extends CI_Controller {
 			->set_output(json_encode($this->response));
 	}
 
-	//Editar problema
-	public function update_type_problem() {
+	//Editar status
+	public function update_status() {
 		$database = array(
-			'type' => $this->input->input_stream('type'),
-			'id' => $this->input->input_stream('id')
-		);
+		'name' => $this->input->input_stream('name'),
+		'id' => $this->input->input_stream('id')
+				);
 		$this->form_validation->set_data($database);
-		if( $this->form_validation->run('update_type_problem') ) {
-			if ($this->Type_problem_model->update_type_problem($database, $database['id']) ) {
-				$this->response['dados'] = 'atualizado';
-				$this->status_header = 200;
-			}else {
-				$this->response['erro']['update'] = 9;
-			}
+		if( $this->form_validation->run('update_status') ) {
+			if ($this->Status_model->update_status($database, $database['id']) ) {
+						$this->response['dados'] = 'atualizado';
+						$this->status_header = 200;
+				} else {
+						$this->response['erro']['update'] = 9;
+					}
 		}
 		else {
 			$this->response['erro'] = $this->form_validation->error_array();
@@ -73,13 +73,13 @@ class Type_problem extends CI_Controller {
 			->set_output(json_encode($this->response));
 	}
 
-	public function delete_type_problem() {
+	public function delete_status() {
 		$database = array(
 		 'id' => $this->input->input_stream('id')
 				);
 		$this->form_validation->set_data($database);
-		if( $this->form_validation->run('delete_type_problem') ) {
-			if ($this->Type_problem_model->delete_type_problem($database['id']) ) {
+		if( $this->form_validation->run('delete_status') ) {
+			if ($this->Status_model->delete_status($database['id']) ) {
 						$this->response['dados'] = 'excluido';
 						$this->status_header = 200;
 				} else {
@@ -94,4 +94,5 @@ class Type_problem extends CI_Controller {
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
 	}
+
 }

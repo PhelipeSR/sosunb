@@ -59,16 +59,23 @@ $route['api/user']['get']    = 'api/user/get_user';
 $route['api/user']['put']    = 'api/user/update_user';
 $route['api/user']['delete'] = 'api/user/delete_user';
 
+// Rotas de Sessão
 $route['api/session']['post'] = 'api/session/post';
 
 // Rotas de tipo de problemas
 $route['api/type-problem']['post']   = 'api/type_problem/add_type_problem';
 $route['api/type-problem']['get']    = 'api/type_problem/get_type_problem';
 $route['api/type-problem']['put']    = 'api/type_problem/update_type_problem';
-$route['api/type-problem']['delete'] = 'api/type_problem/delete_user';
+$route['api/type-problem']['delete'] = 'api/type_problem/delete_type_problem';
 
-// Rotas de tipo de problemas
+// Rotas de tipo de demanda
 $route['api/type-demand']['post']   = 'api/type_demand/add_type_demand';
 $route['api/type-demand']['get']    = 'api/type_demand/get_type_demand';
 $route['api/type-demand']['put']    = 'api/type_demand/update_type_demand';
-$route['api/type-demand']['delete'] = 'api/type_demand/delete_demand';
+$route['api/type-demand']['delete'] = 'api/type_demand/delete_type_demand';
+
+// Rotas de status
+$route['api/status']['post']   = 'api/status/add_status';
+$route['api/status']['get']    = 'api/status/get_status';
+$route['api/status']['put']    = 'api/status/update_status';
+$route['api/status']['delete'] = 'api/status/delete_status';

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Type_problem_model extends CI_Model {
+class Status_model extends CI_Model {
 
 	function __construct() {
 		parent::__construct();
@@ -13,8 +13,8 @@ class Type_problem_model extends CI_Model {
 	* =====================================================================
 	*/
 
-	public function create_type_problem($data) {
-		if ($this->db->insert('type_problems', $data)){
+	public function create_status($data) {
+		if ($this->db->insert('status', $data)){
 			return TRUE;
 		}
 		else{
@@ -22,11 +22,11 @@ class Type_problem_model extends CI_Model {
 		}
 	}
 
-	public function get_type_problem() {
+	public function get_status() {
 		$this->db
 			->select('*')
 			->where('excluded !=', 1);
-		if ( $result = $this->db->get('type_problems')->result()){
+		if ( $result = $this->db->get('status')->result()){
 			return $result;
 		}
 		else{
@@ -34,22 +34,21 @@ class Type_problem_model extends CI_Model {
 		}
 	}
 
-	public function update_type_problem($data, $id) {
+	public function update_status($data, $id) {
 		$this->db->where('id', $id);
-		if ($this->db->update('type_problems',$data)) {
+		if ($this->db->update('status',$data)) {
 			return TRUE;
 		}else{
 			return FALSE;
 		}
 	}
 
-	public function delete_type_problem($id) {
+	public function delete_status($id) {
 		$this->db->where('id', $id);
-		if ($this->db->update('type_problems',array('excluded' => 1))) {
+		if ($this->db->update('status',array('excluded' => 1))) {
 			return TRUE;
 		}else{
 			return FALSE;
 		}
 	}
-
 }
