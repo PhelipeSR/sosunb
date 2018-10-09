@@ -34,7 +34,7 @@ class Status extends CI_Controller {
 			->set_output(json_encode($this->response));
 	}
 
-//get status
+	//get status
 	public function get_status() {
 		if ($result = $this->Status_model->get_status() ) {
 			$this->response['dados'] = $result;
@@ -42,7 +42,6 @@ class Status extends CI_Controller {
 		}else {
 			$this->response['erro']['get_status'] = 9;
 		}
-
 		$this->output
 			->set_content_type('application/json')
 			->set_status_header($this->status_header)
@@ -52,17 +51,17 @@ class Status extends CI_Controller {
 	//Editar status
 	public function update_status() {
 		$database = array(
-		'name' => $this->input->input_stream('name'),
-		'id' => $this->input->input_stream('id')
-				);
+			'name' => $this->input->input_stream('name'),
+		);
+		$id = $this->input->input_stream('id');
 		$this->form_validation->set_data($database);
-		if( $this->form_validation->run('update_status') ) {
-			if ($this->Status_model->update_status($database, $database['id']) ) {
-						$this->response['dados'] = 'atualizado';
-						$this->status_header = 200;
-				} else {
-						$this->response['erro']['update'] = 9;
-					}
+		if($this->form_validation->run('update_status') ) {
+			if ($this->Status_model->update_status($database, $id) ) {
+				$this->response['dados'] = 'atualizado';
+				$this->status_header = 200;
+			}else {
+				$this->response['erro']['update'] = 9;
+			}
 		}
 		else {
 			$this->response['erro'] = $this->form_validation->error_array();
@@ -73,18 +72,17 @@ class Status extends CI_Controller {
 			->set_output(json_encode($this->response));
 	}
 
+	// Deletar status
 	public function delete_status() {
-		$database = array(
-		 'id' => $this->input->input_stream('id')
-				);
+		$id = $this->input->input_stream('id');
 		$this->form_validation->set_data($database);
-		if( $this->form_validation->run('delete_status') ) {
-			if ($this->Status_model->delete_status($database['id']) ) {
-						$this->response['dados'] = 'excluido';
-						$this->status_header = 200;
-				} else {
-						$this->response['erro']['update'] = 9;
-					}
+		if($this->form_validation->run('delete_status')) {
+			if ($this->Status_model->delete_status($id)) {
+				$this->response['dados'] = 'excluido';
+				$this->status_header = 200;
+			}else {
+				$this->response['erro']['update'] = 9;
+			}
 		}
 		else {
 			$this->response['erro'] = $this->form_validation->error_array();
@@ -94,5 +92,4 @@ class Status extends CI_Controller {
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
 	}
-
 }
