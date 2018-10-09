@@ -52,11 +52,11 @@ class Status extends CI_Controller {
 	public function update_status() {
 		$database = array(
 			'name' => $this->input->input_stream('name'),
+			'id' => $this->input->input_stream('id'),
 		);
-		$id = $this->input->input_stream('id');
 		$this->form_validation->set_data($database);
 		if($this->form_validation->run('update_status') ) {
-			if ($this->Status_model->update_status($database, $id) ) {
+			if ($this->Status_model->update_status($database, $database['id']) ) {
 				$this->response['dados'] = 'atualizado';
 				$this->status_header = 200;
 			}else {

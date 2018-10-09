@@ -199,4 +199,46 @@ $config = array(
 			),
 		),
 	),
+	'add_type_demand' => array(
+		array(
+			'field' => 'demands',
+			'label' => 'Tipo de Demanda',
+			'rules' => 'required|max_length[100]',
+			'errors' => array(
+				'required' => 1,
+				'max_length' => 2,
+			),
+		),
+	),
+	'update_type_demand' => array(
+		array(
+			'field' => 'demands',
+			'label' => 'Tipo de Demanda',
+			'rules' => 'required|max_length[100]',
+			'errors' => array(
+				'required' => 1,
+				'max_length' => 2,
+			),
+		),
+		array(
+			'field' => 'id',
+			'label' => 'ID do Tipo de Demanda',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+	),
+	'delete_type_demand' => array(
+		array(
+			'field' => 'id',
+			'label' => 'id do Tipo de Demanda',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+	),
 );
