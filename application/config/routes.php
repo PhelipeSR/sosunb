@@ -79,3 +79,7 @@ $route['api/status']['post']   = 'api/status/add_status';
 $route['api/status']['get']    = 'api/status/get_status';
 $route['api/status']['put']    = 'api/status/update_status';
 $route['api/status']['delete'] = 'api/status/delete_status';
+
+// Rotas de likes
+$route['api/like']['post']   = 'api/likes/add_like';
+$route['api/like']['delete'] = 'api/likes/delete_like';
