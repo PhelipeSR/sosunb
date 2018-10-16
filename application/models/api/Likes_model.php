@@ -26,7 +26,7 @@ class Likes_model extends CI_Model {
 
 	public function delete_like($demandsid, $userid) {
 		$this->db->where('demands_id', $demandsid);
-		$this->db->where('user_id', $userid);
+		$this->db->where('users_id', $userid);
 		if ($this->db->delete('likes')) {
 			return TRUE;
 		}else{
