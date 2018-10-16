@@ -254,8 +254,8 @@ $config = array(
 	),
 	'delete_like' => array(
 		array(
-			'field' => 'id',
-			'label' => 'id do like',
+			'field' => 'demands_id',
+			'label' => 'id da demanda descurtida',
 			'rules' => 'required|numeric',
 			'errors' => array(
 				'required' => 1,
