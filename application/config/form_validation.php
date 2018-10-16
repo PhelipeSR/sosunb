@@ -243,29 +243,12 @@ $config = array(
 	),
 	'add_like' => array(
 		array(
-			'field' => 'users_id',
-			'label' => 'id do usuário que deu like',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-		array(
 			'field' => 'demands_id',
 			'label' => 'id da demanda curtida',
 			'rules' => 'required|numeric',
 			'errors' => array(
 				'required' => 1,
 				'numeric' => 4,
-			),
-		),
-		array(
-			'field' => 'date',
-			'label' => 'Data do like',
-			'rules' => 'required',
-			'errors' => array(
-				'required' => 1,
 			),
 		),
 	),
