@@ -66,12 +66,21 @@ class Likes extends CI_Controller {
 
 
 	 public function delete_like() {
-	 	$database = array(
-	 	 'id' => $this->input->input_stream('id'),
-  	 			);
-	 	$this->form_validation->set_data($database);
+		 $token = $this->input->get_request_header('token');
+ 		$payload = (array) $this->jwt->decode($token);
+ 		if ($payload === FALSE) {
+ 			$this->response['erro'] = 'token_invalido';
+ 			$this->status_header = 401;
+ 		}else{
+			$database = array(
+				'demands_id' => $this->input->input_stream('demands_id'),
+				'users_id' => $payload['sub']
+			);
+			$this->form_validation->set_data($database);
+			print_r($this->input->input_stream('demands_id'));
+			exit();
 	 	if( $this->form_validation->run('delete_like') ) {
-	 		if ($this->Likes_model->delete_like($database['id']) ) {
+	 		if ($this->Likes_model->delete_like($database['demands_id'],$database['users_id'] ) ) {
 	 					$this->response['dados'] = 'excluido';
 	 					$this->status_header = 200;
 	 			} else {
@@ -81,9 +90,10 @@ class Likes extends CI_Controller {
 	 	else {
 	 		$this->response['erro'] = $this->form_validation->error_array();
 	 	}
+	}
 	 	$this->output
 	 		->set_content_type('application/json')
 	 		->set_status_header($this->status_header)
 	 		->set_output(json_encode($this->response));
-	 }
+		}
 }
