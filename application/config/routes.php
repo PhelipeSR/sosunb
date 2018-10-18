@@ -89,3 +89,10 @@ $route['api/coments']['delete'] = 'api/coments/delete_coments';
 // Rotas de likes
 $route['api/like']['post']   = 'api/likes/add_like';
 $route['api/like']['delete'] = 'api/likes/delete_like';
+
+// Rotas de Demandas
+$route['api/demands']['post']   = 'api/demands/add_demands';
+$route['api/demands']['put']    = 'api/demands/update_demands';
+$route['api/demands']['delete'] = 'api/demands/delete_demands';
+// $route['api/demands']['get']    = 'api/demands/get_coments';
+// $route['api/demands']['get']    = 'api/demands/get_coments';
