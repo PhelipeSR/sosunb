@@ -43,11 +43,11 @@ class Likes extends CI_Controller {
 
 	public function delete_like() {
 		$token = $this->input->get_request_header('token');
- 		$payload = (array) $this->jwt->decode($token);
- 		if ($payload === FALSE) {
- 			$this->response['erro'] = 'token_invalido';
- 			$this->status_header = 401;
- 		}else{
+		$payload = (array) $this->jwt->decode($token);
+		if ($payload === FALSE) {
+			$this->response['erro'] = 'token_invalido';
+			$this->status_header = 401;
+		}else{
 			$database = array(
 				'demands_id' => $this->input->input_stream('demands_id'),
 				'users_id' => $payload['sub']

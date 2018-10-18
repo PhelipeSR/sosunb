@@ -18,6 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 $config = array(
+	// user
 	'register' => array(
 		array(
 			'field'  => 'name',
@@ -115,6 +116,8 @@ $config = array(
 			),
 		),
 	),
+
+	// type-problem
 	'add_type_problem' => array(
 		array(
 			'field' => 'type',
@@ -157,6 +160,8 @@ $config = array(
 			),
 		),
 	),
+
+	// status
 	'add_status' => array(
 		array(
 			'field' => 'name',
@@ -199,6 +204,8 @@ $config = array(
 			),
 		),
 	),
+
+	// type-demand
 	'add_type_demand' => array(
 		array(
 			'field' => 'demands',
@@ -241,6 +248,8 @@ $config = array(
 			),
 		),
 	),
+
+	// Like
 	'add_like' => array(
 		array(
 			'field' => 'demands_id',
@@ -256,6 +265,84 @@ $config = array(
 		array(
 			'field' => 'demands_id',
 			'label' => 'id da demanda descurtida',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+	),
+
+	// Coments
+	'add_coments' => array(
+		array(
+			'field' => 'demands_id',
+			'label' => 'id da demanda',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'comment',
+			'label' => 'Comentário',
+			'rules' => 'required',
+			'errors' => array(
+				'required' => 1,
+			),
+		),
+		array(
+			'field' => 'users_id',
+			'label' => 'ID do Usuário',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+	),
+	'update_coments' => array(
+		array(
+			'field' => 'demands_id',
+			'label' => 'id da demanda',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'comment',
+			'label' => 'Comentário',
+			'rules' => 'required',
+			'errors' => array(
+				'required' => 1,
+			),
+		),
+		array(
+			'field' => 'users_id',
+			'label' => 'ID do Usuário',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+	),
+	'delete_coments' => array(
+		array(
+			'field' => 'coment_id',
+			'label' => 'ID do Comentário',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'users_id',
+			'label' => 'ID do Usuário',
 			'rules' => 'required|numeric',
 			'errors' => array(
 				'required' => 1,
