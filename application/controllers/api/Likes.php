@@ -1,8 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Likes extends CI_Controller {
+
 	private $status_header = 400;
 	private $response = array();
+
 	function __construct() {
 		parent::__construct();
 		$this->load->library('form_validation');

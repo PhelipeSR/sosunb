@@ -75,18 +75,17 @@ class Type_problem extends CI_Controller {
 
 	public function delete_type_problem() {
 		$database = array(
-		 'id' => $this->input->input_stream('id')
-				);
+			'id' => $this->input->input_stream('id')
+		);
 		$this->form_validation->set_data($database);
 		if( $this->form_validation->run('delete_type_problem') ) {
 			if ($this->Type_problem_model->delete_type_problem($database['id']) ) {
-						$this->response['dados'] = 'excluido';
-						$this->status_header = 200;
-				} else {
-						$this->response['erro']['update'] = 9;
-					}
-		}
-		else {
+				$this->response['dados'] = 'excluido';
+				$this->status_header = 200;
+			}else {
+				$this->response['erro']['update'] = 9;
+			}
+		}else {
 			$this->response['erro'] = $this->form_validation->error_array();
 		}
 		$this->output
