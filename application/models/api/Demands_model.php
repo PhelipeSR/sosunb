@@ -24,14 +24,18 @@ class Demands_model extends CI_Model {
 
 
 
-	public function delete_like($demandsid, $userid) {
-		$this->db->where('demands_id', $demandsid);
-		$this->db->where('users_id', $userid);
-		if ($this->db->delete('likes')) {
+	public function delete_demands($data, $user=FALSE) {
+		if($user){
+			$this->db->where('users_id', $data['users_id']);
+		}
+		$this->db->where('id', $data['demands_id']);
+		if ($this->db->update('demands',array('excluded' => 1))) {
 			return TRUE;
 		}else{
 			return FALSE;
 		}
 	}
+
+
 
 }

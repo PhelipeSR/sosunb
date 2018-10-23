@@ -352,15 +352,7 @@ $config = array(
 	),
 //demamds
 	'add_demands' => array(
-		array(
-			'field' => 'title',
-			'label' => 'Título da Demanda',
-			'rules' => 'max_length'[50],
-			'errors' => array(
-				'max_length' => 2,
-			),
-		),
-		array(
+			array(
 			'field' => 'type_problems_id',
 			'label' => 'Id do tipo de Problema',
 			'rules' => 'required|numeric',
@@ -399,4 +391,16 @@ $config = array(
 			),
 
 		),
+
+		'delete_demands' => array(
+				array(
+						'field' => 'demands_id',
+						'label' => 'Id da demanda',
+						'rules' => 'required|numeric',
+						'errors' => array(
+							'required' => 1,
+							'numeric' => 4,
+						),
+					),
+			),		
 );
