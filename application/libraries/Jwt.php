@@ -20,7 +20,7 @@ class Jwt {
 		if ($signature !== $this->sign($header64, $payload64)) {
 			return FALSE;
 		}
-		return $payload;
+		return (array)$payload;
 	}
 
 	public function encode($payload) {

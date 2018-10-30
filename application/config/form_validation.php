@@ -350,9 +350,10 @@ $config = array(
 			),
 		),
 	),
-//demamds
+
+	//demamds
 	'add_demands' => array(
-			array(
+		array(
 			'field' => 'type_problems_id',
 			'label' => 'Id do tipo de Problema',
 			'rules' => 'required|numeric',
@@ -361,46 +362,123 @@ $config = array(
 				'numeric' => 4,
 			),
 		),
-
-	array(
-		'field' => 'type_demand_id',
-		'label' => 'Id do Tipo de Demanda',
-		'rules' => 'required|numeric',
-		'errors' => array(
-			'required' => 1,
-			'numeric' => 4,
+		array(
+			'field' => 'type_demand_id',
+			'label' => 'Id do Tipo de Demanda',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'local_id',
+			'label' => 'Id do Local',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'status_id',
+			'label' => 'Id do Status',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
 		),
 	),
-	array(
-				'field' => 'local_id',
-				'label' => 'Id do Local',
-				'rules' => 'required|numeric',
-				'errors' => array(
-					'required' => 1,
-					'numeric' => 4,
-				),
+	'delete_demands' => array(
+		array(
+			'field' => 'demands_id',
+			'label' => 'Id da demanda',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
 			),
-	array(
-				'field' => 'status_id',
-				'label' => 'Id do Status',
-				'rules' => 'required|numeric',
-				'errors' => array(
-					'required' => 1,
-					'numeric' => 4,
-				),
-			),
-
 		),
+	),
 
-		'delete_demands' => array(
-				array(
-						'field' => 'demands_id',
-						'label' => 'Id da demanda',
-						'rules' => 'required|numeric',
-						'errors' => array(
-							'required' => 1,
-							'numeric' => 4,
-						),
-					),
-			),		
+	//demamds
+	'add_local' => array(
+		array(
+			'field' => 'local',
+			'label' => 'Local',
+			'rules' => 'required|max_length[100]',
+			'errors' => array(
+				'required' => 1,
+				'max_length' => 2,
+			),
+		),
+		array(
+			'field' => 'campus',
+			'label' => 'Campus',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'area',
+			'label' => 'Área',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+	),
+	'update_local' => array(
+		array(
+			'field' => 'local',
+			'label' => 'Local',
+			'rules' => 'required|max_length[100]',
+			'errors' => array(
+				'required' => 1,
+				'max_length' => 2,
+			),
+		),
+		array(
+			'field' => 'campus',
+			'label' => 'Campus',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'area',
+			'label' => 'Área',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'id',
+			'label' => 'Id do Local',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+	),
+	'delete_local' => array(
+		array(
+			'field' => 'id',
+			'label' => 'Id do Local',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+	),
 );

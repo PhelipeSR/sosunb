@@ -54,45 +54,51 @@ $route['404_override'] = 'welcome/not_found';
 $route['translate_uri_dashes'] = FALSE;
 
 // Rotas de usuário
-$route['api/user']['post']   = 'api/user/register_user';
-$route['api/user']['get']    = 'api/user/get_user';
-$route['api/user']['put']    = 'api/user/update_user';
-$route['api/user']['delete'] = 'api/user/delete_user';
+$route['user']['post']   = 'api/user/register_user';
+$route['user']['get']    = 'api/user/get_user';
+$route['user']['put']    = 'api/user/update_user';
+$route['user']['delete'] = 'api/user/delete_user';
 
 // Rotas de Sessão
-$route['api/session']['post'] = 'api/session/post';
+$route['session']['post'] = 'api/session/post';
 
 // Rotas de tipo de problemas
-$route['api/type-problem']['post']   = 'api/type_problem/add_type_problem';
-$route['api/type-problem']['get']    = 'api/type_problem/get_type_problem';
-$route['api/type-problem']['put']    = 'api/type_problem/update_type_problem';
-$route['api/type-problem']['delete'] = 'api/type_problem/delete_type_problem';
+$route['type-problem']['post']   = 'api/type_problem/add_type_problem';
+$route['type-problem']['get']    = 'api/type_problem/get_type_problem';
+$route['type-problem']['put']    = 'api/type_problem/update_type_problem';
+$route['type-problem']['delete'] = 'api/type_problem/delete_type_problem';
 
 // Rotas de tipo de demanda
-$route['api/type-demand']['post']   = 'api/type_demand/add_type_demand';
-$route['api/type-demand']['get']    = 'api/type_demand/get_type_demand';
-$route['api/type-demand']['put']    = 'api/type_demand/update_type_demand';
-$route['api/type-demand']['delete'] = 'api/type_demand/delete_type_demand';
+$route['type-demand']['post']   = 'api/type_demand/add_type_demand';
+$route['type-demand']['get']    = 'api/type_demand/get_type_demand';
+$route['type-demand']['put']    = 'api/type_demand/update_type_demand';
+$route['type-demand']['delete'] = 'api/type_demand/delete_type_demand';
 
 // Rotas de status
-$route['api/status']['post']   = 'api/status/add_status';
-$route['api/status']['get']    = 'api/status/get_status';
-$route['api/status']['put']    = 'api/status/update_status';
-$route['api/status']['delete'] = 'api/status/delete_status';
+$route['status']['post']   = 'api/status/add_status';
+$route['status']['get']    = 'api/status/get_status';
+$route['status']['put']    = 'api/status/update_status';
+$route['status']['delete'] = 'api/status/delete_status';
 
 // Rotas de coments
-$route['api/coments']['post']   = 'api/coments/add_coments';
-$route['api/coments']['get']    = 'api/coments/get_coments';
-$route['api/coments']['put']    = 'api/coments/update_coments';
-$route['api/coments']['delete'] = 'api/coments/delete_coments';
+$route['coments']['post']   = 'api/coments/add_coments';
+$route['coments']['get']    = 'api/coments/get_coments';
+$route['coments']['put']    = 'api/coments/update_coments';
+$route['coments']['delete'] = 'api/coments/delete_coments';
 
 // Rotas de likes
-$route['api/like']['post']   = 'api/likes/add_like';
-$route['api/like']['delete'] = 'api/likes/delete_like';
+$route['like']['post']   = 'api/likes/add_like';
+$route['like']['delete'] = 'api/likes/delete_like';
 
 // Rotas de Demandas
-$route['api/demands']['post']   = 'api/demands/add_demands';
-$route['api/demands']['put']    = 'api/demands/update_demands';
-$route['api/demands']['delete'] = 'api/demands/delete_demands';
-// $route['api/demands']['get']    = 'api/demands/get_coments';
-// $route['api/demands']['get']    = 'api/demands/get_coments';
+$route['demands']['post']   = 'api/demands/add_demands';
+$route['demands']['put']    = 'api/demands/update_demands';
+$route['demands']['delete'] = 'api/demands/delete_demands';
+// $route['demands']['get']    = 'api/demands/get_coments';
+// $route['demands']['get']    = 'api/demands/get_coments';
+
+// Rotas de local
+$route['local']['post']   = 'api/local/add_local';
+$route['local']['get']    = 'api/local/get_local';
+$route['local']['put']    = 'api/local/update_local';
+$route['local']['delete'] = 'api/local/delete_local';
