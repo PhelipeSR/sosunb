@@ -69,7 +69,7 @@ class User extends CI_Controller {
 	// Pega informações do usuário
 	public function get_user() {
 		$token = $this->input->get_request_header('token');
-		$payload = (array) $this->jwt->decode($token);
+		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;
@@ -90,7 +90,7 @@ class User extends CI_Controller {
 	// Atualiza dados do usuário
 	public function update_user() {
 		$token = $this->input->get_request_header('token');
-		$payload = (array) $this->jwt->decode($token);
+		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;
@@ -120,7 +120,7 @@ class User extends CI_Controller {
 	// Deleta um usuário
 	public function delete_user() {
 		$token = $this->input->get_request_header('token');
-		$payload = (array) $this->jwt->decode($token);
+		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;

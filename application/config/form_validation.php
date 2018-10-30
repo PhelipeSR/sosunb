@@ -12,13 +12,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	not_unb => 8 (não é aluno da UnB)
 	erro_banco => 9 (erro genérico do banco)
 	login_erro => 10 (dados incorrétos ou usuário excluído)
-	name
-
 */
 
 
 $config = array(
-	// user
+
+	// ========================================
+	// User
+	// ========================================
 	'register' => array(
 		array(
 			'field'  => 'name',
@@ -117,7 +118,9 @@ $config = array(
 		),
 	),
 
+	// ========================================
 	// type-problem
+	// ========================================
 	'add_type_problem' => array(
 		array(
 			'field' => 'type',
@@ -161,7 +164,9 @@ $config = array(
 		),
 	),
 
+	// ========================================
 	// status
+	// ========================================
 	'add_status' => array(
 		array(
 			'field' => 'name',
@@ -205,7 +210,9 @@ $config = array(
 		),
 	),
 
+	// ========================================
 	// type-demand
+	// ========================================
 	'add_type_demand' => array(
 		array(
 			'field' => 'demands',
@@ -249,7 +256,9 @@ $config = array(
 		),
 	),
 
-	// Like
+	// ========================================
+	// like
+	// ========================================
 	'add_like' => array(
 		array(
 			'field' => 'demands_id',
@@ -273,7 +282,9 @@ $config = array(
 		),
 	),
 
-	// Coments
+	// ========================================
+	// coments
+	// ========================================
 	'add_coments' => array(
 		array(
 			'field' => 'demands_id',
@@ -351,7 +362,9 @@ $config = array(
 		),
 	),
 
-	//demamds
+	// ========================================
+	// demands
+	// ========================================
 	'add_demands' => array(
 		array(
 			'field' => 'type_problems_id',
@@ -402,7 +415,9 @@ $config = array(
 		),
 	),
 
-	//demamds
+	// ========================================
+	// local
+	// ========================================
 	'add_local' => array(
 		array(
 			'field' => 'local',

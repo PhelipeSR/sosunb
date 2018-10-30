@@ -15,7 +15,7 @@ class Coments extends CI_Controller {
 	// Cadastra novo comentário
 	public function add_coments() {
 		$token = $this->input->get_request_header('token');
-		$payload = (array) $this->jwt->decode($token);
+		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
  			$this->response['erro'] = 'token_invalido';
  			$this->status_header = 401;
@@ -86,7 +86,7 @@ class Coments extends CI_Controller {
 	// Deletar comentário
 	public function delete_coments() {
 		$token = $this->input->get_request_header('token');
-		$payload = (array) $this->jwt->decode($token);
+		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;
