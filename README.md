@@ -8,16 +8,16 @@ O objetivo da API é dar suporte as requisições das aplicações Front-End do 
 
 | Identificador | Finalidade |
 | --- | --- |
-| /user | Endpoint responsável por realizar o cadastro do novo usuário |
-| /status|Endpoint responsável pelo status da demanda |
-| /type-demand | Endpoint responsável pela criação do tipo de demanda  |
-| /local |Endpoint responsável pelo local da demanda |
-| /type-problem |Endpoint responsável pela criação, edição, excluisão e requisição de um tipo de problema|
-| /like |Endpoint responsável pelos likes do usuário|
-| /coments |Endpoint responsável pelos comentários do usuário|
-| /answers |Endpoint responsavel pelas respostas do usuário|
-| /demands |Endpoint responsável pelas demandas|
-| /session |Endpoint responsável pelo login e recuperação de senha do usuário|
+| api/user | Endpoint responsável por realizar o cadastro do novo usuário |
+| api/status|Endpoint responsável pelo status da demanda |
+| api/type-demand | Endpoint responsável pela criação do tipo de demanda  |
+| api/local |Endpoint responsável pelo local da demanda |
+| api/type-problem |Endpoint responsável pela criação, edição, exclusão e requisição de um tipo de problema|
+| api/like |Endpoint responsável pelos likes do usuário|
+| api/coments |Endpoint responsável pelos comentários do usuário|
+| api/answers |Endpoint responsavel pelas respostas do usuário|
+| api/demands |Endpoint responsável pelas demandas|
+| api/session |Endpoint responsável pelo login e recuperação de senha do usuário|
 
 ## /session (POST)
 ### Parametros de entrada
@@ -31,8 +31,8 @@ O objetivo da API é dar suporte as requisições das aplicações Front-End do 
 
 |STATUS | TYPE |DESCRIÇÃO|
 | --- | --- | --- |
-| 200 | OK |Cadastro enviado|
-| 10 |||
+| 200 | OK | Cadastro enviado |
+| 10 | ? | Dados incorretos |
 | 400 | BAD_REQUEST | Algum parâmetro do tipo errado espaço em ou vazio|
 
 > Exemplos de requisição
@@ -43,159 +43,138 @@ O objetivo da API é dar suporte as requisições das aplicações Front-End do 
  "password":"12345678",
 }
 ```
-## /us/auth/profile (GET)
+## api/user (POST)
 
 ### Parametros de retorno
 
 |Parametros de retorno| Tipo de entrada | Obrigatório | Detalhe|
 | --- |--- |--- |---|
-| _id |string|sim|id do usuário no banco de dados|
-| photo |string | sim | Foto do usuário|
-| qrcode |base 64 | sim | Base 64 encodado das informações do usuário|
-| name | string |sim | Nome do Usuário|
-| student_id |string | sim | Matricula usuário|
-| university_id | integer|sim | Universidade de usuário|
+| name | string | sim | Nome do usuário |
+| email | string | sim | E-mail do usuário |
+| registry | string | sim | Matrícula do usuário |
+| identity | string |sim | Identidade do usuário|
+| date_birth | string | sim | Data de aniversário do usuário|
+| password | string |sim | Senha do usuário|
 
 
 ### Tipos de Retorno
 |STATUS| TYPE |Descrição|
 | --- |---| --- |
 |  200 | OK |Cadastro enviado|
-
+|  9 | ? |Erro genérico do banco|
+|  8 | ? |Não é aluno da UnB|
 
 > Exemplos de requisição
 
 ```json
 {
- "photo":"5gkzgT5CRR1l6JI...",
- "qrcode":"5gkzgT5CRR1l6JI...",
- "name":"Caio Rondon",
- "password":"12345678",
- "student_id":"140018762",
- "university_id":6,
+ "name":"Pedro Lindo",
+ "email":"pedrolindo@gmail.com",
+ "registry":"140027172",
+ "identity":"3380180",
+ "date_birth":"09091996",
+ "password":"123456",
+}
+```
+## api/user (GET)
+
+### Parametros de retorno
+
+|Parametros de retorno| Tipo de entrada | Obrigatório | Detalhe|
+| --- |--- |--- |---|
+| token | string | sim | Token do usuário |
+
+
+### Tipos de Retorno
+|STATUS| TYPE |Descrição|
+| --- |---| --- |
+|  200 | OK |Cadastro enviado|
+|  9 | ? |Erro genérico do banco|
+|  401 | ? |Não é aluno da UnB|
+
+> Exemplos de requisição
+
+```json
+{
+ "token":"eyJ0eXAiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3Nvc3VuYlwvIiwic3ViIjoiMSIsImV4cCI6MTUzOTgwNTk5NCwiaWF0IjoxNTM5NzE5NTk0LCJ1c2VyIjoiUGVkcm8gSGVucmlxdWUgTGlyYSBkYSBDb3N0YSIsInByb2ZpbGVfdHlwZV9pZCI6IjEifQ.l2_5lpUV083_43QEDFcCWS4AfduxhoeXTi_k-9y18eA",
 }
 ```
 
-## /us/user/change-password (POST)
+## api/user (PUT)
 
 ### Parametros de entrada
 
-|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
+|Parametros de retorno| Tipo de entrada | Obrigatório | Detalhe|
 | --- |--- |--- |---|
-| current_password |string | sim | Senha atual do usuario|
-| new_password |string | sim | Nova senha do usuário|
+| email | string | sim | E-mail do usuário |
 
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Nova senha confirmada|
 |401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
-|400 | BAD_REQUEST |O formato da nova senha não é valido|
+|9 | ? |Erro genérico do banco|
 
 > Exemplos de requisição
 
 ```json
 {
- "current_password":"1231234",
- "new_password":"54321768",
+ "email":"pedrolindo@gmail.com",
 }
 ```
-## /us/user/change-email (POST)
+## api/user (DELETE)
 
 ### Parametros de entrada
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
 | --- |--- |--- |---|
-| current_password |string | sim | Senha atual do usuario|
-| new_email |string | sim | Novo email do usuário|
+| token | string | sim | Token do usuário |o|
 
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| --- |
 |200 |OK |Novo email confirmado|
 |401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
-|400 | BAD_REQUEST |O formato do novo email não é valido|
+
 
 > Exemplos de requisição
 
 ```json
 {
- "current_password":"1231234",
- "new_email":"Caiofeio@hotmail.com",
+ "token":"eyJ0eXAiOiJqd3QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL3Nvc3VuYlwvIiwic3ViIjoiMSIsImV4cCI6MTUzOTgwNTk5NCwiaWF0IjoxNTM5NzE5NTk0LCJ1c2VyIjoiUGVkcm8gSGVucmlxdWUgTGlyYSBkYSBDb3N0YSIsInByb2ZpbGVfdHlwZV9pZCI6IjEifQ.l2_5lpUV083_43QEDFcCWS4AfduxhoeXTi_k-9y18eA",
 }
 ```
-## /us/auth/login (POST)
+## api/status (POST)
 
 ### Parametros de entrada
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
 | --- |--- |--- |---|
-|cpf |string | sim | CPF do usuario|
-|password |string | sim |Senha do usuário|
+|name |string | sim | Nome do usuario|
+
 
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Login realizado|
-|401 | UNAUTHORIZED |Cpf e senha não batem|
-|400 | BAD_PARAMETERS |Espaços em branco (CPF ou senha)|
+|9 | ? |Erro genérico do banco|
 
 > Exemplos de requisição
 
 ```json
  {
-   "cpf":"615281665",
-   "password":"54321768",
+   "name":"Pedro Lindo",
  }
 ```
-## /us/auth/recovery-password (POST)
+
+## api/status (GET)
 
 ### Parametros de entrada
-
-|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
-| --- |--- |--- |---|
-| cpf |string | sim | CPF do usuario|
-
-### Tipos de Retorno
-|STATUS | TYPE | Descrição|
-| --- |---| --- |
-|200 | OK |Senha recuperada|
-|400 | BAD_REQUEST |CPF invalido|
-
-> Exemplos de requisição
-
-```json
-{
- "cpf":"124331234",
-}
-```
-## /us/user/get-pass (GET)
 
 Esse Endpoint não recebe parametros de entrada
 
 ### Tipos de Retorno
 |STATUS | TYPE | Descrição|
 | --- |---| --- |
-|200 | OK |passcode enviado|
-|401 | UNAUTHORIZED |Token do usuário inválido|
-
-## /us/universities (GET)
-### Tipos de Retorno
-|STATUS | TYPE | Descrição|
-| --- |---| --- |
-|200 | OK | Enviará as universidades em um array contendo o ID e a Instituição de ensino |
-
-> Exemplo de retorno
-
-```json
-{
-  "type": "OK",
-  "data": [
-    {
-      "_id": "5b01e51bd595a003595c688d",
-      "university_name": "Universidade de Brasília"
-    }
-  ],
-  "info": null
-}
-```
+|200 | OK |Senha recuperada|
+|9 | ? |Erro genérico do banco|
