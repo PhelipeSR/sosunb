@@ -47,6 +47,54 @@ $(document).ready( function() {
 		});
 	});
 
+	$('#local').click(function() {
+		window.history.replaceState({page: 'local'}, 'local', '#local');
+		$('.app-menu>li>a').removeClass('active');
+		$(this).addClass('active');
+		// Remove visualizações anteriores
+		$('.box').remove();
+		// Adiciona o gif de loading
+		$('#loading').html("<div id='loadingMenu' class='d-flex justify-content-center'><span class='border p-3 border-secondary h3 rounded shadow m-0'><i class='fa fa-spinner fa-spin'></i>&nbsp; Carregando conteúdo</span></div>");
+		// Carrega o arquivo
+		$('#ajax-content').load( base_url('admin/menu/local/render/'),function( response, status, xhr ){
+			$('#loadingMenu').remove(); // Retira o gif de loading
+			$.getScript( base_url('assets/js/admin/menu/local.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+		});
+	});
+
+	$('#campus').click(function() {
+		window.history.replaceState({page: 'campus'}, 'campus', '#campus');
+		$('.app-menu>li>a').removeClass('active');
+		$(this).addClass('active');
+		// Remove visualizações anteriores
+		$('.box').remove();
+		// Adiciona o gif de loading
+		$('#loading').html("<div id='loadingMenu' class='d-flex justify-content-center'><span class='border p-3 border-secondary h3 rounded shadow m-0'><i class='fa fa-spinner fa-spin'></i>&nbsp; Carregando conteúdo</span></div>");
+		// Carrega o arquivo
+		$('#ajax-content').load( base_url('admin/menu/campus/render/'),function( response, status, xhr ){
+			$('#loadingMenu').remove(); // Retira o gif de loading
+			$.getScript( base_url('assets/js/admin/menu/campus.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+		});
+	});
+
+	$('#area').click(function() {
+		window.history.replaceState({page: 'area'}, 'area', '#area');
+		$('.app-menu>li>a').removeClass('active');
+		$(this).addClass('active');
+		// Remove visualizações anteriores
+		$('.box').remove();
+		// Adiciona o gif de loading
+		$('#loading').html("<div id='loadingMenu' class='d-flex justify-content-center'><span class='border p-3 border-secondary h3 rounded shadow m-0'><i class='fa fa-spinner fa-spin'></i>&nbsp; Carregando conteúdo</span></div>");
+		// Carrega o arquivo
+		$('#ajax-content').load( base_url('admin/menu/area/render/'),function( response, status, xhr ){
+			$('#loadingMenu').remove(); // Retira o gif de loading
+			$.getScript( base_url('assets/js/admin/menu/area.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+		});
+	});
+
 });
 
 toastr.options = {
