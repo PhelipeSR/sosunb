@@ -36,7 +36,9 @@ class Login extends CI_Controller {
 				$this->session->set_userdata(array(
 					'logado' => TRUE,
 					'user_id' => $result->id,
-					'user_type' => $result->profile_type_id
+					'user_type' => $result->profile_type_id,
+					'user_name' => $result->name,
+					'user_image' => $result->image_profile,
 				));
 				$this->saida->set_dados(array('user_type' => $result->profile_type_id));
 			}else{

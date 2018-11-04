@@ -84,13 +84,20 @@
 		<aside class="app-sidebar">
 			<div class="app-sidebar__user">
 				<figure class="figure m-0">
-					<img class="img-fluid img-perfil" src="http://localhost/sosunb/uploads/perfil/a81603575a318a75306db271936d30ee.png" alt="User Image">
-					<figcaption class="app-sidebar__user-name text-center mt-1 nome-perfil">Phelipe Sousa Resende</figcaption>
+					<img class="img-fluid img-perfil" src="<?php echo base_url("uploads/perfil/".$this->session->user_image);?>" alt="User Image">
+					<figcaption class="app-sidebar__user-name text-center mt-1 nome-perfil"><?php echo $this->session->user_name;?></figcaption>
 				</figure>
 			</div>
 			<ul class="app-menu">
 				<li><a class="app-menu__item" id="status" href="#status"><i class="app-menu__icon fa fa-toggle-on"></i><span class="app-menu__label">Status</span></a></li>
 				<li><a class="app-menu__item" id="tipo-demanda" href="#tipo-demanda"><i class="app-menu__icon fa fa-tag"></i><span class="app-menu__label">Tipo de Demanda</span></a></li>
+				<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-map-marker"></i><span class="app-menu__label">Local</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a class="treeview-item" id="local" href="#local"><i class="icon fa fa-circle-o"></i> Local</a></li>
+						<li><a class="treeview-item" id="campus" href="#campus"><i class="icon fa fa-circle-o"></i> Campus</a></li>
+						<li><a class="treeview-item" id="area" href="#area"><i class="icon fa fa-circle-o"></i> Área</a></li>
+					</ul>
+				</li>
 			</ul>
 		</aside>
 
@@ -99,6 +106,7 @@
 				<div class="col-md-12">
 					<div class="tile">
 						<div class="tile-body">
+							<?php echo $this->session->name;?>
 							<div id="loading"></div>
 							<div id="ajax-content"></div>
 						</div>

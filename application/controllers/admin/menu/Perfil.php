@@ -33,6 +33,7 @@ class Perfil extends CI_Controller {
 				'date_birth' => $this->input->post('date_birth',TRUE),
 			);
 			if ($this->Perfil_model->update_dados($database, $this->session->user_id )) {
+				$this->session->set_userdata('user_name', $database['name']);
 				$this->saida->set_dados('ok');
 			}else {
 				$this->saida->set_erro('Erro ao editar.');
@@ -91,6 +92,7 @@ class Perfil extends CI_Controller {
 		if ($this->upload->do_upload('image_profile')) {
 			$this->load->model('admin/menu/Perfil_model');
 			if ($this->Perfil_model->update_image( $this->upload->data()['file_name'], $this->session->user_id )) {
+				$this->session->set_userdata('user_image', $this->upload->data()['file_name']);
 				$this->saida->set_dados(array('image_name' => $this->upload->data()['file_name'] ));
 			}else {
 				$this->saida->set_erro('Erro ao editar.');
