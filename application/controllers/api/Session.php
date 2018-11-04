@@ -32,6 +32,7 @@ class Session extends CI_Controller {
 				);
 				$jwt = $this->jwt->encode($payload);
 				$this->response['dados'] = 'logado';
+				$this->response['type_user'] = $result->profile_type_id;
 				$this->response['token'] = $jwt;
 				$this->status_header = 200;
 			}else{
