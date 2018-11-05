@@ -89,11 +89,13 @@
 				</figure>
 			</div>
 			<ul class="app-menu">
+				<li><a class="app-menu__item" id="usuarios" href="#usuarios"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Usuários</span></a></li>
 				<li><a class="app-menu__item" id="status" href="#status"><i class="app-menu__icon fa fa-toggle-on"></i><span class="app-menu__label">Status</span></a></li>
 				<li><a class="app-menu__item" id="tipo-demanda" href="#tipo-demanda"><i class="app-menu__icon fa fa-tag"></i><span class="app-menu__label">Tipo de Demanda</span></a></li>
 				<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-map-marker"></i><span class="app-menu__label">Local</span><i class="treeview-indicator fa fa-angle-right"></i></a>
 					<ul class="treeview-menu">
 						<li><a class="treeview-item" id="local" href="#local"><i class="icon fa fa-circle-o"></i> Local</a></li>
+						<li><a class="treeview-item" id="ambiente" href="#ambiente"><i class="icon fa fa-circle-o"></i> Ambiente</a></li>
 						<li><a class="treeview-item" id="campus" href="#campus"><i class="icon fa fa-circle-o"></i> Campus</a></li>
 						<li><a class="treeview-item" id="area" href="#area"><i class="icon fa fa-circle-o"></i> Área</a></li>
 					</ul>

@@ -17,7 +17,7 @@ class Perfil extends CI_Controller {
 		$this->form_validation->set_rules('name',      'Nome',              'required|max_length[100]');
 		$this->form_validation->set_rules('email',     'Email',             'required|valid_email|max_length[100]|edit_unique[users.email.'.$this->session->user_id.']');
 		$this->form_validation->set_rules('identity',  'Identidade',        'required|max_length[20]|is_natural');
-		$this->form_validation->set_rules('registry',  'Matrícula',         'required|max_length[20]|is_natural|edit_unique[users.email.'.$this->session->user_id.']');
+		$this->form_validation->set_rules('registry',  'Matrícula',         'required|max_length[20]|is_natural|edit_unique[users.registry.'.$this->session->user_id.']');
 		$this->form_validation->set_rules('date_birth','Data de Nascimento','required');
 
 		// Valida as informações do formulário

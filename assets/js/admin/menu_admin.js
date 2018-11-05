@@ -1,8 +1,24 @@
 $(document).ready( function() {
 
+	$('#usuarios').click(function() {
+		window.history.replaceState({page: 'usuarios'}, 'usuarios', '#usuarios');
+		$('ul>li>a').removeClass('active');
+		$(this).addClass('active');
+		// Remove visualizações anteriores
+		$('.box').remove();
+		// Adiciona o gif de loading
+		$('#loading').html("<div id='loadingMenu' class='d-flex justify-content-center'><span class='border p-3 border-secondary h3 rounded shadow m-0'><i class='fa fa-spinner fa-spin'></i>&nbsp; Carregando conteúdo</span></div>");
+		// Carrega o arquivo
+		$('#ajax-content').load( base_url('admin/menu/user/render/'),function( response, status, xhr ){
+			$('#loadingMenu').remove(); // Retira o gif de loading
+			$.getScript( base_url('assets/js/admin/menu/user.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+		});
+	});
+
 	$('#status').click(function() {
 		window.history.replaceState({page: 'status'}, 'status', '#status');
-		$('.app-menu>li>a').removeClass('active');
+		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
 		// Remove visualizações anteriores
 		$('.box').remove();
@@ -18,7 +34,7 @@ $(document).ready( function() {
 
 	$('#perfil').click(function() {
 		window.history.replaceState({page: 'perfil'}, 'perfil', '#perfil');
-		$('.app-menu>li>a').removeClass('active');
+		$('ul>li>a').removeClass('active');
 		// Remove visualizações anteriores
 		$('.box').remove();
 		// Adiciona o gif de loading
@@ -33,7 +49,7 @@ $(document).ready( function() {
 
 	$('#tipo-demanda').click(function() {
 		window.history.replaceState({page: 'tipo-demanda'}, 'tipo-demanda', '#tipo-demanda');
-		$('.app-menu>li>a').removeClass('active');
+		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
 		// Remove visualizações anteriores
 		$('.box').remove();
@@ -49,7 +65,7 @@ $(document).ready( function() {
 
 	$('#local').click(function() {
 		window.history.replaceState({page: 'local'}, 'local', '#local');
-		$('.app-menu>li>a').removeClass('active');
+		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
 		// Remove visualizações anteriores
 		$('.box').remove();
@@ -65,7 +81,7 @@ $(document).ready( function() {
 
 	$('#campus').click(function() {
 		window.history.replaceState({page: 'campus'}, 'campus', '#campus');
-		$('.app-menu>li>a').removeClass('active');
+		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
 		// Remove visualizações anteriores
 		$('.box').remove();
@@ -81,7 +97,7 @@ $(document).ready( function() {
 
 	$('#area').click(function() {
 		window.history.replaceState({page: 'area'}, 'area', '#area');
-		$('.app-menu>li>a').removeClass('active');
+		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
 		// Remove visualizações anteriores
 		$('.box').remove();
@@ -91,6 +107,22 @@ $(document).ready( function() {
 		$('#ajax-content').load( base_url('admin/menu/area/render/'),function( response, status, xhr ){
 			$('#loadingMenu').remove(); // Retira o gif de loading
 			$.getScript( base_url('assets/js/admin/menu/area.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+		});
+	});
+
+	$('#ambiente').click(function() {
+		window.history.replaceState({page: 'ambiente'}, 'ambiente', '#ambiente');
+		$('ul>li>a').removeClass('active');
+		$(this).addClass('active');
+		// Remove visualizações anteriores
+		$('.box').remove();
+		// Adiciona o gif de loading
+		$('#loading').html("<div id='loadingMenu' class='d-flex justify-content-center'><span class='border p-3 border-secondary h3 rounded shadow m-0'><i class='fa fa-spinner fa-spin'></i>&nbsp; Carregando conteúdo</span></div>");
+		// Carrega o arquivo
+		$('#ajax-content').load( base_url('admin/menu/environment/render/'),function( response, status, xhr ){
+			$('#loadingMenu').remove(); // Retira o gif de loading
+			$.getScript( base_url('assets/js/admin/menu/environment.js') )
 			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
 		});
 	});
