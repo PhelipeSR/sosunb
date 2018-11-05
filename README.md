@@ -150,7 +150,7 @@ O objetivo da API é dar suporte as requisições das aplicações Front-End do 
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
 | --- |--- |--- |---|
-|name |string | sim | Nome do usuario|
+|name |string | sim | Nome do status da demanda a ser inserido no banco|
 
 
 ### Tipos de Retorno
@@ -163,7 +163,7 @@ O objetivo da API é dar suporte as requisições das aplicações Front-End do 
 
 ```json
  {
-   "name":"Pedro Lindo",
+   "name":"Solucionada",
  }
 ```
 
@@ -178,3 +178,95 @@ Esse Endpoint não recebe parametros de entrada
 | --- |---| --- |
 |200 | OK |Senha recuperada|
 |9 | ? |Erro genérico do banco|
+
+
+## api/type-demand (POST)
+
+
+### Parametros de entrada
+
+|Nome do Parametro| Tipo de entrada | Obrigatório |Tamanho Máximo| Detalhe|
+| --- |--- |--- |---| |---|
+|demands |string | sim |100| Tipo de demanda a ser inserida no banco|
+
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Dados cadastrados|
+|3 | ? |Parâmetro obrigatório|
+|2 | ? |Tamanho máximo excedido|
+|9 | ? |Erro genérico do banco|
+
+> Exemplos de requisição
+
+```json
+ {
+   "demands":"Problema",
+ }
+```
+
+## api/type-demand (GET)
+
+
+### Parametros de entrada
+
+Esse Endpoint não recebe parametros de entrada
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Dados requisitados|
+|9 | ? |Erro genérico do banco|
+
+
+## api/type-demand (PUT)
+
+
+### Parametros de entrada
+
+|Nome do Parametro| Tipo de entrada | Obrigatório |Tamanho Máximo| Detalhe|
+| --- |--- |--- |---| |---|
+|id |number | sim | - | Id do tipo de demanda a ser alterada no banco|
+|demands |string | sim |100| Novo nome do tipo de demanda a ser alterada no banco|
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Dados cadastrados|
+|3 | ? |Parâmetro obrigatório|
+|2 | ? |Tamanho máximo excedido|
+|9 | ? |Erro genérico do banco|
+
+> Exemplos de requisição
+
+```json
+ {
+   "id":"1",
+   "demands":"Problema",
+ }
+```
+
+## api/type-demand (DELETE)
+
+
+### Parametros de entrada
+
+|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
+| --- |--- |--- |---| |---|
+|id |number | sim | Id do tipo de demanda a ser excluído no banco|
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Dados excluídos|
+|3 | ? |Parâmetro obrigatório|
+|9 | ? |Erro genérico do banco|
+
+> Exemplos de requisição
+
+```json
+ {
+   "id":"1",
+ }
+```
