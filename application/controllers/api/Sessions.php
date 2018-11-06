@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Session extends CI_Controller {
+class Sessions extends CI_Controller {
 
 	private $status_header = 400;
 	private $response = array();
@@ -32,6 +32,7 @@ class Session extends CI_Controller {
 				);
 				$jwt = $this->jwt->encode($payload);
 				$this->response['dados'] = 'logado';
+				$this->response['type_user'] = $result->profile_type_id;
 				$this->response['token'] = $jwt;
 				$this->status_header = 200;
 			}else{
