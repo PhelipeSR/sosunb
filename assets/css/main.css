@@ -5,6 +5,7 @@
  * ================================*/
 @import url(https://fonts.googleapis.com/css?family=Lato:300,400,400i,700);
 @import url(https://fonts.googleapis.com/css?family=Baloo+Bhaijaan);
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700');
 .invalid-feedback {
   color: #dc3545 !important;
 }
@@ -14898,7 +14899,7 @@ be a descendant of the grid when it is being dragged.
 
 .login-content .login-box {
   position: relative;
-  min-width: 350px;
+  min-width: 400px;
   background-color: #fff;
   -webkit-box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
           box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
@@ -15246,4 +15247,58 @@ be a descendant of the grid when it is being dragged.
 
 .user .user-settings label {
   color: #666;
+}
+.poppins{
+  /*phelipe*/
+  font-family: 'Poppins', sans-serif;
+}
+.w-5{
+  /*pheipe*/
+  width: 5%;
+  border-bottom-width: 2px !important;
+}
+
+[class*=' imghvr-'] figcaption, [class^=imghvr-] figcaption{
+  /*phelipe*/
+  background-color: #65bf5b !important;
+}
+[class*=' imghvr-'], [class^=imghvr-]{
+  background-color: #65bf5b !important;
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-70%);
+}
+.img-carousel-1 {
+  background-image:
+      linear-gradient(
+      rgba(50,100,200,.5),
+      rgba(0,0,0,.5)
+    ),
+    url('../images/bg-banner.jpg');
+}
+.carousel-item {
+  height: 100vh;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+.nav-link{
+  font-size: 16px;
+}
+.nav-item{
+  margin-left: 12px;
+}
+.img-loja{
+  max-height: 50px;
+}
+@media (min-width: 768px) {
+  .img-celular{
+    max-width: 400px
+  }
 }

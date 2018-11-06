@@ -6,7 +6,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="icon" href="<?php echo base_url('assets/images/logo.png') ?>" type="image/x-icon">
-		<title>SOS UnB - Login</title>
+		<title>SOS UnB - Cadastro</title>
 
 		<!-- CSS -->
 		<link rel="stylesheet" href="<?php echo base_url('assets/css/main.css') ?>">
@@ -18,54 +18,51 @@
 		<section class="material-half-bg">
 			<div class="cover bg-white"></div>
 		</section>
-		<section class="login-content">
+		<section class="login-content mt-5">
 			<div class="login-box">
-				<form class="login-form p-3" id="formLogin">
+				<form class="login-form p-3" id="formCadastro">
 					<div class="text-center">
 						<img width="80px" src="<?php echo base_url('assets/images/logo.png') ;?>">
-						<h1 class="h3 font-weight-normal">Iniciar Sessão</h1>
+						<h1 class="h3 font-weight-normal">Cadastrar</h1>
 					</div>
 
 					<div id="show_mensage"></div>
 					<div class="form-group">
 						<div class="input-group">
-							<input type="email" name="email" class="form-control" placeholder="Email" autocomplete="username" autofocus>
+							<input type="text" name="name" class="form-control" placeholder="Nome Completo" autofocus>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<input type="password" name="password" class="form-control" placeholder="Senha" autocomplete="current-password">
+							<input type="email" name="email" class="form-control" placeholder="Email" autocomplete="username">
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="utility">
-							<div class="animated-checkbox">
-							<label>
-								<input type="checkbox"><span class="label-text">Lembrar-me</span>
-							</label>
-							</div>
-							<p class="semibold-text mb-2"><a href="#" data-toggle="flip">Esqueceu Sua Senha?</a></p>
-						</div>
-					</div>
-					<button id="btnLogin" class="btn btn-primary btn-block"><i class="fa fa-sign-in"></i> LOGIN</button>
-				</form>
-
-				<form class="forget-form p-3" id="formRecoperacao">
-					<div class="text-center">
-						<img width="80px" src="<?php echo base_url('assets/images/logo.png') ;?>">
-						<h1 class="h3 font-weight-normal">Esqueceu Sua Senha?</h1>
 					</div>
 					<div class="form-group">
 						<div class="input-group">
-							<input class="form-control" type="text" placeholder="Email">
+							<input type="text" name="registry" class="form-control" placeholder="Matrícula">
 						</div>
 					</div>
-					<div class="form-group btn-container">
-						<button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESETAR</button>
+					<div class="form-group">
+						<div class="input-group">
+							<input type="text" name="identity" class="form-control" placeholder="Identidade">
+						</div>
 					</div>
-					<div class="form-group mt-3">
-						<p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Voltar Para Login</a></p>
+					<div class="form-group">
+						<div class="input-group">
+							<input type="date" name="date_birth" class="form-control" placeholder="Data de Nascimento">
+						</div>
 					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" name="password" class="form-control" id="password" placeholder="Senha" autocomplete="new-password">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<input type="password" name="conf_password" class="form-control" placeholder="Confirmar Senha" autocomplete="new-password">
+						</div>
+					</div>
+					<button id="btnCadastro" class="btn btn-primary btn-block"><i class="fa fa-user-plus"></i> CADASTRAR</button>
 				</form>
 			</div>
 		</section>
@@ -77,14 +74,6 @@
 		<script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/plugins/validation/jquery.validate.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/main.js') ?>"></script>
-		<script src="<?php echo base_url('assets/js/admin/login.js') ?>"></script>
-
-		<script type="text/javascript">
-			// Login Page Flipbox control
-			$('.login-content [data-toggle="flip"]').click(function() {
-			$('.login-box').toggleClass('flipped');
-				return false;
-			});
-		</script>
+		<script src="<?php echo base_url('assets/js/admin/cadastro.js') ?>"></script>
 	</body>
 </html>

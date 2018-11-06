@@ -59,6 +59,7 @@ $route['usuario']        = 'admin/login/index';
 $route['login']          = 'admin/login/index';
 $route['logout']         = 'admin/login/sign_out';
 $route['authentication'] = 'admin/login/sign_in';
+$route['cadastro']       = 'admin/cadastro/index';
 
 // Rotas de usuário
 $route['user']['post']   = 'api/user/register_user';
