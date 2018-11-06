@@ -26,7 +26,7 @@
 				<div class="carousel-item active img-carousel-1">
 					<div class="d-flex h-100 align-items-center justify-content-center">
 						<div class="carousel-caption">
-							<h1>E ajude a melhorar nossa universidade!</h1>
+							<h1>Ajude a melhorar nossa universidade!</h1>
 							<p class="lead">BAIXE NOSSO APP</p>
 							<div>
 								<a href="https://itunes.apple.com/br/app/apple-store/id375380948?mt=8" target="_blank">
@@ -52,13 +52,13 @@
 			<div class="container">
 				<div class="text-center">
 					<h2 class="text-primary mb-3 poppins">Quem Somos</h2>
-					<p class="lead">O SOSUnB é um sistema colaborativo utilizado para reportar e ranquear
+					<p class="lead px-0 mx-0 px-md-5 mx-md-5">O SOSUnB é um sistema colaborativo utilizado para reportar e ranquear
 						demandas de infraestrutura na Universidade de Brasília – UnB. Seu principal objetivo é
 						dar visibilidade aos problemas estruturais da UnB para a comunidade acadêmica,
 						facilitando a formalização de reclamações e sugestões
 						referentes à infraestrutura da universidade.
 					</p>
-					<hr class="border border-primary w-5 mx-auto my-5">
+					<hr class="border border-primary w-5 mx-auto mt-5 mb-0">
 				</div>
 			</div>
 		</section>
@@ -67,7 +67,7 @@
 		<section id="como-funciona" class="py-5 bg-light">
 			<div class="container">
 				<h2 class="text-primary text-center mb-3 poppins">Como Funciona</h2>
-				<p class="lead text-center">
+				<p class="lead text-center px-0 mx-0 px-md-5 mx-md-5">
 					A plataforma WEB permite que qualquer cidadão possa visualizar as principais demandas já solucionadas.
 					Você que é aluno, professor ou servidor da UnB, após cadastramento, poderá interagir com o SOSUnB,
 					seja pela plataforma WEB ou pelo aplicativo. Após login no sistema será possível apresentar sugestões ou reclamações e visualizar todas as demandas e sugestões formuladas.
