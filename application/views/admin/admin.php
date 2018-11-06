@@ -100,6 +100,12 @@
 						<li><a class="treeview-item" id="area" href="#area"><i class="icon fa fa-circle-o"></i> Área</a></li>
 					</ul>
 				</li>
+				<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-exclamation-triangle"></i><span class="app-menu__label">Tipo de Problema</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+					<ul class="treeview-menu">
+						<li><a class="treeview-item" id="tipo-problema" href="#tipo-problema"><i class="icon fa fa-circle-o"></i> Tipo de Problema</a></li>
+						<li><a class="treeview-item" id="categoria" href="#categoria"><i class="icon fa fa-circle-o"></i> Categoria</a></li>
+					</ul>
+				</li>
 			</ul>
 		</aside>
 

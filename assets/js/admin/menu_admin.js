@@ -127,6 +127,39 @@ $(document).ready( function() {
 		});
 	});
 
+	$('#tipo-problema').click(function() {
+		window.history.replaceState({page: 'tipo-problema'}, 'tipo-problema', '#tipo-problema');
+		$('ul>li>a').removeClass('active');
+		$(this).addClass('active');
+		// Remove visualizações anteriores
+		$('.box').remove();
+		// Adiciona o gif de loading
+		$('#loading').html("<div id='loadingMenu' class='d-flex justify-content-center'><span class='border p-3 border-secondary h3 rounded shadow m-0'><i class='fa fa-spinner fa-spin'></i>&nbsp; Carregando conteúdo</span></div>");
+		// Carrega o arquivo
+		$('#ajax-content').load( base_url('admin/menu/type_problem/render/'),function( response, status, xhr ){
+			$('#loadingMenu').remove(); // Retira o gif de loading
+			$.getScript( base_url('assets/js/admin/menu/type_problem.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+		});
+	});
+
+	$('#categoria').click(function() {
+		window.history.replaceState({page: 'categoria'}, 'categoria', '#categoria');
+		$('ul>li>a').removeClass('active');
+		$(this).addClass('active');
+		// Remove visualizações anteriores
+		$('.box').remove();
+		// Adiciona o gif de loading
+		$('#loading').html("<div id='loadingMenu' class='d-flex justify-content-center'><span class='border p-3 border-secondary h3 rounded shadow m-0'><i class='fa fa-spinner fa-spin'></i>&nbsp; Carregando conteúdo</span></div>");
+		// Carrega o arquivo
+		$('#ajax-content').load( base_url('admin/menu/category/render/'),function( response, status, xhr ){
+			$('#loadingMenu').remove(); // Retira o gif de loading
+			$.getScript( base_url('assets/js/admin/menu/category.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+		});
+	});
+
+
 });
 
 toastr.options = {
