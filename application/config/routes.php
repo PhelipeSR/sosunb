@@ -68,7 +68,7 @@ $route['user']['put']    = 'api/user/update_user';
 $route['user']['delete'] = 'api/user/delete_user';
 
 // Rotas de Sessão
-$route['session']['post'] = 'api/session/post';
+$route['sessions']['post'] = 'api/sessions/post';
 
 // Rotas de tipo de problemas
 $route['type-problem']['post']   = 'api/type_problem/add_type_problem';

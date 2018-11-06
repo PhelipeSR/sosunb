@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Session extends CI_Controller {
+class Sessions extends CI_Controller {
 
 	private $status_header = 400;
 	private $response = array();
