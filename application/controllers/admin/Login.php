@@ -8,7 +8,11 @@ class Login extends CI_Controller {
 			if ($this->session->user_type == 1) {
 				$this->load->view('admin/user');
 			}else if ($this->session->user_type == 2) {
-				$this->load->view('admin/admin');
+				$this->load->model('admin/Demands_model');
+				$complaint = $this->Demands_model->get_complaint();
+				$this->load->view('admin/admin',array(
+					'complaint' => $complaint,
+				));
 			}else if ($this->session->user_type == 3) {
 				$this->load->view('admin/manager');
 			}

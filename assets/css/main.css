@@ -13742,8 +13742,10 @@ be a descendant of the grid when it is being dragged.
 }
 
 .app-notification__content {
-  max-height: 220px;
+  max-height: 250px;
   overflow-y: auto;
+  /*phelipe*/
+  overflow-x: hidden;
 }
 
 .app-notification__content::-webkit-scrollbar {
@@ -15301,4 +15303,13 @@ be a descendant of the grid when it is being dragged.
   .img-celular{
     max-width: 400px
   }
+}
+.label-notification {
+    position: absolute;
+    top: 9px;
+    right: 6px;
+    text-align: center;
+    font-size: 9px;
+    padding: 3px 3px;
+    line-height: .9;
 }

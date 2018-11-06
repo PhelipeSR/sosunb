@@ -23,50 +23,32 @@
 			<!-- Navbar Right Menu-->
 			<ul class="app-nav">
 				<!--Notification Menu-->
-				<li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i class="fa fa-bell-o fa-lg"></i></a>
+				<li class="dropdown">
+					<a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications">
+						<i class="fa fa-bell-o fa-lg"></i>
+						<span class="badge badge-danger label-notification" id="cont_complaint"><?php if($complaint) echo count($complaint)?></span>
+					</a>
 					<ul class="app-notification dropdown-menu dropdown-menu-right">
-						<li class="app-notification__title">You have 4 new notifications.</li>
+						<li class="app-notification__title">DENÚNCIAS FEITAS.</li>
 						<div class="app-notification__content">
-							<li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
-									<div>
-										<p class="app-notification__message">Lisa sent you a mail</p>
-										<p class="app-notification__meta">2 min ago</p>
-									</div></a></li>
-							<li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-									<div>
-										<p class="app-notification__message">Mail server not working</p>
-										<p class="app-notification__meta">5 min ago</p>
-									</div></a></li>
-							<li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-									<div>
-										<p class="app-notification__message">Transaction complete</p>
-										<p class="app-notification__meta">2 days ago</p>
-									</div></a></li>
-							<div class="app-notification__content">
-								<li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
-										<div>
-											<p class="app-notification__message">Lisa sent you a mail</p>
-											<p class="app-notification__meta">2 min ago</p>
-										</div></a></li>
-								<li>
-									<a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-										<div>
-											<p class="app-notification__message">Mail server not working</p>
-											<p class="app-notification__meta">5 min ago</p>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-										<div>
-											<p class="app-notification__message">Transaction complete</p>
-											<p class="app-notification__meta">2 days ago</p>
-										</div>
-									</a>
-								</li>
-							</div>
+							<?php if($complaint): ?>
+								<?php foreach ($complaint as $row): ?>
+									<li>
+										<a class="app-notification__item px-1 demands-complaint" href="javascript:;" data-id-demands="<?php echo $row->id?>">
+											<div class="row align-items-center">
+												<div class="col-3 pr-0">
+													<img class="img-fluid" src="<?php echo base_url("uploads/demandas/".$row->image);?>" alt="User Image">
+												</div>
+												<div class="col-9">
+													<p class="app-notification__message"><?php echo $row->title?></p>
+													<p class="app-notification__meta"><?php echo $row->counter?> Reclamações feitas</p>
+												</div>
+											</div>
+										</a>
+									</li>
+								<?php endforeach; ?>
+							<?php endif; ?>
 						</div>
-						<li class="app-notification__footer"><a href="#">See all notifications.</a></li>
 					</ul>
 				</li>
 				<!-- User Menu-->
@@ -84,7 +66,7 @@
 		<aside class="app-sidebar">
 			<div class="app-sidebar__user">
 				<figure class="figure m-0">
-					<img class="img-fluid img-perfil" src="<?php echo base_url("uploads/perfil/".$this->session->user_image);?>" alt="User Image">
+					<img class="img-fluid img-perfil" src="<?php echo base_url("uploads/perfil/".$this->session->user_image);?>" alt="Imagem do usuário">
 					<figcaption class="app-sidebar__user-name text-center mt-1 nome-perfil"><?php echo $this->session->user_name;?></figcaption>
 				</figure>
 			</div>
@@ -114,7 +96,6 @@
 				<div class="col-md-12">
 					<div class="tile">
 						<div class="tile-body">
-							<?php echo $this->session->name;?>
 							<div id="loading"></div>
 							<div id="ajax-content"></div>
 						</div>
@@ -122,6 +103,23 @@
 				</div>
 			</div>
 		</main>
+
+		<!-- Modal Avaliar Denúncia-->
+		<div class="modal fade" id="denunciaModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Avaliar Denúncia</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body" id="modal_body_denuncia">
+						<div id="conteudo_denuncia"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- JavaScript -->
 		<script>function base_url(arg = ''){return '<?php echo base_url(); ?>' + arg;}</script>
@@ -133,6 +131,7 @@
 		<script src="<?php echo base_url('assets/plugins/datatables/datatables.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/plugins/toastr/toastr.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/admin/menu_admin.js') ?>"></script>
+		<script src="<?php echo base_url('assets/js/admin/admin.js') ?>"></script>
 
 	</body>
 </html>
