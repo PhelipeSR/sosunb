@@ -17,7 +17,7 @@ class User extends CI_Controller {
 
 		if( $this->form_validation->run('register') ) {
 
-			$url = 'https://aluno.unb.br/alunoweb/default/sca/solicitarsenha';
+			$url = 'https://aluno.unb.br:443/alunoweb/default/sca/solicitarsenha';
 			$dados = array(
 				'nome' => $this->input->post('name'),
 				'matricula' => $this->input->post('registry'),
@@ -33,8 +33,7 @@ class User extends CI_Controller {
 			);
 			$context  = stream_context_create($options);
 			$result = file_get_contents($url, false, $context);
-
-			if (strpos($result,'Acesso negado') === FALSE) {
+			if (mb_strpos($result,'alternativo informado abaixo')) {
 				$var = $this->input->post('date_birth');
 				$date = str_replace('/', '-', $var);
 				$database = array(

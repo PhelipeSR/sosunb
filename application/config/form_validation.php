@@ -51,7 +51,7 @@ $config = array(
 		),
 		array(
 			'field' => 'date_birth',
-			'label' => 'Data de Aniversário',
+			'label' => 'Data de Nascimento',
 			'rules' => 'required',
 			'errors' => array(
 				'required' => 1,
@@ -78,7 +78,7 @@ $config = array(
 		),
 		array(
 			'field' => 'conf_password',
-			'label' => 'Senha',
+			'label' => 'Confirmação de Senha',
 			'rules' => 'required|matches[password]',
 			'errors' => array(
 				'required' => 1,

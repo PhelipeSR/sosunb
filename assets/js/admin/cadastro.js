@@ -1,23 +1,23 @@
-function show_erros(mensagem) {
+function show_msg(mensagem,type) {
 	var html =
-	'<div class="alert alert-danger alert-dismissible fade show" role="alert">'+
+	'<div class="alert alert-'+type+' alert-dismissible fade show" role="alert">'+
 		'<strong>'+mensagem+'</strong>'+
 		'<button type="button" class="close" data-dismiss="alert" aria-label="Close">'+
 			'<span aria-hidden="true">×</span>'+
 		'</button>'+
 	'</div>';
-	$('#show_mensage').empty().append(html)
+	$('#show_mensage_cadastro').empty().append(html)
 }
+var troca = false;
 $(document).ready(function() {
-
 	$("#formCadastro").validate({
 		rules: {
-			name:             {required: true,maxlength: 100},
-			email:            {required: true,email: true,maxlength: 100},
-			identity:         {required: true,integer: true,maxlength: 20},
-			registry:         {required: true,integer: true,maxlength: 20},
-			date_birth:       {required: true,date: true},
-			password:     {required: true,minlength: 6},
+			name:          {required: true,maxlength: 100},
+			email:         {required: true,email: true,maxlength: 100},
+			identity:      {required: true,integer: true,maxlength: 20},
+			registry:      {required: true,integer: true,maxlength: 20},
+			date_birth:    {required: true,date: true},
+			password:      {required: true,minlength: 6},
 			conf_password: {required: true,equalTo: "#password"},
 		},
 		errorClass: 'invalid-feedback',
@@ -29,36 +29,46 @@ $(document).ready(function() {
 		},
 		submitHandler: function (form) {
 			$.ajax({
-				url: base_url('user'),
+				url: base_url('cadastro/sign_up'),
 				method: 'POST',
 				data: $("#formCadastro").serialize(),
 
 				success: function(data, textStatus, jqXHR) {
-					console.log(data)
+					$('.form-control').removeClass( "is-valid is-invalid focused");
 					if (data.erro) {
-						show_erros(data.msg_erro);
-						$('input[name=password]').val('').removeClass('is-valid');
-					}else if(data.dados.user_type == 1) {
-						window.location.replace(base_url('usuario/'));
-					}
-					else if(data.dados.user_type == 2) {
-						window.location.replace(base_url('administrador/'));
-					}
-					else if(data.dados.user_type == 3) {
-						window.location.replace(base_url('gestor/'));
+						show_msg(data.msg_erro,'danger');
+					}else {
+						$('#formCadastro')[0].reset();
+						show_msg('<button id="trocarLogin" class="btn btn-success" type="button">Fazer Login</button> Cadastro realizado com sucesso.','success');
 					}
 				},
 				beforeSend: function(){
-					$('#btnLogin')
+					$('#btnCadastro')
 						.prop("disabled",true)
 						.html("<i class='fa fa-spinner fa-spin'></i> LOGIN");
 				},
 				complete: function(){
-					$('#btnLogin')
+					$('#btnCadastro')
 						.prop("disabled",false)
 						.html("<i class='fa fa-sign-in'></i> LOGIN");
 				},
 			}); // Fim do Ajax
 		},
+	});
+
+	$(document).on('click', '#trocarLogin', function(event) {
+		troca = true;
+		$('#cadastroModal').modal('hide');
+	});
+
+	$('#cadastroModal').on('hidden.bs.modal', function (event) {
+		if (troca) {
+			$('#loginModal').modal('show');
+			troca = false;
+		}
+	});
+	$(document).on('hidden.bs.modal', function (event) {
+		$('#show_mensage, #show_mensage_cadastro').empty();
+		$('.form-control').removeClass( "is-valid is-invalid focused");
 	});
 });

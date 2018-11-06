@@ -13,7 +13,7 @@ class Login extends CI_Controller {
 				$this->load->view('admin/manager');
 			}
 		}else{
-			$this->load->view('admin/login',array('navLogin' => TRUE));
+			redirect(base_url());
 		}
 	}
 
@@ -54,6 +54,6 @@ class Login extends CI_Controller {
 
 	public function sign_out() {
 		$this->session->sess_destroy();
-		redirect(base_url('admin/login/'));
+		redirect(base_url());
 	}
 }

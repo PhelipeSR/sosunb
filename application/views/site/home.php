@@ -254,40 +254,53 @@
 					</div>
 					<div class="modal-body">
 						<form id="formCadastro">
-							<div id="show_mensage"></div>
+							<div id="show_mensage_cadastro"></div>
 							<div class="form-group">
+								<label>Nome Completo</label>
 								<div class="input-group">
 									<input type="text" name="name" class="form-control" placeholder="Nome Completo" autofocus>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="input-group">
-									<input type="email" name="email" class="form-control" placeholder="Email" autocomplete="username">
+							<div class="form-row">
+								<div class="form-group col-sm-7">
+									<label>Email</label>
+									<div class="input-group">
+										<input type="email" name="email" class="form-control" placeholder="Email" autocomplete="username">
+									</div>
+								</div>
+								<div class="form-group col-sm-5">
+									<label>Data de Nascimento</label>
+									<div class="input-group">
+										<input type="date" name="date_birth" class="form-control" placeholder="Data de Nascimento">
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="input-group">
-									<input type="text" name="registry" class="form-control" placeholder="Matrícula">
+							<div class="form-row">
+								<div class="form-group col-sm-6">
+									<label>Matrícula</label>
+									<div class="input-group">
+										<input type="text" name="registry" class="form-control" placeholder="Matrícula">
+									</div>
+								</div>
+								<div class="form-group col-sm-6">
+									<label>Identidade</label>
+									<div class="input-group">
+										<input type="text" name="identity" class="form-control" placeholder="Identidade">
+									</div>
 								</div>
 							</div>
-							<div class="form-group">
-								<div class="input-group">
-									<input type="text" name="identity" class="form-control" placeholder="Identidade">
+							<div class="form-row">
+								<div class="form-group col-sm-6">
+									<label>Senha</label>
+									<div class="input-group">
+										<input type="password" name="password" class="form-control" id="password" placeholder="Senha" autocomplete="new-password">
+									</div>
 								</div>
-							</div>
-							<div class="form-group">
-								<div class="input-group">
-									<input type="date" name="date_birth" class="form-control" placeholder="Data de Nascimento">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="input-group">
-									<input type="password" name="password" class="form-control" id="password" placeholder="Senha" autocomplete="new-password">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="input-group">
-									<input type="password" name="conf_password" class="form-control" placeholder="Confirmar Senha" autocomplete="new-password">
+								<div class="form-group col-sm-6">
+									<label>Confirmar Senha</label>
+									<div class="input-group">
+										<input type="password" name="conf_password" class="form-control" placeholder="Confirmar Senha" autocomplete="new-password">
+									</div>
 								</div>
 							</div>
 							<button id="btnCadastro" class="btn btn-primary btn-block"><i class="fa fa-user-plus"></i> CADASTRAR</button>
@@ -323,5 +336,20 @@
 		<script src="<?php echo base_url('assets/plugins/validation/jquery.validate.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/admin/login.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/admin/cadastro.js') ?>"></script>
+		<script type="text/javascript">
+			// Animação do scroll
+			$('a[href*="#"]:not([href="#"]):not([href="#carouselSite"]):not([href="#carouselNoticia"])').click(function() {
+				if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+					var target = $(this.hash);
+					target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+					if (target.length) {
+						$('html, body').animate({
+							scrollTop: target.offset().top - 50
+						}, 1000);
+						return false;
+					}
+				}
+			});
+		</script>
 	</body>
 </html>
