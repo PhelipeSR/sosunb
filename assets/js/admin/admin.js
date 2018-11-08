@@ -17,9 +17,9 @@ function process_complaint(id, remove = null){
 			if (data.erro) {
 				toastr.error(data.msg_erro, "Falha");
 			}else{
-				console.log(data.dados);
 				var total = parseInt($('#cont_complaint').html());
 				$('#cont_complaint').html(total-1)
+				$('#complaint_content_'+data.dados).remove();
 				$('#denunciaModal').modal('hide');
 			}
 		},

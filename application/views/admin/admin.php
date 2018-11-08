@@ -33,7 +33,7 @@
 						<div class="app-notification__content">
 							<?php if($complaint): ?>
 								<?php foreach ($complaint as $row): ?>
-									<li>
+									<li id="complaint_content_<?php echo $row->id?>">
 										<a class="app-notification__item px-1 demands-complaint" href="javascript:;" data-id-demands="<?php echo $row->id?>">
 											<div class="row align-items-center">
 												<div class="col-3 pr-0">
