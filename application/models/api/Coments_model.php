@@ -38,14 +38,15 @@ class Coments_model extends CI_Model {
 		}
 	}
 
-	public function update_coments($data, $id) {
-		$this->db->where('id', $id);
-		if ($this->db->update('coments',$data)) {
-			return TRUE;
-		}else{
-			return FALSE;
-		}
-	}
+	// public function update_coments($comment, $commentid, $userid, ) {
+	// 	$this->db->where('id', $demandid);
+	// 	$this->db->where('users_id', $userid);
+	// 	if ($this->db->update('coments',$data)) {
+	// 		return TRUE;
+	// 	}else{
+	// 		return FALSE;
+	// 	}
+	// }
 
 	public function delete_coments($data) {
 		$this->db->where('id', $data['coment_id'])->where('users_id', $data['users_id']);

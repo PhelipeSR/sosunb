@@ -313,34 +313,34 @@ $config = array(
 			),
 		),
 	),
-	'update_coments' => array(
-		array(
-			'field' => 'demands_id',
-			'label' => 'id da demanda',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-		array(
-			'field' => 'comment',
-			'label' => 'Comentário',
-			'rules' => 'required',
-			'errors' => array(
-				'required' => 1,
-			),
-		),
-		array(
-			'field' => 'users_id',
-			'label' => 'ID do Usuário',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-	),
+	// 'update_coments' => array(
+	// 	array(
+	// 		'field' => 'comment_id',
+	// 		'label' => 'id do comentario',
+	// 		'rules' => 'required|numeric',
+	// 		'errors' => array(
+	// 			'required' => 1,
+	// 			'numeric' => 4,
+	// 		),
+	// 	),
+	// 	array(
+	// 		'field' => 'comment',
+	// 		'label' => 'Comentário',
+	// 		'rules' => 'required',
+	// 		'errors' => array(
+	// 			'required' => 1,
+	// 		),
+	// 	),
+	// 	array(
+	// 		'field' => 'user_id',
+	// 		'label' => 'ID do Usuário',
+	// 		'rules' => 'required|numeric',
+	// 		'errors' => array(
+	// 			'required' => 1,
+	// 			'numeric' => 4,
+	// 		),
+	// 	),
+	// ),
 	'delete_coments' => array(
 		array(
 			'field' => 'coment_id',

@@ -60,28 +60,36 @@ class Coments extends CI_Controller {
 	}
 
 	// Incompleto
-	public function update_coments() {
-		$database = array(
-			'name' => $this->input->input_stream('name'),
-			'id' => $this->input->input_stream('id'),
-		);
-		$this->form_validation->set_data($database);
-		if($this->form_validation->run('update_status') ) {
-			if ($this->Coments_model->update_status($database, $database['id']) ) {
-				$this->response['dados'] = 'atualizado';
-				$this->status_header = 200;
-			}else {
-				$this->response['erro']['update'] = 9;
-			}
-		}
-		else {
-			$this->response['erro'] = $this->form_validation->error_array();
-		}
-		$this->output
-			->set_content_type('application/json')
-			->set_status_header($this->status_header)
-			->set_output(json_encode($this->response));
-	}
+	// public function update_coments() {
+	// 	$token = $this->input->get_request_header('token');
+	// 	$payload = $this->jwt->decode($token);
+	// 	if ($payload === FALSE) {
+ 	// 		$this->response['erro'] = 'token_invalido';
+ 	// 		$this->status_header = 401;
+ 	// 	}else{
+	// 	$database = array(
+	// 		'comment' => $this->input->input_stream('comment'),
+	// 		'id' => $this->input->input_stream('comment_id'),
+	// 		'user_id' => $payload['sub'],
+	// 	);
+	// 	$this->form_validation->set_data($database);
+	// 	if($this->form_validation->run('update_comment') ) {
+	// 		if ($this->Coments_model->update_coments($database['comment'], $database['id'],$database['user_id']) ) {
+	// 			$this->response['dados'] = 'atualizado';
+	// 			$this->status_header = 200;
+	// 		}else {
+	// 			$this->response['erro']['update'] = 9;
+	// 		}
+	// 	}
+	// 	else {
+	// 		$this->response['erro'] = $this->form_validation->error_array();
+	// 	}
+	// }
+	// 	$this->output
+	// 		->set_content_type('application/json')
+	// 		->set_status_header($this->status_header)
+	// 		->set_output(json_encode($this->response));
+	// }
 
 	// Deletar comentário
 	public function delete_coments() {
