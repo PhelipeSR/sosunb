@@ -102,8 +102,9 @@ $route['like']['delete'] = 'api/likes/delete_like';
 $route['demands']['post']   = 'api/demands/add_demands';
 $route['demands']['put']    = 'api/demands/update_demands';
 $route['demands']['delete'] = 'api/demands/delete_demands';
-// $route['demands']['get']    = 'api/demands/get_coments';
-// $route['demands']['get']    = 'api/demands/get_coments';
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+$route['get-demands/ranking']['get']    = 'api/get_demands/ranking';
+// $route['get-demands']['get']    = 'api/demands/get_coments';
 
 // Rotas de local
 $route['local']['post']   = 'api/local/add_local';
