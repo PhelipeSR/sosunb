@@ -13,17 +13,23 @@ class Get_demands extends CI_Controller {
 	}
 
 	public function ranking() {
-		$campus = $this->input->get('campus');
-
-		if ($result = $this->Get_demands_model->ranking($campus) ) {
-			$this->response['dados'] = $result;
-			$this->status_header = 200;
-		}else {
-			$this->response['erro']['get_ranking'] = 9;
+		$token = $this->input->get_request_header('token');
+		$payload = $this->jwt->decode($token);
+		if ($payload === FALSE) {
+			$this->response['erro'] = 'token_invalido';
+			$this->status_header = 401;
+		}else{
+			$campus = $this->input->get('campus');
+			if ($result = $this->Get_demands_model->ranking($campus,$payload['sub']) ) {
+				$this->response['dados'] = $result;
+				$this->status_header = 200;
+			}else {
+				$this->response['erro']['get_ranking'] = 9;
+			}
+			echo '<pre>';
+			print_r($this->response);
+			echo '</pre>';
 		}
-		echo '<pre>';
-		print_r($this->response);
-		echo '</pre>';
 		// $this->output
 		// 	->set_content_type('application/json')
 		// 	->set_status_header($this->status_header)
