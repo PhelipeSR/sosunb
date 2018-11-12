@@ -11,7 +11,7 @@ class Get_demands_model extends CI_Model {
 
 		$this->db
 			->select('
-				CONCAT("'.base_url('uploads/demanda/').'",demands.image) AS image_demand,
+				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
 				CONCAT("'.base_url('uploads/perfil/').'",users.image_profile) AS image_profile,
 				count(likes.demands_id) AS total_likes,
 				likes.demands_id AS demand_id,
