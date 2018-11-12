@@ -11,19 +11,21 @@ class Get_demands_model extends CI_Model {
 
 		$this->db
 			->select('
+				CONCAT("'.base_url('uploads/demanda/').'",demands.image) AS image_demand,
+				CONCAT("'.base_url('uploads/perfil/').'",users.image_profile) AS image_profile,
+				count(likes.demands_id) AS total_likes,
 				likes.demands_id AS demand_id,
-				count(likes.demands_id) AS likes,
 				demands.title,
-				demands.image,
 				demands.description,
 				DATE_FORMAT(`created_date`, "%d/%m/%Y %H:%i") AS created_date,
 				users.name,
-				users.image_profile,
 				local.local,
 				status.name AS status,
 				campus.campus,
-				IF(demands.users_id='.$id.', "true", "false") AS owner_demands
+				IF(demands.users_id = '.$id.', "true", "false") AS owner_demands,
+				IF((SELECT COUNT(*) FROM likes as teste WHERE teste.users_id = '.$id.' AND teste.demands_id = likes.demands_id) > 0, "true", "false") AS gave_like,
 			')
+			->from('likes')
 			->where('demands.excluded !=', 1)
 			->where('status.id !=', 4)
 			->where('status.id !=', 5)
@@ -33,12 +35,12 @@ class Get_demands_model extends CI_Model {
 			->join('local', 'demands.local_id = local.id')
 			->join('status', 'demands.status_id = status.id')
 			->join('campus', 'local.campus_id = campus.id')
-			->order_by('likes', 'DESC')
+			->order_by('total_likes', 'DESC')
 			->limit(10);
 		if ($campus)
 			$this->db->where('campus.id', $campus);
 
-		if ( $result = $this->db->get('likes')->result_array()){
+		if ( $result = $this->db->get()->result_array()){
 			foreach ($result as $key => $value){
 				$comments = $this->db
 					->select('
