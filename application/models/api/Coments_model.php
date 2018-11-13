@@ -14,7 +14,7 @@ class Coments_model extends CI_Model {
 	*/
 
 	public function create_coments($data) {
-		if ($this->db->insert('coments', $data)){
+		if ($this->db->insert('comments', $data)){
 			return TRUE;
 		}
 		else{
@@ -24,13 +24,13 @@ class Coments_model extends CI_Model {
 
 	public function get_coments($demands_id) {
 		$this->db
-			->select('coments.id,coments.comment,coments.data, users.name,profile_type.type')
-			->join('users', 'users.id = coments.users_id')
+			->select('comments.id,comments.comment,comments.data, users.name,profile_type.type')
+			->join('users', 'users.id = comments.users_id')
 			->join('profile_type', 'profile_type.id = users.profile_type_id')
-			->where('coments.excluded !=', 1)
-			->where('coments.demands_id', $demands_id)
-			->order_by('coments.data', 'ASC');
-		if ( $result = $this->db->get('coments')->result()){
+			// ->where('comments.excluded !=', 1)
+			->where('comments.demands_id', $demands_id)
+			->order_by('comments.data', 'ASC');
+		if ( $result = $this->db->get('comments')->result()){
 			return $result;
 		}
 		else{
@@ -49,11 +49,13 @@ class Coments_model extends CI_Model {
 	// }
 
 	public function delete_coments($data) {
-		$this->db->where('id', $data['coment_id'])->where('users_id', $data['users_id']);
-		if ($this->db->update('coments',array('excluded' => 1))) {
-			return TRUE;
-		}else{
-			return FALSE;
-		}
+		$this->db->where('id', $data['comment_id'])->where('users_id', $data['users_id']);
+		$this->db->delete('comments');
+		// if ($this->db->delete('comments') {
+		// 	 return TRUE;
+		// }else{
+		// 	return FALSE;
+		// }
+		return TRUE;
 	}
 }

@@ -100,7 +100,7 @@ class Coments extends CI_Controller {
 			$this->status_header = 401;
 		}else{
 			$database = array(
-				'coment_id' => $this->input->input_stream('coment_id'),
+				'comment_id' => $this->input->input_stream('comment_id'),
 				'users_id' => $payload['sub']
 			);
 			$this->form_validation->set_data($database);

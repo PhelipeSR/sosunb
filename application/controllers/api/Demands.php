@@ -20,12 +20,18 @@ class Demands extends CI_Controller {
 			$this->status_header = 401;
 		}else{
 			if( $this->form_validation->run('add_demands') ) {
+
+				$dados = $this->input->post('image');
+				$dados = base64_decode($dados);
+				$foto = md5(uniqid(time())); 
+				file_put_contents("./{$foto}.png", $dados);
+
 				$database = array(
 					'users_id' => $payload['sub'],
-					//'image' => $this->input->post('image'),
+										
 					'title' => $this->input->post('title'),
 					'description' => $this->input->post('description'),
-					'status_id'=> $this->input->post('status_id'),
+					// 'status_id'=> $this->input->post('status_id'),
 					'type_problems_id' => $this->input->post('type_problems_id'),
 					'type_demand_id' => $this->input->post('type_demand_id'),
 					'local_id' => $this->input->post('local_id'),

@@ -343,7 +343,7 @@ $config = array(
 	// ),
 	'delete_coments' => array(
 		array(
-			'field' => 'coment_id',
+			'field' => 'comment_id',
 			'label' => 'ID do Comentário',
 			'rules' => 'required|numeric',
 			'errors' => array(
@@ -393,15 +393,15 @@ $config = array(
 				'numeric' => 4,
 			),
 		),
-		array(
-			'field' => 'status_id',
-			'label' => 'Id do Status',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
+		// array(
+		// 	'field' => 'status_id',
+		// 	'label' => 'Id do Status',
+		// 	'rules' => 'numeric',
+		// 	'errors' => array(
+		// 		'required' => 1,
+		// 		'numeric' => 4,
+		// 	),
+		// ),
 	),
 	'delete_demands' => array(
 		array(
