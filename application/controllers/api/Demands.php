@@ -22,13 +22,15 @@ class Demands extends CI_Controller {
 			if( $this->form_validation->run('add_demands') ) {
 
 				$dados = $this->input->post('image');
+				$dados = str_replace('data:image/jpeg;base64,', '', $dados);
+				$dados = str_replace('data:image/png;base64,', '', $dados); 
 				$dados = base64_decode($dados);
 				$foto = md5(uniqid(time())); 
-				file_put_contents("./{$foto}.png", $dados);
+				file_put_contents("./uploads/demandas/{$foto}.png", $dados);
 
 				$database = array(
 					'users_id' => $payload['sub'],
-										
+					'image' => $foto,
 					'title' => $this->input->post('title'),
 					'description' => $this->input->post('description'),
 					// 'status_id'=> $this->input->post('status_id'),

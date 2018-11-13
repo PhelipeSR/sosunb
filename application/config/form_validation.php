@@ -394,6 +394,14 @@ $config = array(
 			),
 		),
 		// array(
+		// 	'field' => 'image',
+		// 	'label' => 'Foto da demanda',
+		// 	'rules' => 'max_length[100]',
+		// 	'errors' => array(
+		// 		'max_length' => 2
+		// 	),
+		// )
+		// array(
 		// 	'field' => 'status_id',
 		// 	'label' => 'Id do Status',
 		// 	'rules' => 'numeric',
