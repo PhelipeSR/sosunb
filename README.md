@@ -372,7 +372,7 @@ Esse Endpoint não recebe parâmetros de entrada
 ### Parametros de entrada
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
-| --- |--- |--- |---| |---|
+|-|-|-|-|
 |demands_id |numeric | sim | Id da demanda curtida|
 
 
