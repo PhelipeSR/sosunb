@@ -13,7 +13,7 @@ class Demands extends CI_Controller {
 	}
 
 	public function add_demands (){
-		$token = $this->input->get_request_header('token');
+		$token = $this->input->post('Authorization');
 		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';
@@ -55,7 +55,7 @@ class Demands extends CI_Controller {
 	}
 
 	public function delete_demands() {
-		$token = $this->input->get_request_header('token');
+		$token = $this->input->post('Authorization');
 		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';

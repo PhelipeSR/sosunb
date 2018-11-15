@@ -14,7 +14,7 @@ class Likes extends CI_Controller {
 
 	// Cadastra novo like
 	public function add_like() {
-		$token = $this->input->get_request_header('token');
+		$token = $this->input->post('Authorization');
 		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';
@@ -42,7 +42,7 @@ class Likes extends CI_Controller {
 	}
 
 	public function delete_like() {
-		$token = $this->input->get_request_header('token');
+		$token = $this->input->post('Authorization');
 		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';

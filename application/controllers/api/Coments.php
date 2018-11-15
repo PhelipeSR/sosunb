@@ -14,7 +14,7 @@ class Coments extends CI_Controller {
 
 	// Cadastra novo comentário
 	public function add_coments() {
-		$token = $this->input->get_request_header('token');
+		$token = $this->input->post('Authorization');
 		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
  			$this->response['erro'] = 'token_invalido';
@@ -61,7 +61,7 @@ class Coments extends CI_Controller {
 
 	// Incompleto
 	// public function update_coments() {
-	// 	$token = $this->input->get_request_header('token');
+	// 	$token = $this->input->post('Authorization');
 	// 	$payload = $this->jwt->decode($token);
 	// 	if ($payload === FALSE) {
  	// 		$this->response['erro'] = 'token_invalido';
@@ -93,7 +93,7 @@ class Coments extends CI_Controller {
 
 	// Deletar comentário
 	public function delete_coments() {
-		$token = $this->input->get_request_header('token');
+		$token = $this->input->post('Authorization');
 		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';
