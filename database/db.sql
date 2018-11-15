@@ -385,7 +385,7 @@ USE `sosunb`;
 INSERT INTO `sosunb`.`type_problems` (`id`, `type`, `category_id`, `excluded`) VALUES (1, 'Lampada Queimada', 1, 0);
 INSERT INTO `sosunb`.`type_problems` (`id`, `type`, `category_id`, `excluded`) VALUES (2, 'Vazamento de Água', 2, 0);
 INSERT INTO `sosunb`.`type_problems` (`id`, `type`, `category_id`, `excluded`) VALUES (3, 'Cano Estourado', 2, 0);
-INSERT INTO `sosunb`.`type_problems` (`id`, `type`, `category_id`, `excluded`) VALUES (DEFAULT, 'Curto circuito', 1, 0);
+INSERT INTO `sosunb`.`type_problems` (`id`, `type`, `category_id`, `excluded`) VALUES (4, 'Curto circuito', 1, 0);
 
 COMMIT;
 
