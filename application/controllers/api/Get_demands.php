@@ -20,8 +20,8 @@ class Get_demands extends CI_Controller {
 			$this->status_header = 401;
 		}else{
 			$campus = $this->input->get('campus');
-			if ($result = $this->Get_demands_model->ranking($campus) ) {
-			// if ($result = $this->Get_demands_model->ranking($campus,$payload['sub']) ) {
+			if ($result = $this->Get_demands_model->ranking(1,$campus) ) {
+			// if ($result = $this->Get_demands_model->ranking($payload['sub'],$campus) ) {
 				$this->response['dados'] = $result;
 				$this->status_header = 200;
 			}else {

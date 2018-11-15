@@ -13792,7 +13792,7 @@ be a descendant of the grid when it is being dragged.
   top: 0;
   bottom: 0;
   left: 0;
-  padding-top: 70px;
+  padding-top: 50px;
   width: 230px;
   overflow: auto;
   z-index: 10;
@@ -14713,6 +14713,19 @@ be a descendant of the grid when it is being dragged.
 
 .widget-small.primary.coloured-icon .icon {
   background-color: #0068b4;
+  color: #fff;
+}
+.widget-small.success {
+  background-color: #28a745;
+}
+
+.widget-small.success.coloured-icon {
+  background-color: #fff;
+  color: #2a2a2a;
+}
+
+.widget-small.success.coloured-icon .icon {
+  background-color: #28a745;
   color: #fff;
 }
 

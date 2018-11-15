@@ -26,7 +26,7 @@
 				<li class="dropdown">
 					<a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications">
 						<i class="fa fa-bell-o fa-lg"></i>
-						<span class="badge badge-danger label-notification" id="cont_complaint"><?php if($complaint) echo count($complaint)?></span>
+						<span class="badge badge-danger label-notification" id="cont_complaint"><?php if($complaint) echo count($complaint); else echo '0'?></span>
 					</a>
 					<ul class="app-notification dropdown-menu dropdown-menu-right">
 						<li class="app-notification__title">DENÚNCIAS FEITAS.</li>
@@ -64,7 +64,7 @@
 		<div class="app-sidebar__overlay" data-toggle="sidebar"></div>
 
 		<aside class="app-sidebar">
-			<div class="app-sidebar__user">
+			<div class="app-sidebar__user mb-0">
 				<figure class="figure m-0">
 					<img class="img-fluid img-perfil" src="<?php echo base_url("uploads/perfil/".$this->session->user_image);?>" alt="Imagem do usuário">
 					<figcaption class="app-sidebar__user-name text-center mt-1 nome-perfil"><?php echo $this->session->user_name;?></figcaption>
@@ -96,8 +96,50 @@
 				<div class="col-md-12">
 					<div class="tile">
 						<div class="tile-body">
+							
+							
 							<div id="loading"></div>
-							<div id="ajax-content"></div>
+							<div id="ajax-content">
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="widget-small coloured-icon border primary"><i class="icon fa fa-users fa-3x"></i>
+											<div class="info">
+												<h6>Usuários Cadastrados</h6>
+												<p><b><?php print_r($info[0]) ?></b></p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="widget-small coloured-icon border success"><i class="icon fa fa-check fa-3x"></i>
+											<div class="info">
+												<h6>Demandas Cadastradas</h6>
+												<p><b><?php print_r($info[1]) ?></b></p>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="widget-small coloured-icon border danger"><i class="icon fa fa-ban fa-3x"></i>
+											<div class="info">
+												<h6>Demandas Não Solucionadas</h6>
+												<p><b><?php print_r($info[2]) ?></b></p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row justify-content-center">
+									<div class="col-lg-6 col-md-3">
+										<canvas id="demandaCampus" ></canvas>
+									</div>
+									<div class="col-lg-6 col-md-3">
+										<canvas id="demandaCampus"></canvas>
+									</div>
+								</div>
+								<div class="row justify-content-center">
+									<div class="col">
+										<canvas id="demandaCategoria" ></canvas>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -126,12 +168,95 @@
 		<script src="<?php echo base_url('assets/js/jquery-3.2.1.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/popper.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
+		<script src="<?php echo base_url('assets/plugins/chart/chart.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/main.js') ?>"></script>
 		<script src="<?php echo base_url('assets/plugins/validation/jquery.validate.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/plugins/datatables/datatables.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/plugins/toastr/toastr.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/admin/menu_admin.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/admin/admin.js') ?>"></script>
+		<script type="text/javascript">
+			var ctx = $('#demandaCampus');
+			var myDoughnutChart = new Chart(ctx, {
+				type: 'doughnut',
+				data: {
+					datasets: [{
+						data: [
+							<?php foreach ($info[3] as $row): ?>
+								'<?php echo $row['total_campus'] ?>',
+							<?php endforeach ?>
+						],
+						backgroundColor: [
+							'rgba(75, 192, 192, 0.8)',
+							'rgba(255, 206, 86, 0.8)',
+							'rgba(255, 99, 132, 0.8)',
+							'rgba(153, 102, 255, 0.8)',
+							'rgba(54, 162, 235, 0.8)',
+							'rgba(255, 159, 64, 0.8)',
+						],
+					}],
+					labels: [
+						<?php foreach ($info[3] as $row): ?>
+							'<?php echo $row['campus'] ?>',
+						<?php endforeach ?>
+					]
+				},
+				options: {
+					title: {
+						display: true,
+						text: 'DEMANDAS POR CAMPUS',
+					}
+				}
+			});
+
+			var ctx1 = $('#demandaCategoria');
+			var myChart = new Chart(ctx1, {
+				type: 'bar',
+				data: {
+					labels: [
+						<?php foreach ($info[4] as $row): ?>
+							'<?php echo $row['category'] ?>',
+						<?php endforeach ?>
+					],
+					datasets: [{
+						label : 'Não Resolvidas',
+						backgroundColor: 'rgba(236, 107, 86, 0.6)',
+						borderColor: 'rgba(236, 107, 86, .8)',
+						data: [
+							<?php foreach ($info[4] as $row): ?>
+								'<?php echo $row['category_aberta'] ?>',
+							<?php endforeach ?>
+						]
+					},{
+						label : 'Resolvidas',
+						backgroundColor: 'rgba(97, 188, 109, 0.6)',
+						borderColor: 'rgba(97, 188, 109, .8)',
+						data: [
+							<?php for($i = 0; $i < count($info[4]); $i++): ?>
+								1,
+							<?php endfor ?>
+						]
+					}]
+				},
+				options: {
+					title: {
+						display: true,
+						text: 'DEMANDAS RESOLVIDAS E NÃO RESOLVIDAS POR CATEGORIAS',
+					},
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							},
+							stacked: true
+						}],
+						xAxes: [{
+							stacked: true,
+						}]
+					}
+				}
+			});
+		</script>
 
 	</body>
 </html>

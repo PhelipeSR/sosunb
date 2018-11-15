@@ -43,10 +43,9 @@ $config = array(
 		array(
 			'field' => 'identity',
 			'label' => 'Identidade',
-			'rules' => 'required|numeric',
+			'rules' => 'required',
 			'errors' => array(
 				'required' => 1,
-				'numeric' => 4,
 			),
 		),
 		array(

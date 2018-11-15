@@ -17,7 +17,7 @@ class User extends CI_Controller {
 
 		if( $this->form_validation->run('register') ) {
 
-			$url = 'https://aluno.unb.br:443/alunoweb/default/sca/solicitarsenha';
+			$url = 'http://aluno.unb.br/alunoweb/default/sca/solicitarsenha';
 			$dados = array(
 				'nome' => $this->input->post('name'),
 				'matricula' => $this->input->post('registry'),

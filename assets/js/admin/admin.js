@@ -25,6 +25,7 @@ function process_complaint(id, remove = null){
 		},
 	}); // Fim do Ajax
 }
+
 $(document).ready(function($) {
 
 	// Pega a reclamação que será analisada

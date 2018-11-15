@@ -9,9 +9,12 @@ class Login extends CI_Controller {
 				$this->load->view('admin/user');
 			}else if ($this->session->user_type == 2) {
 				$this->load->model('admin/Demands_model');
+				$this->load->model('admin/Admin_model');
 				$complaint = $this->Demands_model->get_complaint();
+				$info = $this->Admin_model->get_info();
 				$this->load->view('admin/admin',array(
 					'complaint' => $complaint,
+					'info' => $info,
 				));
 			}else if ($this->session->user_type == 3) {
 				$this->load->view('admin/manager');

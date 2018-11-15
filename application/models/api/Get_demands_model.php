@@ -7,7 +7,7 @@ class Get_demands_model extends CI_Model {
 		parent::__construct();
 	}
 
-	public function ranking($campus = NULL, $id = 0) {
+	public function ranking($id = 0, $campus = NULL) {
 
 		$this->db
 			->select('
