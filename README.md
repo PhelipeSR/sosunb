@@ -17,7 +17,7 @@ O objetivo da API é dar suporte as requisições das aplicações Front-End do 
 | api/coments |Endpoint responsável pelos comentários do usuário|
 | api/answers |Endpoint responsavel pelas respostas do usuário|
 | api/demands |Endpoint responsável pelas demandas|
-| api/session |Endpoint responsável pelo login e recuperação de senha do usuário|
+| api/sessions |Endpoint responsável pelo login e recuperação de senha do usuário|
 
 Nos Endpoints que possuem autenticação requerida é necessário enviar o token do usuário logado no cabeçalho da requisição.
 
@@ -29,7 +29,7 @@ Exemplo:
 }
 ```
 
-## /session (POST)
+## /sessions (POST)
 ### Parametros de entrada
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
@@ -78,8 +78,8 @@ Exemplo:
 
 ```json
 {
- "name":"Pedro Lindo",
- "email":"pedrolindo@gmail.com",
+ "name":"Pedro",
+ "email":"pedro@gmail.com",
  "registry":"140027172",
  "identity":"3380180",
  "date_birth":"09091996",
@@ -139,230 +139,6 @@ Exemplo:
 
 
 
-## api/status (POST)
-
-### Parametros de entrada
-
-|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
-| --- |--- |--- |---|
-|name |string | sim | Nome do status da demanda a ser inserido no banco|
-
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Login realizado|
-|9 | ? |Erro genérico do banco|
-
-> Exemplos de requisição
-
-```json
- {
-   "name":"Solucionada",
- }
-```
-
-## api/status (GET)
-
-### Parametros de entrada
-
-Esse Endpoint não recebe parametros de entrada
-
-### Tipos de Retorno
-|STATUS | TYPE | Descrição|
-| --- |---| --- |
-|200 | OK |Senha recuperada|
-|9 | ? |Erro genérico do banco|
-
-
-## api/type-demand (POST)
-
-
-### Parametros de entrada
-
-|Nome do Parametro| Tipo de entrada | Obrigatório |Tamanho Máximo| Detalhe|
-| --- |--- |--- |---| |---|
-|demands |string | sim |100| Tipo de demanda a ser inserido no banco|
-
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Dados cadastrados|
-|3 | ? |Parâmetro obrigatório|
-|2 | ? |Tamanho máximo excedido|
-|9 | ? |Erro genérico do banco|
-
-> Exemplos de requisição
-
-```json
- {
-   "demands":"Problema",
- }
-```
-
-## api/type-demand (GET)
-
-
-### Parametros de entrada
-
-Esse Endpoint não recebe parametros de entrada
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Dados requisitados|
-|9 | ? |Erro genérico do banco|
-
-
-## api/type-demand (PUT)
-
-
-### Parametros de entrada
-
-|Nome do Parametro| Tipo de entrada | Obrigatório |Tamanho Máximo| Detalhe|
-| --- |--- |--- |---| |---|
-|id |number | sim | - | Id do tipo de demanda a ser alterado no banco|
-|demands |string | sim |100| Novo nome do tipo de demanda a ser alterada no banco|
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Dados cadastrados|
-|3 | ? |Parâmetro obrigatório|
-|2 | ? |Tamanho máximo excedido|
-|9 | ? |Erro genérico do banco|
-
-> Exemplos de requisição
-
-```json
- {
-   "id":"1",
-   "demands":"Problema",
- }
-```
-
-## api/type-demand (DELETE)
-
-
-### Parametros de entrada
-
-|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
-| --- |--- |--- |---| |---|
-|id |number | sim | Id do tipo de demanda a ser excluído no banco|
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Dados excluídos|
-|3 | ? |Parâmetro obrigatório|
-|4 | ? |Parâmetro numérico|
-|9 | ? |Erro genérico do banco|
-
-> Exemplos de requisição
-
-```json
- {
-   "id":"1",
- }
-```
-
-
-
-
-## api/type-problem (POST)
-
-
-### Parametros de entrada
-
-|Nome do Parametro| Tipo de entrada | Obrigatório |Tamanho Máximo| Detalhe|
-| --- |--- |--- |---| |---|
-|type |string | sim |50| Tipo de problema a ser inserido no banco|
-
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Dados cadastrados|
-|3 | ? |Parâmetro obrigatório|
-|2 | ? |Tamanho máximo excedido|
-|9 | ? |Erro genérico do banco|
-
-> Exemplos de requisição
-
-```json
- {
-   "type":"Elétrico",
- }
-```
-
-## api/type-problem (GET)
-
-
-### Parâmetros de entrada
-
-Esse Endpoint não recebe parâmetros de entrada
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Dados requisitados|
-|9 | ? |Erro genérico do banco|
-
-
-## api/type-problem (PUT)
-
-### Parametros de entrada
-
-|Nome do Parâmetro| Tipo de entrada | Obrigatório |Tamanho Máximo| Detalhe|
-| --- |--- |--- |---| |---|
-|id |number | sim | - | Id do tipo de problema a ser alterado no banco|
-|type |string | sim |50| Novo nome do tipo de problema a ser alterado no banco|
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Dados atualizados|
-|3 | ? |Parâmetro obrigatório|
-|2 | ? |Tamanho máximo excedido|
-|9 | ? |Erro genérico do banco|
-
-> Exemplos de requisição
-
-```json
- {
-   "id":"1",
-   "type":"Hidráulico",
- }
-```
-
-## api/type-problem (DELETE)
-
-
-### Parametros de entrada
-
-|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
-| --- |--- |--- |---| |---|
-|id |number | sim | Id do tipo de demanda a ser excluído no banco|
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Dados excluídos|
-|3 | ? |Parâmetro obrigatório|
-|4 | ? |Parâmetro numérico|
-|9 | ? |Erro genérico do banco|
-
-> Exemplos de requisição
-
-```json
- {
-   "id":"1",
- }
-```
-
-
-
 
 
 ## api/like (POST)
@@ -399,7 +175,7 @@ Esse Endpoint não recebe parâmetros de entrada
 ### Parametros de entrada
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
-| --- |--- |--- |---| |---|
+| --- |--- |--- |---|
 |demands_id |numeric | sim | Id da demanda curtida|
 
 
@@ -416,5 +192,86 @@ Esse Endpoint não recebe parâmetros de entrada
 ```json
  {
    "demands_id":"1",
+ }
+```
+
+
+## api/coments (POST)
+>Autenticação Requerida
+
+### Parametros de entrada
+
+|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
+| --- |--- |--- |---|
+|demands_id |numeric | sim | Id da demanda|
+|comments | text | sim | Comentario da demanda|
+
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Dados Cadastrado|
+|3 | ? |Parâmetro obrigatório|
+|4 | ? |Parâmetro numérico|
+|9 | ? |Erro genérico do banco|
+
+> Exemplos de requisição
+
+```json
+ {
+   "demands_id":"1",
+   "comment":"Comentario teste"
+ }
+```
+
+## api/coments (PUT)
+>Autenticação Requerida
+
+### Parametros de entrada
+
+|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
+| --- |--- |--- |---|
+|comment_id |numeric | sim | Id do comentário a ser editado |
+|comment    |text | sim | Comentário editado|
+
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Dados cadastrados|
+|3 | ? |Parâmetro obrigatório|
+|4 | ? |Parâmetro numérico|
+|9 | ? |Erro genérico do banco|
+
+> Exemplos de requisição
+
+```json
+ {
+   "demand":"1"
+ }
+```
+## api/coments (GET)
+>Autenticação Requerida
+
+### Parametros de entrada
+
+|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
+| --- |--- |--- |---|
+|demand |numeric | sim | Id da demanda|
+
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Comentários da demanda|
+|3 | ? |Parâmetro obrigatório|
+|4 | ? |Parâmetro numérico|
+|9 | ? |Erro genérico do banco|
+
+> Exemplos de requisição
+
+```json
+ {
+   "demand":"1"
  }
 ```
