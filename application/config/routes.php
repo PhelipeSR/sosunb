@@ -92,16 +92,16 @@ $route['status']['delete'] = 'api/status/delete_status';
 $route['coments']['post']   = 'api/coments/add_coments';
 $route['coments']['get']    = 'api/coments/get_coments';
 $route['coments']['put']    = 'api/coments/update_coments';
-$route['coments']['delete'] = 'api/coments/delete_coments';
+$route['coments/delete']['post'] = 'api/coments/delete_coments';
 
 // Rotas de likes
 $route['like']['post']   = 'api/likes/add_like';
-$route['like']['delete'] = 'api/likes/delete_like';
+$route['like/delete']['post'] = 'api/likes/delete_like';
 
 // Rotas de Demandas
 $route['demands']['post']   = 'api/demands/add_demands';
 $route['demands']['put']    = 'api/demands/update_demands';
-$route['demands']['delete'] = 'api/demands/delete_demands';
+$route['demands/delete']['post'] = 'api/demands/delete_demands';
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 $route['get-demands/ranking']['get']    = 'api/get_demands/ranking';
 // $route['get-demands']['get']    = 'api/demands/get_coments';
