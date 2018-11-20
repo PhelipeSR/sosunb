@@ -72,7 +72,7 @@ $route['sessions/login']['post']   = 'api/sessions/login';
 $route['sessions/recover']['post'] = 'api/sessions/recover_password';
 
 // Rotas de tipo de problemas
-$route['type-problem/get']['post']  = 'api/type_problem/get_type_problem';
+$route['type-problem/get']['post'] = 'api/type_problem/get_type_problem';
 
 // Rotas de tipo de demanda
 $route['type-demand/get']['post'] = 'api/type_demand/get_type_demand';
@@ -86,7 +86,7 @@ $route['like/add']['post']    = 'api/likes/add_like';
 $route['like/delete']['post'] = 'api/likes/delete_like';
 
 // Rotas de local
-$route['local']['get']    = 'api/local/get_local';
+$route['local']['get'] = 'api/local/get_local';
 
 // Rotas de Demandas
 $route['demands']['post']        = 'api/demands/add_demands';
@@ -95,3 +95,4 @@ $route['demands/delete']['post'] = 'api/demands/delete_demands';
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 $route['get-demands/ranking']['post'] = 'api/get_demands/ranking';
+$route['get-demands/feed']['post']    = 'api/get_demands/feed';

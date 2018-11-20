@@ -252,12 +252,31 @@ $config = array(
 	),
 
 	// ========================================
-	// Pegar Ranking
+	// Pegar Demandas
 	// ========================================
 	'get_ranking' => array(
 		array(
 			'field' => 'campus',
 			'label' => 'Id do tipo de Problema',
+			'rules' => 'numeric',
+			'errors' => array(
+				'numeric' => 4,
+			),
+		),
+	),
+	'get_feed' => array(
+		array(
+			'field' => 'limit',
+			'label' => 'Limites',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'status',
+			'label' => 'Status',
 			'rules' => 'numeric',
 			'errors' => array(
 				'numeric' => 4,
