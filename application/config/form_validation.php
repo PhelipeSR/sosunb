@@ -12,6 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	not_unb => 8 (não é aluno da UnB)
 	erro_banco => 9 (erro genérico do banco)
 	login_erro => 10 (dados incorrétos ou usuário excluído)
+	exit_field => 11 (Dado não está cadastrado no banco de dados)
 */
 
 
@@ -116,141 +117,15 @@ $config = array(
 			),
 		),
 	),
-
-	// ========================================
-	// type-problem
-	// ========================================
-	'add_type_problem' => array(
+	'recover_password' => array(
 		array(
-			'field' => 'type',
-			'label' => 'Tipo de Problema',
-			'rules' => 'required|max_length[50]',
+			'field' => 'email',
+			'label' => 'Email',
+			'rules' => 'required|valid_email|exit_field[users.email]',
 			'errors' => array(
 				'required' => 1,
-				'max_length' => 2,
-			),
-		),
-	),
-	'update_type_problem' => array(
-		array(
-			'field' => 'type',
-			'label' => 'Tipo de Problema',
-			'rules' => 'required|max_length[50]',
-			'errors' => array(
-				'required' => 1,
-				'max_length' => 2,
-			),
-		),
-		array(
-			'field' => 'id',
-			'label' => 'id do Tipo de Problema',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-	),
-	'delete_type_problem' => array(
-		array(
-			'field' => 'id',
-			'label' => 'id do Tipo de Problema',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-	),
-
-	// ========================================
-	// status
-	// ========================================
-	'add_status' => array(
-		array(
-			'field' => 'name',
-			'label' => 'Nome Status',
-			'rules' => 'required|max_length[50]',
-			'errors' => array(
-				'required' => 1,
-				'max_length' => 2,
-			),
-		),
-	),
-	'update_status' => array(
-		array(
-			'field' => 'name',
-			'label' => 'Nome do Status',
-			'rules' => 'required|max_length[50]',
-			'errors' => array(
-				'required' => 1,
-				'max_length' => 2,
-			),
-		),
-		array(
-			'field' => 'id',
-			'label' => 'id do Status',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-	),
-	'delete_status' => array(
-		array(
-			'field' => 'id',
-			'label' => 'id do Status',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-	),
-
-	// ========================================
-	// type-demand
-	// ========================================
-	'add_type_demand' => array(
-		array(
-			'field' => 'demands',
-			'label' => 'Tipo de Demanda',
-			'rules' => 'required|max_length[100]',
-			'errors' => array(
-				'required' => 1,
-				'max_length' => 2,
-			),
-		),
-	),
-	'update_type_demand' => array(
-		array(
-			'field' => 'demands',
-			'label' => 'Tipo de Demanda',
-			'rules' => 'required|max_length[100]',
-			'errors' => array(
-				'required' => 1,
-				'max_length' => 2,
-			),
-		),
-		array(
-			'field' => 'id',
-			'label' => 'ID do Tipo de Demanda',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-	),
-	'delete_type_demand' => array(
-		array(
-			'field' => 'id',
-			'label' => 'id do Tipo de Demanda',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
+				'valid_email' => 6,
+				'exit_field' => 11,
 			),
 		),
 	),
@@ -302,57 +177,11 @@ $config = array(
 				'required' => 1,
 			),
 		),
-		array(
-			'field' => 'users_id',
-			'label' => 'ID do Usuário',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
 	),
-	// 'update_coments' => array(
-	// 	array(
-	// 		'field' => 'comment_id',
-	// 		'label' => 'id do comentario',
-	// 		'rules' => 'required|numeric',
-	// 		'errors' => array(
-	// 			'required' => 1,
-	// 			'numeric' => 4,
-	// 		),
-	// 	),
-	// 	array(
-	// 		'field' => 'comment',
-	// 		'label' => 'Comentário',
-	// 		'rules' => 'required',
-	// 		'errors' => array(
-	// 			'required' => 1,
-	// 		),
-	// 	),
-	// 	array(
-	// 		'field' => 'user_id',
-	// 		'label' => 'ID do Usuário',
-	// 		'rules' => 'required|numeric',
-	// 		'errors' => array(
-	// 			'required' => 1,
-	// 			'numeric' => 4,
-	// 		),
-	// 	),
-	// ),
 	'delete_coments' => array(
 		array(
 			'field' => 'comment_id',
 			'label' => 'ID do Comentário',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-		array(
-			'field' => 'users_id',
-			'label' => 'ID do Usuário',
 			'rules' => 'required|numeric',
 			'errors' => array(
 				'required' => 1,
@@ -423,82 +252,14 @@ $config = array(
 	),
 
 	// ========================================
-	// local
+	// Pegar Ranking
 	// ========================================
-	'add_local' => array(
-		array(
-			'field' => 'local',
-			'label' => 'Local',
-			'rules' => 'required|max_length[100]',
-			'errors' => array(
-				'required' => 1,
-				'max_length' => 2,
-			),
-		),
+	'get_ranking' => array(
 		array(
 			'field' => 'campus',
-			'label' => 'Campus',
-			'rules' => 'required|numeric',
+			'label' => 'Id do tipo de Problema',
+			'rules' => 'numeric',
 			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-		array(
-			'field' => 'area',
-			'label' => 'Área',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-	),
-	'update_local' => array(
-		array(
-			'field' => 'local',
-			'label' => 'Local',
-			'rules' => 'required|max_length[100]',
-			'errors' => array(
-				'required' => 1,
-				'max_length' => 2,
-			),
-		),
-		array(
-			'field' => 'campus',
-			'label' => 'Campus',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-		array(
-			'field' => 'area',
-			'label' => 'Área',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-		array(
-			'field' => 'id',
-			'label' => 'Id do Local',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
-				'numeric' => 4,
-			),
-		),
-	),
-	'delete_local' => array(
-		array(
-			'field' => 'id',
-			'label' => 'Id do Local',
-			'rules' => 'required|numeric',
-			'errors' => array(
-				'required' => 1,
 				'numeric' => 4,
 			),
 		),

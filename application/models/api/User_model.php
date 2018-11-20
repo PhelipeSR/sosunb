@@ -33,7 +33,15 @@ class User_model extends CI_Model {
 
 	public function get_info_user($id) {
 		$this->db
-			->select('id, name, registry, identity, DATE_FORMAT(`date_birth`, "%d/%m/%Y") AS date_birth, email, image_profile')
+			->select('
+				id,
+				name,
+				registry,
+				identity,
+				DATE_FORMAT(`date_birth`, "%d/%m/%Y") AS date_birth,
+				email,
+				CONCAT("'.base_url('uploads/perfil/').'",image_profile) AS image_profile
+			')
 			->where('id',$id);
 		if ( $result = $this->db->get('users')->row() ) {
 			return $result;

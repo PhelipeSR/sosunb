@@ -13,6 +13,7 @@ class Login_model extends CI_Model {
 		$this->db->select( '*' );
 		$this->db->where('email', $data['email']);
 		$this->db->where('excluded', 0);
+		$this->db->where('profile_type_id !=', 1);
 		$result = $this->db->get('users');
 
 		if ($result->num_rows() == 1) {

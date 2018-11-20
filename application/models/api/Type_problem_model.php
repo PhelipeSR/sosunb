@@ -13,19 +13,11 @@ class Type_problem_model extends CI_Model {
 	* =====================================================================
 	*/
 
-	public function create_type_problem($data) {
-		if ($this->db->insert('type_problems', $data)){
-			return TRUE;
-		}
-		else{
-			return FALSE;
-		}
-	}
-
 	public function get_type_problem() {
 		$this->db
-			->select('*')
-			->where('excluded !=', 1);
+			->select('type_problems.id, type_problems.type, category.category')
+			->join('category', 'type_problems.category_id = category.id')
+			->where('type_problems.excluded', 0);
 		if ( $result = $this->db->get('type_problems')->result()){
 			return $result;
 		}
@@ -33,23 +25,4 @@ class Type_problem_model extends CI_Model {
 			return FALSE;
 		}
 	}
-
-	public function update_type_problem($data, $id) {
-		$this->db->where('id', $id);
-		if ($this->db->update('type_problems',$data)) {
-			return TRUE;
-		}else{
-			return FALSE;
-		}
-	}
-
-	public function delete_type_problem($id) {
-		$this->db->where('id', $id);
-		if ($this->db->update('type_problems',array('excluded' => 1))) {
-			return TRUE;
-		}else{
-			return FALSE;
-		}
-	}
-
 }

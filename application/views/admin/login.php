@@ -14,7 +14,6 @@
 
 	</head>
 	<body>
-		<?php $this->load->view('site/navbar')?>
 		<section class="material-half-bg">
 			<div class="cover bg-white"></div>
 		</section>

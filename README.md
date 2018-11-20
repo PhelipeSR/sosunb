@@ -9,15 +9,15 @@ O objetivo da API é dar suporte as requisições das aplicações Front-End do 
 | Identificador | Finalidade |
 | --- | --- |
 | api/user | Endpoint responsável por realizar o cadastro do novo usuário |
-| api/status|Endpoint responsável pelo status da demanda |
+| api/status| Endpoint responsável pelo status da demanda |
 | api/type-demand | Endpoint responsável pela criação do tipo de demanda  |
-| api/local |Endpoint responsável pelo local da demanda |
-| api/type-problem |Endpoint responsável pela criação, edição, exclusão e requisição de um tipo de problema|
-| api/like |Endpoint responsável pelos likes do usuário|
-| api/coments |Endpoint responsável pelos comentários do usuário|
-| api/answers |Endpoint responsavel pelas respostas do usuário|
-| api/demands |Endpoint responsável pelas demandas|
-| api/sessions |Endpoint responsável pelo login e recuperação de senha do usuário|
+| api/local | Endpoint responsável pelo local da demanda |
+| api/type-problem  |Endpoint responsável pela criação, edição, exclusão e requisição de um tipo de problema |
+| api/like | Endpoint responsável pelos likes do usuário |
+| api/coments | Endpoint responsável pelos comentários do usuário |
+| api/answers | Endpoint responsavel pelas respostas do usuário |
+| api/demands | Endpoint responsável pelas demandas |
+| api/sessions | Endpoint responsável pelo login e recuperação de senha do usuário |
 
 Nos Endpoints que possuem autenticação requerida é necessário enviar o token do usuário logado no cabeçalho da requisição.
 

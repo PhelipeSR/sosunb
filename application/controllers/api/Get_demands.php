@@ -15,25 +15,25 @@ class Get_demands extends CI_Controller {
 	public function ranking() {
 		$token = $this->input->post('Authorization');
 		$payload = $this->jwt->decode($token);
-		if (!$payload === FALSE) {
+		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;
 		}else{
-			$campus = $this->input->get('campus');
-			if ($result = $this->Get_demands_model->ranking(1,$campus) ) {
-			// if ($result = $this->Get_demands_model->ranking($payload['sub'],$campus) ) {
-				$this->response['dados'] = $result;
-				$this->status_header = 200;
+			if( $this->form_validation->run('get_ranking') ) {
+				$campus = $this->input->post('campus');
+				if ($result = $this->Get_demands_model->ranking($payload['sub'],$campus) ) {
+					$this->response['dados'] = $result;
+					$this->status_header = 200;
+				}else {
+					$this->response['erro']['get_ranking'] = 9;
+				}
 			}else {
-				$this->response['erro']['get_ranking'] = 9;
+				$this->response['erro'] = $this->form_validation->error_array();
 			}
-			echo '<pre>';
-			print_r($this->response);
-			echo '</pre>';
 		}
-		// $this->output
-		// 	->set_content_type('application/json')
-		// 	->set_status_header($this->status_header)
-		// 	->set_output(json_encode($this->response));
+		$this->output
+			->set_content_type('application/json')
+			->set_status_header($this->status_header)
+			->set_output(json_encode($this->response));
 	}
 }

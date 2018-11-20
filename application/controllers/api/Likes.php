@@ -48,13 +48,8 @@ class Likes extends CI_Controller {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;
 		}else{
-			$database = array(
-				'demands_id' => $this->input->input_stream('demands_id'),
-				'users_id' => $payload['sub']
-			);
-			$this->form_validation->set_data($database);
 			if( $this->form_validation->run('delete_like') ) {
-				if ($this->Likes_model->delete_like($database['demands_id'],$database['users_id'] ) ) {
+				if ($this->Likes_model->delete_like($this->input->post('demands_id'),$payload['sub'] ) ) {
 					$this->response['dados'] = 'excluido';
 					$this->status_header = 200;
 				}else {

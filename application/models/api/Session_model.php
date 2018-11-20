@@ -23,4 +23,15 @@ class Session_model extends CI_Model {
 			}
 		}
 	}
+
+	public function insert_token_recover($data){
+		$this->db->where('email', $data['email'] );
+		$this->db->delete('recover');
+		if ($this->db->insert('recover', $data)){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
 }

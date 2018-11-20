@@ -94,11 +94,10 @@ class User extends CI_Controller {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;
 		}else{
-			$database = array(
-				'email' => $this->input->input_stream('email'),
-			);
-			$this->form_validation->set_data($database);
 			if( $this->form_validation->run('update_user') ) {
+				$database = array(
+					'email' => $this->input->input_stream('email'),
+				);
 				if ($result = $this->User_model->update_user($database, $payload['sub'])) {
 					$this->response['dados'] = 'Atualizado';
 					$this->status_header = 200;
