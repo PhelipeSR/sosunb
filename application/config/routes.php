@@ -96,3 +96,4 @@ $route['demands/delete']['post'] = 'api/demands/delete_demands';
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 $route['get-demands/ranking']['post'] = 'api/get_demands/ranking';
 $route['get-demands/feed']['post']    = 'api/get_demands/feed';
+$route['get-demands/profile']['post']    = 'api/get_demands/profile';
