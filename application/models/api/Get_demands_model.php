@@ -117,6 +117,12 @@ class Get_demands_model extends CI_Model {
 			->limit(5,$limit);
 		if ($status)
 			$this->db->where('demands.status_id', $status);
+		if ($this->input->post('search')) {
+			$this->db->group_start()
+						->like(    'demands.title',       $this->input->post('search') )
+						->or_like( 'demands.description', $this->input->post('search') )
+					->group_end();
+		}
 
 		if ( $result = $this->db->get()->result_array()){
 			foreach ($result as $key => $value){
