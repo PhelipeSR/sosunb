@@ -89,8 +89,8 @@ $route['like/delete']['post'] = 'api/likes/delete_like';
 $route['local']['get'] = 'api/local/get_local';
 
 // Rotas de Demandas
-$route['demands']['post']        = 'api/demands/add_demands';
-$route['demands']['put']         = 'api/demands/update_demands';
+$route['demands/add']['post']        = 'api/demands/add_demands';
+// $route['demands']['put']         = 'api/demands/update_demands';
 $route['demands/delete']['post'] = 'api/demands/delete_demands';
 
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
