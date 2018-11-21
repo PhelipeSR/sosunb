@@ -83,7 +83,7 @@ Exemplo:
 }
 ```
 
-## api/user (POST)
+## api/user/register (POST)
 
 ### Parametros de retorno
 
@@ -116,15 +116,11 @@ Exemplo:
  "password":"123456",
 }
 ```
-## api/user (GET)
+## api/user/get (POST)
 >Autenticação Requerida
 
-### Parametros de retorno
-
-|Parametros de retorno| Tipo de entrada | Obrigatório | Detalhe|
-| --- |--- |--- |---|
-| token | string | sim | Token do usuário |
-
+### Parametros de entrada
+Não há parâmetro de entrada
 
 ### Tipos de Retorno
 |STATUS| TYPE |Descrição|
@@ -135,7 +131,7 @@ Exemplo:
 
 
 
-## api/user (PUT)
+## api/user/update (POST)
 >Autenticação Requerida
 
 ### Parâmetros de entrada
@@ -158,17 +154,17 @@ Exemplo:
  "email":"pedrolindo@gmail.com",
 }
 ```
-## api/user (DELETE)
+## api/user/delete (POST)
 >Autenticação Requerida
+
+### Parametros de entrada
+Não há parâmetro de entrada
 
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| --- |
 |200 |OK |Novo email confirmado|
 |401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
-
-
-
 
 
 ## api/like/add (POST)
@@ -253,8 +249,7 @@ Exemplo:
 ```json
  {
    "demands_id":"1",
-   "comment":"Comentario teste",
-   "user_id":"2"
+   "comment":"Comentario teste"
  }
 ```
 
@@ -282,7 +277,32 @@ Exemplo:
 
 ```json
  {
-   "demands_id":"1",
-   "user_id":"2"
+   "demands_id":"1"
+ }
+```
+
+## api/local (GET)
+
+### Parametros de entrada
+
+|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
+| --- |--- |--- |---|
+|campus |string | sim | Nome do campus|
+|area |  | sim | |
+
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Local cadastrado|
+|3 | ? |Parâmetro obrigatório|
+|4 | ? |Parâmetro numérico|
+|9 | ? |Erro genérico do banco|
+
+> Exemplos de requisição
+
+```json
+ {
+   "campus":"Darcy Ribeiro"
  }
 ```
