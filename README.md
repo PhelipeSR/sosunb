@@ -19,7 +19,7 @@ O objetivo da API é dar suporte as requisições das aplicações Front-End do 
 | api/demands | Endpoint responsável pelas demandas |
 | api/sessions | Endpoint responsável pelo login e recuperação de senha do usuário |
 
-Nos Endpoints que possuem autenticação requerida é necessário enviar o token do usuário logado no cabeçalho da requisição.
+Nos Endpoints que possuem autenticação requerida é necessário enviar o parâmetro Authorization no body da requisição.
 
 Exemplo:
 
@@ -29,7 +29,9 @@ Exemplo:
 }
 ```
 
-## /sessions (POST)
+## /sessions/login (POST)
+>Login do usuário
+
 ### Parametros de entrada
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
@@ -49,10 +51,38 @@ Exemplo:
 
 ```json
 {
- "email":"Marilinda@gmail.com",
+ "email":"mariana.grijo@gmail.com",
  "password":"12345678",
 }
 ```
+
+## /sessions/recover (POST)
+>Verifica se o email existe para recuperação de senha
+
+### Parametros de entrada
+
+|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
+| --- |--- |--- |---|
+| email | string |sim | Email do Usuário|
+| password |string | sim | Senha do usuário|
+
+### Tipos de retorno
+
+|STATUS | TYPE |DESCRIÇÃO|
+| --- | --- | --- |
+| 200 | OK | Cadastro enviado |
+| 10 | ? | Dados incorretos |
+| 400 | BAD_REQUEST | Algum parâmetro do tipo errado espaço em ou vazio|
+
+> Exemplos de requisição
+
+```json
+{
+ "email":"mariana.grijo@gmail.com",
+ "password":"12345678",
+}
+```
+
 ## api/user (POST)
 
 ### Parametros de retorno
@@ -141,8 +171,9 @@ Exemplo:
 
 
 
-## api/like (POST)
+## api/like/add (POST)
 >Autenticação Requerida
+>Adicionar Like
 
 
 ### Parametros de entrada
@@ -169,8 +200,9 @@ Exemplo:
 ```
 
 
-## api/like (DELETE)
+## api/like/delete (POST)
 >Autenticação Requerida
+>Deletar Like
 
 ### Parametros de entrada
 
@@ -196,8 +228,9 @@ Exemplo:
 ```
 
 
-## api/coments (POST)
+## api/coments/add (POST)
 >Autenticação Requerida
+>Adicionar comentário
 
 ### Parametros de entrada
 
@@ -220,25 +253,27 @@ Exemplo:
 ```json
  {
    "demands_id":"1",
-   "comment":"Comentario teste"
+   "comment":"Comentario teste",
+   "user_id":"2"
  }
 ```
 
-## api/coments (PUT)
+## api/coments/delete (POST)
 >Autenticação Requerida
+>Deletar Comentário
 
 ### Parametros de entrada
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
 | --- |--- |--- |---|
-|comment_id |numeric | sim | Id do comentário a ser editado |
-|comment    |text | sim | Comentário editado|
+|comment_id |numeric | sim | Id do comentário|
+|users_id | numeric | sim | Id do Usuário|
 
 
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
-|200 | OK |Dados cadastrados|
+|200 | OK |Comentário Excluído|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -247,31 +282,7 @@ Exemplo:
 
 ```json
  {
-   "demand":"1"
- }
-```
-## api/coments (GET)
->Autenticação Requerida
-
-### Parametros de entrada
-
-|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
-| --- |--- |--- |---|
-|demand |numeric | sim | Id da demanda|
-
-
-### Tipos de Retorno
-|STATUS | TYPE |Descrição|
-| --- |---| ---|
-|200 | OK |Comentários da demanda|
-|3 | ? |Parâmetro obrigatório|
-|4 | ? |Parâmetro numérico|
-|9 | ? |Erro genérico do banco|
-
-> Exemplos de requisição
-
-```json
- {
-   "demand":"1"
+   "demands_id":"1",
+   "user_id":"2"
  }
 ```
