@@ -195,6 +195,24 @@ $config = array(
 	// ========================================
 	'add_demands' => array(
 		array(
+			'field' => 'environment_id',
+			'label' => 'Id do ambiente',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'campus_id',
+			'label' => 'Id do Campus',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
 			'field' => 'type_problems_id',
 			'label' => 'Id do tipo de Problema',
 			'rules' => 'required|numeric',

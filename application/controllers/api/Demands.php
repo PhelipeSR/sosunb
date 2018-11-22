@@ -37,6 +37,8 @@ class Demands extends CI_Controller {
 					'type_problems_id' => $this->input->post('type_problems_id'),
 					'type_demand_id' => $this->input->post('type_demand_id'),
 					'local_id' => $this->input->post('local_id'),
+					'campus_id' => $this->input->post('campus_id'),
+					'environment_id' => $this->input->post('environment_id'),
 				);
 				if ($this->Demands_model->create_demands($database) ) {
 					$this->response['dados'] = 'cadastrado';
