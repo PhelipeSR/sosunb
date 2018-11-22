@@ -170,6 +170,28 @@ class Get_demands_model extends CI_Model {
 		}
 	}
 
+	public function resolved($id = 0, $limit = 0, $status = NULL) {
+		$this->db
+			->select('
+				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
+				demands.id AS demand_id,
+				demands.title,
+				demands.description,
+			')
+			->from('demands')
+			->where('demands.excluded', 0)
+			->where('demands.status_id', 4)
+			->order_by('demands.title', 'RANDOM')
+			->limit(6);
+
+		if ( $result = $this->db->get()->result_array()){
+			return $result;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
 	public function profile($id = 0) {
 		$reclamacao = $this->profile_data($id, 1);
 		$sugestao = $this->profile_data($id, 2);

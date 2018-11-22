@@ -82,4 +82,17 @@ class Get_demands extends CI_Controller {
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
 	}
+
+	public function resolved() {
+		if ($result = $this->Get_demands_model->resolved() ) {
+			$this->response['dados'] = $result;
+			$this->status_header = 200;
+		}else {
+			$this->response['erro']['get_resolved'] = 9;
+		}
+		$this->output
+			->set_content_type('application/json')
+			->set_status_header($this->status_header)
+			->set_output(json_encode($this->response));
+	}
 }

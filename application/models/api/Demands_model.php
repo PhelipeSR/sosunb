@@ -22,8 +22,6 @@ class Demands_model extends CI_Model {
 		}
 	}
 
-
-
 	public function delete_demands($data, $user=FALSE) {
 		if($user){
 			$this->db->where('users_id', $data['users_id']);
@@ -36,6 +34,11 @@ class Demands_model extends CI_Model {
 		}
 	}
 
-
-
+	public function report_demands($id) {
+		if ($this->db->set('counter', 'counter + 1',FALSE)->where('id',$id)->update('demands')) {
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
 }

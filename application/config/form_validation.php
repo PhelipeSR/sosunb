@@ -250,6 +250,17 @@ $config = array(
 			),
 		),
 	),
+	'report_demands' => array(
+		array(
+			'field' => 'demands_id',
+			'label' => 'Id da demanda',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+	),
 
 	// ========================================
 	// Pegar Demandas

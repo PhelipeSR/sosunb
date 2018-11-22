@@ -98,4 +98,28 @@ class Demands extends CI_Controller {
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
 	}
+
+	public function report_demands() {
+		$token = $this->input->post('Authorization');
+		$payload = $this->jwt->decode($token);
+		if ($payload === FALSE) {
+			$this->response['erro'] = 'token_invalido';
+			$this->status_header = 401;
+		}else{
+			if( $this->form_validation->run('report_demands') ) {
+				if($this->Demands_model->report_demands($this->input->post('demands_id'))){
+					$this->response['dados'] = 'reportado';
+					$this->status_header = 200;
+				}else {
+					$this->response['erro']['report'] = 9;
+				}
+			}else {
+				$this->response['erro'] = $this->form_validation->error_array();
+			}
+		}
+		$this->output
+			->set_content_type('application/json')
+			->set_status_header($this->status_header)
+			->set_output(json_encode($this->response));
+	}
 }
