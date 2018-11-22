@@ -22,6 +22,7 @@ class Get_demands_model extends CI_Model {
 				local.local,
 				status.name AS status,
 				campus.campus,
+				environment.environment,
 				type_demand.demands AS type_demand,
 				IF(demands.users_id = '.$id.', "true", "false") AS owner_demands,
 				IF((SELECT COUNT(*) FROM likes as teste WHERE teste.users_id = '.$id.' AND teste.demands_id = likes.demands_id) > 0, "true", "false") AS gave_like,
@@ -33,9 +34,10 @@ class Get_demands_model extends CI_Model {
 			->group_by("likes.demands_id")
 			->join('demands', 'likes.demands_id = demands.id')
 			->join('users', 'demands.users_id = users.id')
-			->join('local', 'demands.local_id = local.id')
+			->join('local', 'demands.local_id = local.id','left')
 			->join('status', 'demands.status_id = status.id')
-			->join('campus', 'local.campus_id = campus.id')
+			->join('campus', 'local.campus_id = campus.id','left')
+			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->order_by('total_likes', 'DESC')
 			->limit(10);
@@ -102,15 +104,17 @@ class Get_demands_model extends CI_Model {
 				local.local,
 				status.name AS status,
 				campus.campus,
+				environment.environment,
 				type_demand.demands AS type_demand,
 				IF(demands.users_id = '.$id.', "true", "false") AS owner_demands,
 				IF((SELECT COUNT(*) FROM likes as teste WHERE teste.users_id = '.$id.' AND teste.demands_id = demands.id) > 0, "true", "false") AS gave_like,
 			')
 			->from('demands')
 			->join('users', 'demands.users_id = users.id')
-			->join('local', 'demands.local_id = local.id')
+			->join('local', 'demands.local_id = local.id','left')
 			->join('status', 'demands.status_id = status.id')
-			->join('campus', 'local.campus_id = campus.id')
+			->join('campus', 'local.campus_id = campus.id','left')
+			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
 			->order_by('demands.created_date', 'DESC')
@@ -220,15 +224,17 @@ class Get_demands_model extends CI_Model {
 				local.local,
 				status.name AS status,
 				campus.campus,
+				environment.environment,
 				type_demand.demands AS type_demand,
 				IF(demands.users_id = '.$id.', "true", "false") AS owner_demands,
 				IF((SELECT COUNT(*) FROM likes as teste WHERE teste.users_id = '.$id.' AND teste.demands_id = demands.id) > 0, "true", "false") AS gave_like,
 			')
 			->from('demands')
 			->join('users', 'demands.users_id = users.id')
-			->join('local', 'demands.local_id = local.id')
+			->join('local', 'demands.local_id = local.id','left')
 			->join('status', 'demands.status_id = status.id')
-			->join('campus', 'local.campus_id = campus.id')
+			->join('campus', 'local.campus_id = campus.id','left')
+			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
 			->where('demands.users_id', $id)
@@ -292,6 +298,7 @@ class Get_demands_model extends CI_Model {
 				local.local,
 				status.name AS status,
 				campus.campus,
+				environment.environment,
 				type_demand.demands AS type_demand,
 				IF(demands.users_id = '.$id.', "true", "false") AS owner_demands,
 				IF((SELECT COUNT(*) FROM likes as teste WHERE teste.users_id = '.$id.' AND teste.demands_id = demands.id) > 0, "true", "false") AS gave_like,
@@ -299,9 +306,10 @@ class Get_demands_model extends CI_Model {
 			->from('comments')
 			->join('demands', 'comments.demands_id = demands.id')
 			->join('users', 'demands.users_id = users.id')
-			->join('local', 'demands.local_id = local.id')
+			->join('local', 'demands.local_id = local.id','left')
 			->join('status', 'demands.status_id = status.id')
-			->join('campus', 'local.campus_id = campus.id')
+			->join('campus', 'local.campus_id = campus.id','left')
+			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
 			->where('comments.users_id', $id)
@@ -365,6 +373,7 @@ class Get_demands_model extends CI_Model {
 				local.local,
 				status.name AS status,
 				campus.campus,
+				environment.environment,
 				type_demand.demands AS type_demand,
 				IF(demands.users_id = '.$id.', "true", "false") AS owner_demands,
 				IF((SELECT COUNT(*) FROM likes as teste WHERE teste.users_id = '.$id.' AND teste.demands_id = demands.id) > 0, "true", "false") AS gave_like,
@@ -372,9 +381,10 @@ class Get_demands_model extends CI_Model {
 			->from('likes')
 			->join('demands', 'likes.demands_id = demands.id')
 			->join('users', 'demands.users_id = users.id')
-			->join('local', 'demands.local_id = local.id')
+			->join('local', 'demands.local_id = local.id','left')
 			->join('status', 'demands.status_id = status.id')
-			->join('campus', 'local.campus_id = campus.id')
+			->join('campus', 'local.campus_id = campus.id','left')
+			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
 			->where('likes.users_id', $id)
