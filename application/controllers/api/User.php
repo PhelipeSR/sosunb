@@ -34,9 +34,19 @@ class User extends CI_Controller {
 			$context  = stream_context_create($options);
 			$result = file_get_contents($url, false, $context);
 			if (mb_strpos($result,'alternativo informado abaixo')) {
+
+				//add foto:
+				$dados = $this->input->post('image_profile');
+				$dados = str_replace('data:image/jpeg;base64,', '', $dados);
+				$dados = str_replace('data:image/png;base64,', '', $dados);
+				$dados = base64_decode($dados);
+				$foto = md5(uniqid(time()));
+				file_put_contents("./uploads/perfil/{$foto}.png", $dados);
+
 				$var = $this->input->post('date_birth');
 				$date = str_replace('/', '-', $var);
 				$database = array(
+					'image_profile' => $foto,
 					'name'       => $this->input->post('name'),
 					'email'      => $this->input->post('email'),
 					'registry'   => $this->input->post('registry'),
