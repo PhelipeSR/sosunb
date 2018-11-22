@@ -221,23 +221,6 @@ $config = array(
 				'numeric' => 4,
 			),
 		),
-		// array(
-		// 	'field' => 'image',
-		// 	'label' => 'Foto da demanda',
-		// 	'rules' => 'max_length[100]',
-		// 	'errors' => array(
-		// 		'max_length' => 2
-		// 	),
-		// )
-		// array(
-		// 	'field' => 'status_id',
-		// 	'label' => 'Id do Status',
-		// 	'rules' => 'numeric',
-		// 	'errors' => array(
-		// 		'required' => 1,
-		// 		'numeric' => 4,
-		// 	),
-		// ),
 	),
 	'delete_demands' => array(
 		array(
@@ -290,6 +273,30 @@ $config = array(
 			'label' => 'Status',
 			'rules' => 'numeric',
 			'errors' => array(
+				'numeric' => 4,
+			),
+		),
+	),
+
+	// ========================================
+	// Pegar Locais
+	// ========================================
+	'get_local' => array(
+		array(
+			'field' => 'area',
+			'label' => 'Id da Área',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'campus',
+			'label' => 'Id do Capus',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
 				'numeric' => 4,
 			),
 		),

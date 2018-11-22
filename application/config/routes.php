@@ -77,6 +77,9 @@ $route['type-problem/get']['post'] = 'api/type_problem/get_type_problem';
 // Rotas de tipo de demanda
 $route['type-demand/get']['post'] = 'api/type_demand/get_type_demand';
 
+// Rotas de Campus
+$route['campus/get']['post'] = 'api/campus/get_campus';
+
 // Rotas de coments
 $route['coments/add']['post']    = 'api/coments/add_coments';
 $route['coments/delete']['post'] = 'api/coments/delete_coments';
@@ -86,7 +89,7 @@ $route['like/add']['post']    = 'api/likes/add_like';
 $route['like/delete']['post'] = 'api/likes/delete_like';
 
 // Rotas de local
-$route['local']['get'] = 'api/local/get_local';
+$route['local/get']['post'] = 'api/local/get_local';
 
 // Rotas de Demandas
 $route['demands/add']['post']    = 'api/demands/add_demands';

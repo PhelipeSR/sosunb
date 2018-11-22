@@ -13,30 +13,25 @@ class Local_model extends CI_Model {
 	* =====================================================================
 	*/
 
-	public function create_local($data) {
-		if ($this->db->insert('local', $data)){
-			return TRUE;
-		}
-		else{
-			return FALSE;
-		}
-	}
-
 	public function get_local($campus,$area) {
-		$this->db
-			->select('id AS local_id, local')
-			->where('excluded !=', 1)
-			->where('campus', $campus)
-			->where('area', $area);
-		if ( $result = $this->db->get('local')->result()){
-			return $result;
+		$this->db->select('id,environment')->where('excluded', 0)->where('area_id', $area);
+		$environment = $this->db->get('environment')->result();
+
+
+		if ($area == '2') {
+			$this->db->select('id,local')->where('excluded', 0)->where('campus_id', $campus);
+			$local = $this->db->get('local')->result();
+		}else{
+			$local = array();
 		}
-		else{
-			return FALSE;
-		}
+
+		return array(
+			'environment' => $environment,
+			'local' => $local
+		);
 	}
 
-	public function update_local($data) {
+	public function get_environment($data) {
 		$this->db->where('id', $data['id']);
 		if ($this->db->update('local',$data)) {
 			return TRUE;

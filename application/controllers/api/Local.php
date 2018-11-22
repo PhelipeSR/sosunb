@@ -13,14 +13,24 @@ class Local extends CI_Controller {
 	}
 
 	public function get_local() {
-		$campus = $this->input->get('campus');
-		$area = $this->input->get('area');
-
-		if ($result = $this->Local_model->get_local($campus,$area) ) {
-			$this->response['dados'] = $result;
-			$this->status_header = 200;
-		}else {
-			$this->response['erro']['get_status'] = 9;
+		$campus = $this->input->post('campus');
+		$area = $this->input->post('area');
+		$token = $this->input->post('Authorization');
+		$payload = $this->jwt->decode($token);
+		if ($payload === FALSE) {
+			$this->response['erro'] = 'token_invalido';
+			$this->status_header = 401;
+		}else{
+			if( $this->form_validation->run('get_local') ) {
+				if ($result = $this->Local_model->get_local($campus,$area) ) {
+					$this->response['dados'] = $result;
+					$this->status_header = 200;
+				}else {
+					$this->response['erro']['get_status'] = 9;
+				}
+			}else {
+				$this->response['erro'] = $this->form_validation->error_array();
+			}
 		}
 		$this->output
 			->set_content_type('application/json')
