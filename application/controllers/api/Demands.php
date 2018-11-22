@@ -61,34 +61,13 @@ class Demands extends CI_Controller {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;
 		}else{
-			$database = array(
-				'demands_id' => $this->input->input_stream('demands_id'),
-				'users_id' => $payload['sub'],
-				'profile_type_id' => $payload['profile_type_id']
-			);
-			$this->form_validation->set_data($database);
 			if( $this->form_validation->run('delete_demands') ) {
-				if($database['profile_type_id']==2){
-					if($this->Demands_model->delete_demands($database)){
-						$this->response['dados'] = 'excluido';
-						$this->status_header = 200;
-					}else {
-						$this->response['erro']['update'] = 9;
-						}
-
-				} else {
-					if($this->Demands_model->delete_demands($database, true)){
-						$this->response['dados'] = 'excluido';
-						$this->status_header = 200;
-					}else{
-						{
-							$this->response['erro']['update'] = 9;
-							}
-
+				if($this->Demands_model->delete_demands($this->input->post('demands_id'),$payload['sub'])){
+					$this->response['dados'] = 'excluido';
+					$this->status_header = 200;
+				}else{
+					$this->response['erro']['delete'] = 9;
 				}
-			}
-
-
 			}else {
 				$this->response['erro'] = $this->form_validation->error_array();
 			}

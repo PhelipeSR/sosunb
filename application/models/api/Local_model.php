@@ -17,7 +17,6 @@ class Local_model extends CI_Model {
 		$this->db->select('id,environment')->where('excluded', 0)->where('area_id', $area);
 		$environment = $this->db->get('environment')->result();
 
-
 		if ($area == '2') {
 			$this->db->select('id,local')->where('excluded', 0)->where('campus_id', $campus);
 			$local = $this->db->get('local')->result();

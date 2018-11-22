@@ -80,6 +80,9 @@ $route['type-demand/get']['post'] = 'api/type_demand/get_type_demand';
 // Rotas de Campus
 $route['campus/get']['post'] = 'api/campus/get_campus';
 
+// Rotas de Área
+$route['area/get']['post'] = 'api/area/get_area';
+
 // Rotas de coments
 $route['coments/add']['post']    = 'api/coments/add_coments';
 $route['coments/delete']['post'] = 'api/coments/delete_coments';

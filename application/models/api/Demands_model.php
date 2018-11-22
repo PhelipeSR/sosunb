@@ -22,11 +22,11 @@ class Demands_model extends CI_Model {
 		}
 	}
 
-	public function delete_demands($data, $user=FALSE) {
-		if($user){
-			$this->db->where('users_id', $data['users_id']);
-		}
-		$this->db->where('id', $data['demands_id']);
+	public function delete_demands($demands_id, $users_id) {
+
+		$this->db->where('id', $demands_id);
+		$this->db->where('users_id', $users_id);
+		$this->db->where('status_id', 1);
 		if ($this->db->update('demands',array('excluded' => 1))) {
 			return TRUE;
 		}else{
