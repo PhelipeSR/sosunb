@@ -36,12 +36,16 @@ class User extends CI_Controller {
 			if (mb_strpos($result,'alternativo informado abaixo')) {
 
 				//add foto:
-				$dados = $this->input->post('image_profile');
-				$dados = str_replace('data:image/jpeg;base64,', '', $dados);
-				$dados = str_replace('data:image/png;base64,', '', $dados);
-				$dados = base64_decode($dados);
-				$foto = md5(uniqid(time()));
-				file_put_contents("./uploads/perfil/{$foto}.png", $dados);
+				if ($dados = $this->input->post('image')) {
+					$dados = str_replace('data:image/jpeg;base64,', '', $dados);
+					$dados = str_replace('data:image/png;base64,', '', $dados);
+					$dados = base64_decode($dados);
+					$foto = md5(uniqid(time()));
+					file_put_contents("./uploads/perfil/{$foto}.png", $dados);
+					$foto .= '.png';
+				}else{
+					$foto = 'default.jpg';
+				}
 
 				$var = $this->input->post('date_birth');
 				$date = str_replace('/', '-', $var);
