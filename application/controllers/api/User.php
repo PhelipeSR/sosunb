@@ -44,7 +44,7 @@ class User extends CI_Controller {
 					file_put_contents("./uploads/perfil/{$foto}.png", $dados);
 					$foto .= '.png';
 				}else{
-					$foto = 'default.jpg';
+					$foto = 'default.png';
 				}
 
 				$var = $this->input->post('date_birth');
