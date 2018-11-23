@@ -9,7 +9,16 @@ class Session_model extends CI_Model {
 
 	public function verify_login($data){
 
-		$this->db->select( '*' );
+		$this->db->select('
+			id,
+			name,
+			registry,
+			identity,
+			DATE_FORMAT(`date_birth`, "%d/%m/%Y") AS date_birth,
+			email,
+			CONCAT("'.base_url('uploads/perfil/').'",image_profile) AS image_profile,
+			password
+		');
 		$this->db->where('email', $data['email']);
 		$this->db->where('excluded', 0);
 		$result = $this->db->get('users');

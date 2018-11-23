@@ -15,7 +15,7 @@ class Coments_model extends CI_Model {
 
 	public function create_coments($data) {
 		if ($this->db->insert('comments', $data)){
-			return TRUE;
+			return $this->db->insert_id();
 		}
 		else{
 			return FALSE;

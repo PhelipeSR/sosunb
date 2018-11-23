@@ -26,8 +26,10 @@ class Coments extends CI_Controller {
 					'demands_id' => $this->input->post('demands_id'),
 					'users_id' => $payload['sub'],
 				);
-				if ($this->Coments_model->create_coments($database) ) {
-					$this->response['dados'] = 'cadastrado';
+				if ($id = $this->Coments_model->create_coments($database) ) {
+					$this->response['dados'] = array(
+						'comment_id' => $id
+					);
 					$this->status_header = 200;
 				}else {
 					$this->response['erro']['cadastro'] = 9;

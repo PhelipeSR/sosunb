@@ -21,27 +21,32 @@ class Demands extends CI_Controller {
 		}else{
 			if( $this->form_validation->run('add_demands') ) {
 
-				$dados = $this->input->post('image');
-				$dados = str_replace('data:image/jpeg;base64,', '', $dados);
-				$dados = str_replace('data:image/png;base64,', '', $dados);
-				$dados = base64_decode($dados);
-				$foto = md5(uniqid(time()));
-				file_put_contents("./uploads/demandas/{$foto}.png", $dados);
+				if ($dados = $this->input->post('image')) {
+					$dados = str_replace('data:image/jpeg;base64,', '', $dados);
+					$dados = str_replace('data:image/png;base64,', '', $dados);
+					$dados = base64_decode($dados);
+					$foto = md5(uniqid(time()));
+					file_put_contents("./uploads/demandas/{$foto}.png", $dados);
+					$foto .= '.png';
+				}else{
+					$foto = 'default.jpg';
+				}
 
 				$database = array(
 					'users_id' => $payload['sub'],
 					'image' => $foto,
 					'title' => $this->input->post('title'),
 					'description' => $this->input->post('description'),
-					// 'status_id'=> $this->input->post('status_id'),
 					'type_problems_id' => $this->input->post('type_problems_id'),
 					'type_demand_id' => $this->input->post('type_demand_id'),
 					'local_id' => $this->input->post('local_id'),
 					'campus_id' => $this->input->post('campus_id'),
 					'environment_id' => $this->input->post('environment_id'),
 				);
-				if ($this->Demands_model->create_demands($database) ) {
-					$this->response['dados'] = 'cadastrado';
+				if ($id = $this->Demands_model->create_demands($database) ) {
+					$this->response['dados'] = array(
+						'comment_id' => $id
+					);
 					$this->status_header = 200;
 				}else {
 					$this->response['erro']['cadastro'] = 9;

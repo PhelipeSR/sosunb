@@ -15,7 +15,7 @@ class Demands_model extends CI_Model {
 
 	public function create_demands($data) {
 		if ($this->db->insert('demands', $data)){
-			return TRUE;
+			return $this->db->insert_id();
 		}
 		else{
 			return FALSE;

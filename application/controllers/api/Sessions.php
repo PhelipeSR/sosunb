@@ -30,7 +30,8 @@ class Sessions extends CI_Controller {
 					'user' => $result->name,
 				);
 				$jwt = $this->jwt->encode($payload);
-				$this->response['dados'] = 'logado';
+				unset($result->password);
+				$this->response['dados'] = $result;
 				$this->response['token'] = $jwt;
 				$this->status_header = 200;
 			}else{
