@@ -159,6 +159,22 @@ $(document).ready( function() {
 		});
 	});
 
+	$('#ranking').click(function() {
+		window.history.replaceState({page: 'ranking'}, 'ranking', '#ranking');
+		$('ul>li>a').removeClass('active');
+		$(this).addClass('active');
+		// Remove visualizações anteriores
+		$('.box').remove();
+		// Adiciona o gif de loading
+		$('#loading').html("<div id='loadingMenu' class='d-flex justify-content-center'><span class='border p-3 border-secondary h3 rounded shadow m-0'><i class='fa fa-spinner fa-spin'></i>&nbsp; Carregando conteúdo</span></div>");
+		// Carrega o arquivo
+		$('#ajax-content').load( base_url('admin/menu/ranking/render/'),function( response, status, xhr ){
+			$('#loadingMenu').remove(); // Retira o gif de loading
+			$.getScript( base_url('assets/js/admin/menu/ranking.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+		});
+	});
+
 
 });
 

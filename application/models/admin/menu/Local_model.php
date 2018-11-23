@@ -15,21 +15,19 @@ class Local_model extends CI_Model {
 	*/
 
 	private $table        = 'local';
-	private $colunas      = array('local.id','local.local','campus.campus','environment.environment','local.campus_id','local.environment_id','local.excluded');
-	private $order_column = array('local.id','local.local','campus.campus','environment.environment',null);
+	private $colunas      = array('local.id','local.local','campus.campus','local.campus_id','local.excluded');
+	private $order_column = array('local.id','local.local','campus.campus',null);
 
 	public function query_builder(){
 
 		$this->db->select($this->colunas);
 		$this->db->from($this->table);
 		$this->db->join('campus', 'local.campus_id = campus.id');
-		$this->db->join('environment', 'local.environment_id = environment.id');
 
 		if (isset($_POST['search']['value'])) {
 			$this->db
 					->group_start()
 						->like(    'local.local',             $this->input->post('search')['value'] )
-						->or_like( 'environment.environment', $this->input->post('search')['value'] )
 						->or_like( 'campus.campus',           $this->input->post('search')['value'] )
 					->group_end();
 		}
@@ -96,16 +94,6 @@ class Local_model extends CI_Model {
 	public function get_campus(){
 		$this->db->select('id,campus')->where('excluded !=', 1)->order_by('campus', 'ASC');
 		if ( $result = $this->db->get('campus')->result()){
-			return $result;
-		}
-		else{
-			return FALSE;
-		}
-	}
-
-	public function get_environment(){
-		$this->db->select('id,environment')->where('excluded !=', 1)->order_by('environment', 'ASC');
-		if ( $result = $this->db->get('environment')->result()){
 			return $result;
 		}
 		else{

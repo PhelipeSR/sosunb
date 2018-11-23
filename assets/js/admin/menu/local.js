@@ -19,7 +19,6 @@ $(document).ready(function() {
 			{ data: "id"          },
 			{ data: "local"       },
 			{ data: "campus"      },
-			{ data: "environment" },
 			{ data: "id", render: function(value, type, row, meta) {
 				if (row.excluded == 0) {
 					return "<div class='btn-group'><button title='Editar' class='btn btn-info editar' data-btn='"+value+"'><i class='fa fa-pencil'></i></button><button title='Visibilidade' class='btn btn-success excluir' data-excluded='1'  data-btn='"+value+"'><i class='fa fa-eye'></i></button></div>";
@@ -48,7 +47,7 @@ $(document).ready(function() {
 				visible: false
 			},
 			{
-				targets: [4],
+				targets: [3],
 				orderable: false,
 				width: "10%",
 			}
@@ -89,7 +88,6 @@ $(document).ready(function() {
 		$('#id').val(row.id);
 		$("#local_edit").val(row.local);
 		$("#campus_edit").val(row.campus_id);
-		$("#environment_edit").val(row.environment_id);
 		$('#modalEdit').modal('show');
 	});
 
@@ -102,7 +100,6 @@ $(document).ready(function() {
 		rules: {
 			local:       {required: true,maxlength: 100},
 			campus:      {required: true,integer: true},
-			environment: {required: true,integer: true},
 		},
 		highlight: function ( element, errorClass, validClass ) {
 			$(element).closest('.form-control').addClass('is-invalid').removeClass('is-valid');
@@ -140,7 +137,6 @@ $(document).ready(function() {
 		rules: {
 			local:       {required: true,maxlength: 100},
 			campus:      {required: true,integer: true},
-			environment: {required: true,integer: true},
 		},
 		highlight: function ( element, errorClass, validClass ) {
 			$(element).closest('.form-control').addClass('is-invalid').removeClass('is-valid');

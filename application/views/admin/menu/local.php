@@ -9,7 +9,6 @@
 				<th>ID</th>
 				<th>Local</th>
 				<th>Campus</th>
-				<th>Ambiente</th>
 				<th>Operações</th>
 			</tr>
 		</thead>
@@ -39,15 +38,6 @@
 								<option value=""></option>
 								<?php foreach ($campus as $row): ?>
 									<option value="<?php echo $row->id; ?>"><?php echo $row->campus; ?></option>
-								<?php endforeach; ?>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="environment_edit">Ambiente</label>
-							<select id="environment_edit" class="form-control" name="environment">
-								<option value=""></option>
-								<?php foreach ($environment as $row): ?>
-									<option value="<?php echo $row->id; ?>"><?php echo $row->environment; ?></option>
 								<?php endforeach; ?>
 							</select>
 						</div>
@@ -86,15 +76,6 @@
 								<option value=""></option>
 								<?php foreach ($campus as $row): ?>
 									<option value="<?php echo $row->id; ?>"><?php echo $row->campus; ?></option>
-								<?php endforeach; ?>
-							</select>
-						</div>
-						<div class="form-group">
-							<label for="environment_add">Ambiente</label>
-							<select id="environment_add" class="form-control" name="environment">
-								<option value=""></option>
-								<?php foreach ($environment as $row): ?>
-									<option value="<?php echo $row->id; ?>"><?php echo $row->environment; ?></option>
 								<?php endforeach; ?>
 							</select>
 						</div>

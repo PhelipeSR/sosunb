@@ -6,10 +6,8 @@ class Local extends CI_Controller {
 	public function render() {
 		$this->load->model('admin/menu/Local_model');
 		$campus = $this->Local_model->get_campus();
-		$environment = $this->Local_model->get_environment();
 		$this->load->view('admin/menu/local',array(
 			'campus' => $campus,
-			'environment' => $environment,
 		));
 	}
 
@@ -31,7 +29,6 @@ class Local extends CI_Controller {
 		// Regras de validação do formulário
 		$this->form_validation->set_rules('local',       'Local',     'required|max_length[100]');
 		$this->form_validation->set_rules('campus',      'Campus',    'required|integer');
-		$this->form_validation->set_rules('environment', 'Ambiente',  'required|integer');
 
 		// Valida as informações do formulário
 		if ( $this->form_validation->run() ) {
@@ -41,7 +38,6 @@ class Local extends CI_Controller {
 			$database = array(
 				'local'          => $this->input->post('local',TRUE),
 				'campus_id'      => $this->input->post('campus',TRUE),
-				'environment_id' => $this->input->post('environment',TRUE),
 			);
 			if ($this->Local_model->create_local($database) ) {
 				$this->saida->set_dados('ok');
@@ -63,7 +59,6 @@ class Local extends CI_Controller {
 		// Regras de validação do formulário
 		$this->form_validation->set_rules('id',          'ID',       'required|integer');
 		$this->form_validation->set_rules('campus',      'Campus',   'required|integer');
-		$this->form_validation->set_rules('environment', 'Ambiente', 'required|integer');
 		$this->form_validation->set_rules('local',       'Local',    'required|max_length[100]');
 
 		// Valida as informações do formulário
@@ -74,7 +69,6 @@ class Local extends CI_Controller {
 			$database = array(
 				'local'          => $this->input->post('local',TRUE),
 				'campus_id'      => $this->input->post('campus',TRUE),
-				'environment_id' => $this->input->post('environment',TRUE),
 			);
 			if ($this->Local_model->update_local($database, $this->input->post('id')) ) {
 				$this->saida->set_dados('ok');
