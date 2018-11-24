@@ -130,6 +130,19 @@ $config = array(
 		),
 	),
 
+	'update_password' => array(
+		array(
+			'field' => 'password',
+			'label' => 'Senha',
+			'rules' => 'required|min_length[6]',
+			'errors' => array(
+				'required' => 1,
+				'min_length' => 3,
+			),
+		)
+	
+	),
+
 	// ========================================
 	// like
 	// ========================================
