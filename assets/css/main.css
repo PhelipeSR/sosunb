@@ -15353,4 +15353,8 @@ td{
 }
 .radius-50{
   border-radius: 50px;
+}.dropdown-item.active, .dropdown-item:active {
+    color: #212529;
+    text-decoration: none;
+    background-color: transparent;
 }

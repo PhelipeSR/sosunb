@@ -1,26 +1,5 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<div class="box">
-
-	<h3 class="box-title">Ranking</h3>
-	<div class="row justify-content-center">
-		<div class="col-lg-8 col-xl-6 p-0">
-			<div class="input-group mb-3">
-				<div class="input-group-prepend">
-					<label class="input-group-text" for="inputGroupSelect01">Campus</label>
-				</div>
-				<select name="campus" id="campusRanking" class="custom-select">
-					<option value="" selected>Todos</option>
-					<option value="1">Ceilândia</option>
-					<option value="2">Darcy</option>
-					<option value="3">Gama</option>
-					<option value="4">Planaltina</option>
-				</select>
-			</div>
-		</div>
-
-	</div>
-
-	<div id="demandsRanking"></div>
+function add_demand(data, selector){
+	var html =`
 	<div class="row justify-content-center mt-4">
 		<div class="col-lg-8 col-xl-6 border py-3 shadow-sm">
 			<div class="media d-flex align-items-center">
@@ -83,5 +62,7 @@
 			</div>
 		</div>
 	</div>
+	`;
 
-</div> <!-- /.box -->
+	
+}

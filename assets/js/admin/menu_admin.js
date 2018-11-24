@@ -172,6 +172,8 @@ $(document).ready( function() {
 			$('#loadingMenu').remove(); // Retira o gif de loading
 			$.getScript( base_url('assets/js/admin/menu/ranking.js') )
 			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+			$.getScript( base_url('assets/js/admin/demand.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
 		});
 	});
 
