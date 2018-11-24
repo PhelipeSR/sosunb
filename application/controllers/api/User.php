@@ -162,4 +162,36 @@ class User extends CI_Controller {
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
 	}
+
+
+	// Troca de senha
+	public function update_password() {
+		$token = $this->input->post('Authorization');
+		$payload = $this->jwt->decode($token);
+		if ($payload === FALSE) {
+			$this->response['erro'] = 'token_invalido';
+			$this->status_header = 401;
+		}else{		
+			if( $this->form_validation->run('update_password') ) {
+				$database = array(
+					'password'   => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+					);
+				if ($result = $this->User_model->update_password($database, $payload['sub'])) {
+					$this->response['dados'] = 'Atualizado';
+					$this->status_header = 200;
+				}else{
+					$this->response['erro']['update'] = 9;
+				}
+			}
+			else {
+				$this->response['erro'] = $this->form_validation->error_array();
+			}
+		}
+		$this->output
+			->set_content_type('application/json')
+			->set_status_header($this->status_header)
+			->set_output(json_encode($this->response));
+	} 
+
+
 }

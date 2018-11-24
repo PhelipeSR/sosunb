@@ -31,6 +31,15 @@ class User_model extends CI_Model {
 		}
 	}
 
+	public function update_password($data, $id) {
+		$this->db->where('id', $id);
+		if ($this->db->update('users',$data)) {
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
 	public function get_info_user($id) {
 		$this->db
 			->select('

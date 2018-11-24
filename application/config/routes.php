@@ -66,6 +66,7 @@ $route['user/register']['post'] = 'api/user/register_user';
 $route['user/get']['post']      = 'api/user/get_user';
 $route['user/update']['post']   = 'api/user/update_user';
 $route['user/delete']['post']   = 'api/user/delete_user';
+$route['user/update/password']['post']   = 'api/user/update_password';
 
 // Rotas de Sessão
 $route['sessions/login']['post']   = 'api/sessions/login';
