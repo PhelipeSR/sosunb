@@ -14,6 +14,8 @@ class Type_demand extends CI_Controller {
 
 	//get tipo de demanda
 	public function get_type_demand() {
+		$token = $this->input->post('Authorization');
+		$payload = $this->jwt->decode($token);
 		if ($payload === FALSE) {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;

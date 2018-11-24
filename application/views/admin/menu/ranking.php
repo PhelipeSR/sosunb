@@ -28,7 +28,7 @@
 				<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit eos fugit quisquam magni eum deleniti dolorum ea voluptates reiciendis delectus, vitae illo cupiditate vero dolor laudantium nihil doloribus et saepe.</p>
 			</div>
 			<div class="w-100 text-center mt-3" style="height: 300px">
-				<img style="height:100%;object-fit:cover;" src="<?php echo base_url('uploads/demandas/default.jpg')?>" alt="">
+				<img class="img-fluid" style="height:100%;object-fit:cover;" src="<?php echo base_url('uploads/demandas/default.jpg')?>" alt="">
 			</div>
 			<div class="clearfix my-2 text-primary">
 				<p class="m-0 float-lg-left"><span><i class="fa fa-thumbs-up"></i></span> 6 </p>
@@ -47,6 +47,20 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="media d-flex align-items-center mt-2 bg-light radius-50 ">
+				<img class="img-fluid mr-3 radius-50" style="max-width: 50px" src="<?php echo base_url('uploads/perfil/default.png')?>">
+				<div class="media-body">
+					<span class="text-primary">Phelipe Sousa Resende</span>
+					<p class="text-muted">publicou</p>
+				</div>
+				<span class="float-right">
+					<a class="dropdown-item" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				</span>
+			</div>
+			<div class="mt-2 inputWithIcon">
+				<input class="form-control comment-demand-input" type="text" name="search" placeholder="Escreva seu comentário">
+				<a class="pointer" style="text-decoration: none;" href="#"><i class="fa fa-mail-forward"></i></a>
 			</div>
 		</div>
 	</div>

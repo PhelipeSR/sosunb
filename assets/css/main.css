@@ -15333,3 +15333,24 @@ td{
   background-color: #f5f5f5;
   cursor: pointer;
 }
+.comment-demand-input{
+  border-radius: 50px;
+}
+.inputWithIcon i {
+    text-align: right;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    padding: 11px 8px;
+    transition: 0.3s;
+    border-radius: 50px;
+}
+.inputWithIcon {
+    position: relative;
+}
+.inputWithIcon input[type="text"] {
+  padding-left: 30px;
+}
+.radius-50{
+  border-radius: 50px;
+}
