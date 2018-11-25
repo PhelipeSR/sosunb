@@ -7,14 +7,22 @@ class Ranking extends CI_Controller {
 		$this->load->view('admin/menu/ranking');
 	}
 
-	public function get_area() {
-		$this->load->model('admin/menu/Ranking_model');
-		$output = array(
-			"draw" => isset ( $_POST['draw'] ) ? intval( $_POST['draw'] ) : 0,
-			"recordsTotal"    => $this->Area_model->count_all_data(),
-			"recordsFiltered" => $this->Area_model->count_filtered_data(),
-			"data"            => $this->Area_model->data(),
-		);
-		echo json_encode($output);
+	public function get_ranking() {
+		$this->load->model('api/Get_demands_model');
+		$this->load->library('form_validation');
+		$this->load->library('saida');
+
+		if( $this->form_validation->run('get_ranking') ) {
+			$campus = $this->input->post('campus');
+			if ($result = $this->Get_demands_model->ranking($this->session->user_id, $campus) ) {
+				$this->saida->set_dados($result);
+			}else {
+				$this->saida->set_erro('Erro ao pegar ranking.');
+			}
+		}else {
+			$this->saida->set_erro(validation_errors());
+		}
+		// Configuração de saída de dados
+		$this->saida->retorno();
 	}
 }

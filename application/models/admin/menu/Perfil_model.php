@@ -57,8 +57,21 @@ class Perfil_model extends CI_Model {
 	public function delete_perfil($senha, $id) {
 		$result = $this->db->select('password')->where('id', $id)->get('users')->row();
 		if (password_verify( $senha, $result->password)) {
+
+			$result = $this->db->select('*')->where('id',$id)->get('users')->result_array();
+			$result[0]['users_id'] = $id;
+			$this->db->insert('users_excluded', $result[0]);
+
 			$this->db->where('id', $id);
-			if ($this->db->update('users',array('excluded' => 1))) {
+			if ($this->db->update('users',array(
+				'name' => 'Anônimo',
+				'registry' => '999999999',
+				'identity' => '99999999',
+				'date_birth' => '1111-11-11',
+				'image_profile' => 'default.png',
+				'email' => 'anonimo@anonimo.com',
+				'password' => 'vazio',
+			))) {
 				return TRUE;
 			}else{
 				return FALSE;

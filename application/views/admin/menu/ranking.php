@@ -4,7 +4,7 @@
 	<h3 class="box-title">Ranking</h3>
 	<div class="row justify-content-center">
 		<div class="col-lg-8 col-xl-6 p-0">
-			<div class="input-group mb-3">
+			<div class="input-group">
 				<div class="input-group-prepend">
 					<label class="input-group-text" for="inputGroupSelect01">Campus</label>
 				</div>
@@ -17,11 +17,10 @@
 				</select>
 			</div>
 		</div>
-
 	</div>
 
 	<div id="demandsRanking"></div>
-	<div class="row justify-content-center mt-4">
+	<!-- <div class="row justify-content-center mt-4">
 		<div class="col-lg-8 col-xl-6 border py-3 shadow-sm">
 			<div class="media d-flex align-items-center">
 				<img class="img-fluid mr-3 radius-50" style="max-width: 50px" src="<?php echo base_url('uploads/perfil/default.png')?>">
@@ -82,6 +81,6 @@
 				<a class="pointer" href="#"><i class="fa fa-mail-forward"></i></a>
 			</div>
 		</div>
-	</div>
+	</div> -->
 
 </div> <!-- /.box -->
