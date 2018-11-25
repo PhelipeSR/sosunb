@@ -1,7 +1,7 @@
 function add_demand(data, selector) {
 
 	var html =`
-		<div class="row justify-content-center mt-4">
+		<div class="row justify-content-center mt-4" id="divDemanda${data.demand_id}">
 			<div class="col-lg-8 col-xl-6 border py-3 shadow-sm bg-white">
 				<div class="media d-flex align-items-center">
 					<img class="img-fluid mr-3 radius-50" style="max-width: 50px" src="${data.image_profile}">
@@ -23,10 +23,10 @@ function add_demand(data, selector) {
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">`;
 								if (data.owner_demands == 'true') {
-									html += `<a class="dropdown-item" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</a>`;
+									html += `<a data-demand_id="${data.demand_id}" class="dropdown-item  btn-apagar" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</a>`;
 								}
 								html += `
-								<a class="dropdown-item" href="#"><i class="fa fa-ban" aria-hidden="true"></i> Denunciar</a>
+								<a data-demand_id="${data.demand_id}" class="dropdown-item btn-denunciar" href="#"><i class="fa fa-ban" aria-hidden="true"></i> Denunciar</a>
 							</div>
 						</div>
 					</span>
@@ -47,7 +47,7 @@ function add_demand(data, selector) {
 				<div class="border-top border-bottom">
 					<div class="row">
 						<div class="col pr-0">
-							<div class="${(data.gave_like == 'true') ? 'text-primary' : 'text-muted'} text-center py-2 actions">
+							<div class="${(data.gave_like == 'true') ? 'text-primary' : 'text-muted'} btn-curtir text-center py-2 actions" data-gave="${data.gave_like}" data-demand_id="${data.demand_id}">
 								<h5 class="m-0"><span><i class="fa fa-thumbs-up"></i></span> Curtir</h5>
 							</div>
 						</div>
@@ -112,16 +112,18 @@ function add_demand(data, selector) {
 				</div>
 			</div>
 		</div>`;
-	console.log(data)
+
 	$(selector).append(html);
 }
 
 $(document).ready(function($) {
+
 	$(document).on('click', '.ver-comentarios', function(event) {
 		var demand_id = $(this).data('demand_id');
 		$('#comentarios'+demand_id).show(600);
 		$('#divComentario'+demand_id).show(600);
 	});
+
 	$(document).on('click', '.btn-comentar', function(event) {
 		var demand_id = $(this).data('demand_id');
 		$('#comentarios'+demand_id).show(600);
@@ -132,4 +134,89 @@ $(document).ready(function($) {
 			$('#inputComentario'+demand_id).focus();
 		});
 	});
+
+	$(document).on('click', '.btn-curtir', function(event) {
+		var demand_id = $(this).data('demand_id');
+		var div = $(this)
+		if (div.data('gave')) {
+			div.data('gave',false);
+			div.removeClass('text-primary').addClass('text-muted');
+			$.ajax({
+				url: base_url('admin/menu/demands/delete_like/'),
+				method: 'POST',
+				data: {'demands_id': demand_id},
+
+				success: function(data, textStatus, jqXHR) {
+					if (data.erro) {
+						toastr.error(data.msg_erro, "Falha");
+						div.removeClass('text-muted').addClass('text-primary');
+					}
+				},
+			}); // Fim do Ajax
+		}else{
+			div.data('gave',true);
+			div.removeClass('text-muted').addClass('text-primary');
+			$.ajax({
+				url: base_url('admin/menu/demands/add_like/'),
+				method: 'POST',
+				data: {'demands_id': demand_id},
+
+				success: function(data, textStatus, jqXHR) {
+					if (data.erro) {
+						toastr.error(data.msg_erro, "Falha");
+						div.removeClass('text-primary').addClass('text-muted');
+					}
+				},
+			}); // Fim do Ajax
+		}
+	});
+
+	var denuncia_demand_id = 0;
+	$(document).on('click', '.btn-denunciar', function(event) {
+		var demand_id = $(this).data('demand_id');
+		denuncia_demand_id = demand_id;
+		$('#modalDenunciar').modal('show');
+	});
+
+	$('#denunciarConfirm').click(function(event) {
+		$('#modalDenunciar').modal('hide');
+		$.ajax({
+			url: base_url('admin/menu/demands/report_demands/'),
+			method: 'POST',
+			data: {'demands_id': denuncia_demand_id},
+
+			success: function(data, textStatus, jqXHR) {
+				if (data.erro) {
+					toastr.error(data.msg_erro, "Falha");
+				}else{
+					$('#divDemanda'+denuncia_demand_id).html('<div class="col-lg-8 col-xl-6 border py-3 shadow-sm bg-white"><p class="m-0">Demanda Denunciada</p></div>');
+				}
+			},
+		}); // Fim do Ajax
+	});
+
+	var apagar_demand_id = 0;
+	$(document).on('click', '.btn-apagar', function(event) {
+		var demand_id = $(this).data('demand_id');
+		apagar_demand_id = demand_id;
+		$('#modalApagar').modal('show');
+	});
+
+	$('#apagarConfirm').click(function(event) {
+		$('#modalApagar').modal('hide');
+		$.ajax({
+			url: base_url('admin/menu/demands/delete_demands/'),
+			method: 'POST',
+			data: {'demands_id': apagar_demand_id},
+
+			success: function(data, textStatus, jqXHR) {
+				if (data.erro) {
+					toastr.error(data.msg_erro, "Falha");
+				}else{
+					$('#divDemanda'+apagar_demand_id).html('<div class="col-lg-8 col-xl-6 border py-3 shadow-sm bg-white"><p class="m-0">Demanda Deletada</p></div>');
+				}
+			},
+		}); // Fim do Ajax
+	});
+
 });

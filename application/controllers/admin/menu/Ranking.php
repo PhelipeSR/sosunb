@@ -4,7 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Ranking extends CI_Controller {
 
 	public function render() {
-		$this->load->view('admin/menu/ranking');
+		$this->load->model('api/Campus_model');
+		$this->load->view('admin/menu/ranking', array(
+			'campus' => $this->Campus_model->get_campus()
+		));
 	}
 
 	public function get_ranking() {

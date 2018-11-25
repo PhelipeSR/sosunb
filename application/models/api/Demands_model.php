@@ -34,7 +34,8 @@ class Demands_model extends CI_Model {
 		}
 	}
 
-	public function report_demands($id) {
+	public function report_demands($id, $users_id) {
+		$this->db->insert('report_historic', array('users_id' => $users_id, 'demands_id' => $id));
 		if ($this->db->set('counter', 'counter + 1',FALSE)->where('id',$id)->update('demands')) {
 			return TRUE;
 		}else{

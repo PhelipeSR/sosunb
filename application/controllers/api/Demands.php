@@ -69,7 +69,7 @@ class Demands extends CI_Controller {
 			$this->status_header = 401;
 		}else{
 			if( $this->form_validation->run('delete_demands') ) {
-				if($this->Demands_model->delete_demands($this->input->post('demands_id'),$payload['sub'])){
+				if($this->Demands_model->delete_demands($this->input->post('demands_id'), $payload['sub'])){
 					$this->response['dados'] = 'excluido';
 					$this->status_header = 200;
 				}else{
@@ -93,7 +93,7 @@ class Demands extends CI_Controller {
 			$this->status_header = 401;
 		}else{
 			if( $this->form_validation->run('report_demands') ) {
-				if($this->Demands_model->report_demands($this->input->post('demands_id'))){
+				if($this->Demands_model->report_demands($this->input->post('demands_id'), $payload['sub'])){
 					$this->response['dados'] = 'reportado';
 					$this->status_header = 200;
 				}else {

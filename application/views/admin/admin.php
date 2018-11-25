@@ -165,6 +165,48 @@
 			</div>
 		</div>
 
+		<!-- Modal Denunciar Demanda-->
+		<div class="modal fade" id="modalDenunciar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Denunciar Demanda</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Tem certeza que deseja denunciar essa demanda?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" id="denunciarConfirm">Denunciar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal Denunciar Demanda-->
+		<div class="modal fade" id="modalApagar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Deletar Demanda</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Tem certeza que deseja deletar essa demanda?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-primary" id="apagarConfirm">Deletar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- JavaScript -->
 		<script>function base_url(arg = ''){return '<?php echo base_url(); ?>' + arg;}</script>
 		<script src="<?php echo base_url('assets/js/jquery-3.2.1.min.js') ?>"></script>

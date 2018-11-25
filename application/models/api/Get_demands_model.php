@@ -28,7 +28,7 @@ class Get_demands_model extends CI_Model {
 				IF((SELECT COUNT(*) FROM likes as teste WHERE teste.users_id = '.$id.' AND teste.demands_id = likes.demands_id) > 0, "true", "false") AS gave_like,
 			')
 			->from('likes')
-			->where('demands.excluded !=', 1)
+			->where('demands.excluded', 0)
 			->where('status.id !=', 4)
 			->where('status.id !=', 5)
 			->group_by("likes.demands_id")
@@ -40,6 +40,10 @@ class Get_demands_model extends CI_Model {
 			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->order_by('total_likes', 'DESC')
+			->group_start()
+				->where('demands.counter <', 5)
+				->or_where('demands.resolved >', 0)
+			->group_end()
 			->limit(10);
 		if ($campus)
 			$this->db->where('campus.id', $campus);
@@ -117,6 +121,10 @@ class Get_demands_model extends CI_Model {
 			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
+			->group_start()
+				->where('demands.counter <', 5)
+				->or_where('demands.resolved >', 0)
+			->group_end()
 			->order_by('demands.created_date', 'DESC')
 			->limit(5,$limit);
 		if ($status)
@@ -188,6 +196,10 @@ class Get_demands_model extends CI_Model {
 			->from('demands')
 			->where('demands.excluded', 0)
 			->where('demands.status_id', 4)
+			->group_start()
+				->where('demands.counter <', 5)
+				->or_where('demands.resolved >', 0)
+			->group_end()
 			->order_by('demands.title', 'RANDOM')
 			->limit(6);
 
@@ -242,6 +254,10 @@ class Get_demands_model extends CI_Model {
 			->where('demands.excluded', 0)
 			->where('demands.users_id', $id)
 			->where('demands.type_demand_id', $type_demand)
+			->group_start()
+				->where('demands.counter <', 5)
+				->or_where('demands.resolved >', 0)
+			->group_end()
 			->order_by('demands.created_date', 'DESC');
 
 		$result = $this->db->get()->result_array();
@@ -316,6 +332,10 @@ class Get_demands_model extends CI_Model {
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
 			->where('comments.users_id', $id)
+			->group_start()
+				->where('demands.counter <', 5)
+				->or_where('demands.resolved >', 0)
+			->group_end()
 			->order_by('demands.created_date', 'DESC')
 			->group_by("comments.demands_id");
 
@@ -391,6 +411,10 @@ class Get_demands_model extends CI_Model {
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
 			->where('likes.users_id', $id)
+			->group_start()
+				->where('demands.counter <', 5)
+				->or_where('demands.resolved >', 0)
+			->group_end()
 			->order_by('demands.created_date', 'DESC')
 			->group_by("likes.demands_id");
 
