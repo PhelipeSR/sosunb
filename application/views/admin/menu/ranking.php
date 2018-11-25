@@ -5,7 +5,7 @@
 		<div class="col-lg-8 col-xl-6 p-0">
 			<div class="input-group">
 				<div class="input-group-prepend">
-					<label class="input-group-text" for="inputGroupSelect01">Campus</label>
+					<label class="input-group-text" for="campusRanking">Campus</label>
 				</div>
 				<select name="campus" id="campusRanking" class="custom-select">
 					<option value="" selected>Todos</option>

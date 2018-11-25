@@ -136,6 +136,7 @@ class Get_demands_model extends CI_Model {
 						->or_like( 'users.name', $this->input->post('search') )
 						->or_like( 'local.local', $this->input->post('search') )
 						->or_like( 'environment.environment', $this->input->post('search') )
+						->or_like( 'campus.campus', $this->input->post('search') )
 					->group_end();
 		}
 

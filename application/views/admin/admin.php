@@ -217,6 +217,7 @@
 		<script src="<?php echo base_url('assets/plugins/validation/jquery.validate.min.js') ?>"></script>
 		<script src="<?php echo base_url('assets/plugins/datatables/datatables.js'); ?>"></script>
 		<script src="<?php echo base_url('assets/plugins/toastr/toastr.min.js') ?>"></script>
+		<script src="<?php echo base_url('assets/js/admin/demand.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/admin/menu_admin.js') ?>"></script>
 		<script src="<?php echo base_url('assets/js/admin/admin.js') ?>"></script>
 		<script>
