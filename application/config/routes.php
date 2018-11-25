@@ -106,3 +106,4 @@ $route['get-demands/feed']['post']    = 'api/get_demands/feed';
 $route['get-demands/profile']['post']    = 'api/get_demands/profile';
 $route['get-demands/resolved']['post']    = 'api/get_demands/resolved';
 $route['get-demands/similar']['post']    = 'api/get_demands/similar';
+$route['get-demands/single']['post']    = 'api/get_demands/single';

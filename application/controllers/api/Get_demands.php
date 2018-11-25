@@ -122,4 +122,29 @@ class Get_demands extends CI_Controller {
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
 	}
+
+	public function single() {
+		$token = $this->input->post('Authorization');
+		$payload = $this->jwt->decode($token);
+		if ($payload === FALSE) {
+			$this->response['erro'] = 'token_invalido';
+			$this->status_header = 401;
+		}else{
+			if( $this->form_validation->run('get_single') ) {
+				$demands_id = $this->input->post('demands_id');
+				if ($result = $this->Get_demands_model->single($payload['sub'], $demands_id) ) {
+					$this->response['dados'] = $result;
+					$this->status_header = 200;
+				}else {
+					$this->response['erro']['get_single'] = 9;
+				}
+			}else {
+				$this->response['erro'] = $this->form_validation->error_array();
+			}
+		}
+		$this->output
+			->set_content_type('application/json')
+			->set_status_header($this->status_header)
+			->set_output(json_encode($this->response));
+	}
 }
