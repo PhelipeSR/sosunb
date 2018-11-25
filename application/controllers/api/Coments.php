@@ -55,7 +55,7 @@ class Coments extends CI_Controller {
 		}else{
 			if( $this->form_validation->run('delete_coments') ) {
 				$database = array(
-					'comment_id' => $this->input->input_stream('comment_id'),
+					'comment_id' => $this->input->post('comment_id'),
 					'users_id' => $payload['sub']
 				);
 				if ($this->Coments_model->delete_coments($database)) {

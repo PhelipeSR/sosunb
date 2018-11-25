@@ -42,7 +42,7 @@ function add_demand(data, selector) {
 				</div>
 				<div class="clearfix my-2 text-primary">
 					<span class="m-0 float-lg-left"><span><i class="fa fa-thumbs-up"></i></span> ${data.total_likes} </span>
-					<span><a href="javascript:void(0);" data-demand_id="${data.demand_id}"  id="vercomentarios${data.demand_id}" class="m-0 float-right ver-comentarios">${data.comments.length + data.answers.length} Comentarios</a></span>
+					<span><a href="javascript:void(0);" data-demand_id="${data.demand_id}"  id="vercomentarios${data.demand_id}" class="m-0 float-right ver-comentarios"><span id="numComentarios${data.demand_id}">${data.comments.length + data.answers.length}</span> Comentarios</a></span>
 				</div>
 				<div class="border-top border-bottom">
 					<div class="row">
@@ -65,16 +65,10 @@ function add_demand(data, selector) {
 							<img class="img-fluid mr-3 ml-1 radius-50" style="max-width: 50px" src="${resposta.image_profile}">
 							<div class="media-body pl-3 rounded" style="background-color: #a7a7a7;">
 								<div class="row align-items-center">
-									<div class="col-11 py-2">
+									<div class="col py-2">
 										<span class="text-white">${resposta.name}</span><br>
 										<span class="text-white">Passou a demanda de <span class="badge badge-info">${resposta.previous_status}</span> para <span class="badge badge-info">${resposta.current_status}</span></span><br>
 										<span class="text-white">${resposta.comment}</span>
-									</div>
-									<div class="col-1">`
-										if (resposta.owner_answer == 'true') {
-											html += `<a class="dropdown-item float-right text-white" href="#"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`
-										}
-									html += `
 									</div>
 								</div>
 								<span class="text-white float-right pr-2" style="font-size: 12px;">${resposta.created_date}</span>
@@ -84,7 +78,7 @@ function add_demand(data, selector) {
 					});
 					data.comments.forEach(function(comments){
 						html += `
-						<div class="media d-flex align-items-center mt-2 rounded">
+						<div class="media d-flex align-items-center mt-2 rounded" id="sessionComentario${comments.comment_id}">
 							<img class="img-fluid mr-3 ml-1 radius-50" style="max-width: 50px" src="${comments.image_profile}">
 							<div class="media-body pl-3 rounded bg-light">
 								<div class="row align-items-center">
@@ -94,7 +88,7 @@ function add_demand(data, selector) {
 									</div>
 									<div class="col-1">`
 										if (comments.owner_comment == 'true') {
-											html += `<a class="dropdown-item float-right text-muted" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`
+											html += `<a data-demand_id="${data.demand_id}" data-comment_id="${comments.comment_id}" class="dropdown-item float-right text-muted delete-comment" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`
 										}
 									html += `
 									</div>
@@ -107,8 +101,8 @@ function add_demand(data, selector) {
 				html += `
 				</div>
 				<div class="mt-2 inputWithIcon" style="display: none;" id="divComentario${data.demand_id}">
-					<input id="inputComentario${data.demand_id}" class="form-control comment-demand-input" type="text" name="search" placeholder="Escreva seu comentário">
-					<a class="pointer" href="javascript:void(0);"><i class="fa fa-mail-forward"></i></a>
+					<input data-demand_id="${data.demand_id}" id="inputComentario${data.demand_id}" class="form-control comment-demand-input" type="text" name="search" placeholder="Escreva seu comentário">
+					<a id="iconComentario${data.demand_id}" class="pointer" href="javascript:void(0);"><i class="fa fa-mail-forward"></i></a>
 				</div>
 			</div>
 		</div>`;
@@ -118,13 +112,13 @@ function add_demand(data, selector) {
 
 $(document).ready(function($) {
 
-	$(document).on('click', '.ver-comentarios', function(event) {
+	$(document).off('click', '.ver-comentarios').on('click', '.ver-comentarios', function(event) {
 		var demand_id = $(this).data('demand_id');
 		$('#comentarios'+demand_id).show(600);
 		$('#divComentario'+demand_id).show(600);
 	});
 
-	$(document).on('click', '.btn-comentar', function(event) {
+	$(document).off('click', '.btn-comentar').on('click', '.btn-comentar', function(event) {
 		var demand_id = $(this).data('demand_id');
 		$('#comentarios'+demand_id).show(600);
 		$('#divComentario'+demand_id).show(100);
@@ -135,7 +129,7 @@ $(document).ready(function($) {
 		});
 	});
 
-	$(document).on('click', '.btn-curtir', function(event) {
+	$(document).off('click', '.btn-curtir').on('click', '.btn-curtir', function(event) {
 		var demand_id = $(this).data('demand_id');
 		var div = $(this)
 		if (div.data('gave')) {
@@ -172,7 +166,7 @@ $(document).ready(function($) {
 	});
 
 	var denuncia_demand_id = 0;
-	$(document).on('click', '.btn-denunciar', function(event) {
+	$(document).off('click', '.btn-denunciar').on('click', '.btn-denunciar', function(event) {
 		var demand_id = $(this).data('demand_id');
 		denuncia_demand_id = demand_id;
 		$('#modalDenunciar').modal('show');
@@ -196,7 +190,7 @@ $(document).ready(function($) {
 	});
 
 	var apagar_demand_id = 0;
-	$(document).on('click', '.btn-apagar', function(event) {
+	$(document).off('click', '.btn-apagar').on('click', '.btn-apagar', function(event) {
 		var demand_id = $(this).data('demand_id');
 		apagar_demand_id = demand_id;
 		$('#modalApagar').modal('show');
@@ -218,5 +212,62 @@ $(document).ready(function($) {
 			},
 		}); // Fim do Ajax
 	});
+
+	$(document).off('keyup', '.comment-demand-input').on('keyup', '.comment-demand-input', function(event) {
+		var demand_id = $(this).data('demand_id');
+		var input = $(this);
+		if (event.which === 13) {
+			var comment = $(this).val();
+			if (comment != '') {
+				$.ajax({
+					url: base_url('admin/menu/demands/add_coments/'),
+					method: 'POST',
+					data: {
+						'comment': comment,
+						'demands_id': demand_id
+					},
+					success: function(data, textStatus, jqXHR) {
+						if (data.erro) {
+							toastr.error(data.msg_erro, "Falha");
+						}else{
+							input.val('');
+							$('#numComentarios'+demand_id).html(parseInt($('#numComentarios'+demand_id).html()) + 1)
+						}
+					},
+					beforeSend: function(){
+						input.prop('disabled', true);
+						$('#iconComentario'+demand_id).html('<i class="fa-li fa fa-spinner fa-spin"></i>');
+					},
+					complete: function(){
+						input.prop('disabled', false);
+						$('#iconComentario'+demand_id).html('<i class="fa fa-mail-forward"></i>');
+					}
+				}); // Fim do Ajax
+			}
+		}
+	});
+
+	$(document).off('click', '.delete-comment').on('click', '.delete-comment', function(event) {
+		console.log('vvai')
+		var comment_id = $(this).data('comment_id');
+		var demand_id = $(this).data('demand_id');
+		$.ajax({
+			url: base_url('admin/menu/demands/delete_coments/'),
+			method: 'POST',
+			data: {
+				'comment_id': comment_id,
+			},
+			success: function(data, textStatus, jqXHR) {
+				if (data.erro) {
+					toastr.error(data.msg_erro, "Falha");
+				}else{
+					$('#numComentarios'+demand_id).html(parseInt($('#numComentarios'+demand_id).html()) - 1)
+					$('#sessionComentario'+comment_id).remove();
+				}
+			},
+		}); // Fim do Ajax
+	});
+
+
 
 });

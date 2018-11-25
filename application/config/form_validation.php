@@ -140,7 +140,6 @@ $config = array(
 				'min_length' => 3,
 			),
 		)
-	
 	),
 
 	// ========================================
@@ -246,9 +245,8 @@ $config = array(
 		array(
 			'field' => 'local_id',
 			'label' => 'Id do Local',
-			'rules' => 'required|numeric',
+			'rules' => 'numeric',
 			'errors' => array(
-				'required' => 1,
 				'numeric' => 4,
 			),
 		),
