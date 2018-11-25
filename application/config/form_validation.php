@@ -306,6 +306,34 @@ $config = array(
 			),
 		),
 	),
+	'get_similar' => array(
+		array(
+			'field' => 'campus',
+			'label' => 'Campus',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'environment',
+			'label' => 'Ambiente',
+			'rules' => 'required|numeric',
+			'errors' => array(
+				'required' => 1,
+				'numeric' => 4,
+			),
+		),
+		array(
+			'field' => 'local',
+			'label' => 'Local',
+			'rules' => 'numeric',
+			'errors' => array(
+				'numeric' => 4,
+			),
+		),
+	),
 
 	// ========================================
 	// Pegar Locais

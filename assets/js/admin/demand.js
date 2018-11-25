@@ -22,7 +22,7 @@ function add_demand(data, selector) {
 								<i class="fa fa-ellipsis-v" aria-hidden="true"></i>
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">`;
-								if (data.owner_demands == 'true') {
+								if (data.owner_demands == 'true' && data.status == 'Aberta') {
 									html += `<a data-demand_id="${data.demand_id}" class="dropdown-item  btn-apagar" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</a>`;
 								}
 								html += `

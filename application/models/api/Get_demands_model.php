@@ -212,6 +212,89 @@ class Get_demands_model extends CI_Model {
 		}
 	}
 
+	public function similar($id = 0, $campus = NULL, $environment = NULL, $local = NULL) {
+		$this->db
+			->select('
+				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
+				CONCAT("'.base_url('uploads/perfil/').'",users.image_profile) AS image_profile,
+				(SELECT COUNT(*) FROM likes as teste WHERE teste.demands_id = demands.id) AS total_likes,
+				demands.id AS demand_id,
+				demands.title,
+				demands.description,
+				DATE_FORMAT(`created_date`, "%d/%m/%Y %H:%i") AS created_date,
+				users.name,
+				local.local,
+				status.name AS status,
+				campus.campus,
+				environment.environment,
+				type_demand.demands AS type_demand,
+				IF(demands.users_id = '.$id.', "true", "false") AS owner_demands,
+				IF((SELECT COUNT(*) FROM likes as teste WHERE teste.users_id = '.$id.' AND teste.demands_id = demands.id) > 0, "true", "false") AS gave_like,
+			')
+			->from('demands')
+			->join('users', 'demands.users_id = users.id')
+			->join('local', 'demands.local_id = local.id','left')
+			->join('status', 'demands.status_id = status.id')
+			->join('campus', 'demands.campus_id = campus.id','left')
+			->join('environment', 'demands.environment_id = environment.id')
+			->join('type_demand', 'demands.type_demand_id = type_demand.id')
+			->where('demands.excluded', 0)
+			->where('demands.campus_id', $campus)
+			->where('demands.environment_id', $environment)
+			->group_start()
+				->where('demands.counter <', 5)
+				->or_where('demands.resolved >', 0)
+			->group_end()
+			->order_by('demands.created_date', 'DESC');
+		if ($local)
+			$this->db->where('demands.local_id', $local);
+
+		if ( $result = $this->db->get()->result_array()){
+			foreach ($result as $key => $value){
+				$comments = $this->db
+					->select('
+						comments.id AS comment_id,
+						comments.comment,
+						users.name,
+						CONCAT("'.base_url('uploads/perfil/').'",users.image_profile) AS image_profile,
+						DATE_FORMAT(`data`, "%d/%m/%Y %H:%i") AS created_date,
+						IF(comments.users_id='.$id.', "true", "false") AS owner_comment
+					')
+					->join('users', 'comments.users_id = users.id')
+					->where('demands_id', $value['demand_id'])
+					->order_by('data', 'ASC')
+					->get('comments')
+					->result_array();
+
+				$answers = $this->db
+					->select('
+						answers.id AS answer_id,
+						answers.comment,
+						previous_status.name AS previous_status,
+						current_status.name AS current_status,
+						users.name,
+						CONCAT("'.base_url('uploads/perfil/').'",users.image_profile) AS image_profile,
+						DATE_FORMAT(`data`, "%d/%m/%Y %H:%i") AS created_date,
+						IF(answers.users_id='.$id.', "true", "false") AS owner_answer
+					')
+					->join('users', 'answers.users_id = users.id')
+					->join('status AS previous_status', 'answers.previous_status = previous_status.id')
+					->join('status AS current_status', 'answers.current_status = current_status.id')
+					->where('demands_id', $value['demand_id'])
+					->order_by('data', 'ASC')
+					->get('answers')
+					->result_array();
+
+				$result[$key]['comments'] = $comments;
+				$result[$key]['answers'] = $answers;
+			}
+			return $result;
+		}
+		else{
+			return FALSE;
+		}
+	}
+
 	public function profile($id = 0) {
 		$reclamacao = $this->profile_data($id, 1);
 		$sugestao = $this->profile_data($id, 2);
