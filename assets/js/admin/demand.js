@@ -41,7 +41,7 @@ function add_demand(data, selector) {
 					<p class="text-muted">${data.description}</p>
 				</div>
 				<div class="clearfix my-2 text-primary">
-					<span class="m-0 float-lg-left"><span><i class="fa fa-thumbs-up"></i></span> ${data.total_likes} </span>
+					<span class="m-0 float-lg-left"><span><i class="fa fa-thumbs-up"></i></span> <span id="numLikes${data.demand_id}">${data.total_likes}</span> </span>
 					<span><a href="javascript:void(0);" data-demand_id="${data.demand_id}"  id="vercomentarios${data.demand_id}" class="m-0 float-right ver-comentarios"><span id="numComentarios${data.demand_id}">${data.comments.length + data.answers.length}</span> Comentarios</a></span>
 				</div>
 				<div class="border-top border-bottom">
@@ -110,6 +110,46 @@ function add_demand(data, selector) {
 	$(selector).append(html);
 }
 
+function add_comment(data, selector) {
+	console.log(data)
+	var html = `
+	<div class="media d-flex align-items-center mt-2 rounded" id="sessionComentario${data.comment_id}">
+		<img class="img-fluid mr-3 ml-1 radius-50" style="max-width: 50px" src="${data.image_profile}">
+		<div class="media-body pl-3 rounded bg-light">
+			<div class="row align-items-center">
+				<div class="col-11 py-2">
+					<span class="text-primary">${data.name}</span><br>
+					<span class="text-muted">${data.comment}</span>
+				</div>
+				<div class="col-1">
+					<a data-demand_id="${data.demand_id}" data-comment_id="${data.comment_id}" class="dropdown-item float-right text-muted delete-comment" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+				</div>
+			</div>
+			<span class="text-muted float-right pr-2" style="font-size: 12px;">${data.created_date}</span>
+		</div>
+	</div>`;
+	$(selector).append(html);
+}
+
+function data_atual() {
+	// Obtém a data/hora atual
+	var data = new Date();
+
+	// Guarda cada pedaço em uma variável
+	var dia     = data.getDate();           // 1-31
+	var mes     = data.getMonth();          // 0-11 (zero=janeiro)
+	var ano4    = data.getFullYear();       // 4 dígitos
+	var hora    = data.getHours();          // 0-23
+	var min     = data.getMinutes();        // 0-59
+
+	// Formata a data e a hora (note o mês + 1)
+	var str_data = dia + '/' + (mes+1) + '/' + ano4;
+	var str_hora = hora + ':' + min;
+
+	// Mostra o resultado
+	return str_data + ' ' + str_hora;
+}
+
 $(document).ready(function($) {
 
 	$(document).off('click', '.ver-comentarios').on('click', '.ver-comentarios', function(event) {
@@ -135,6 +175,7 @@ $(document).ready(function($) {
 		if (div.data('gave')) {
 			div.data('gave',false);
 			div.removeClass('text-primary').addClass('text-muted');
+			$('#numLikes'+demand_id).html(parseInt($('#numLikes'+demand_id).html()) - 1);
 			$.ajax({
 				url: base_url('admin/menu/demands/delete_like/'),
 				method: 'POST',
@@ -144,12 +185,14 @@ $(document).ready(function($) {
 					if (data.erro) {
 						toastr.error(data.msg_erro, "Falha");
 						div.removeClass('text-muted').addClass('text-primary');
+						$('#numLikes'+demand_id).html(parseInt($('#numLikes'+demand_id).html()) + 1);
 					}
 				},
 			}); // Fim do Ajax
 		}else{
 			div.data('gave',true);
 			div.removeClass('text-muted').addClass('text-primary');
+			$('#numLikes'+demand_id).html(parseInt($('#numLikes'+demand_id).html()) + 1);
 			$.ajax({
 				url: base_url('admin/menu/demands/add_like/'),
 				method: 'POST',
@@ -159,6 +202,7 @@ $(document).ready(function($) {
 					if (data.erro) {
 						toastr.error(data.msg_erro, "Falha");
 						div.removeClass('text-primary').addClass('text-muted');
+						$('#numLikes'+demand_id).html(parseInt($('#numLikes'+demand_id).html()) - 1);
 					}
 				},
 			}); // Fim do Ajax
@@ -232,6 +276,15 @@ $(document).ready(function($) {
 						}else{
 							input.val('');
 							$('#numComentarios'+demand_id).html(parseInt($('#numComentarios'+demand_id).html()) + 1)
+							dados = {
+								'comment_id': demand_id,
+								'image_profile': $('.img-perfil').attr("src"),
+								'name': $('.nome-perfil').html(),
+								'comment': comment,
+								'comment_id': data.dados,
+								'created_date': data_atual(),
+							}
+							add_comment(dados, '#comentarios'+demand_id)
 						}
 					},
 					beforeSend: function(){
@@ -267,7 +320,4 @@ $(document).ready(function($) {
 			},
 		}); // Fim do Ajax
 	});
-
-
-
 });
