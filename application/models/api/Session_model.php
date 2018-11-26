@@ -43,4 +43,29 @@ class Session_model extends CI_Model {
 			return FALSE;
 		}
 	}
+
+	public function existe_token($token){
+		$this->db->select('email,token');
+		$this->db->where('token',$token);
+		$this->db->where('expiration_date >=',date('Y-m-d H:i:s'));
+		$query = $this->db->get('recover');
+		if ($query->num_rows() == 1) {
+			return array(
+				'email'    => $query->row()->email,
+				'token' => $query->row()->token
+			);
+		}else{
+			return FALSE;
+		}
+	}
+
+	public function change_password($email, $password, $token) {
+		$this->db->where('email', $email);
+		if ($this->db->update('users',array('password' => $password))) {
+			$this->db->where( 'token', $token )->delete( 'recover' );
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
 }

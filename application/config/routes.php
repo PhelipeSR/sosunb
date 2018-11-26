@@ -71,6 +71,8 @@ $route['user/update/password']['post']   = 'api/user/update_password';
 // Rotas de Sessão
 $route['sessions/login']['post']   = 'api/sessions/login';
 $route['sessions/recover']['post'] = 'api/sessions/recover_password';
+$route['recuperar/(:any)'] = 'api/sessions/check_token/$1';
+$route['process-recover']['post'] = 'api/sessions/process_recover';
 
 // Rotas de tipo de problemas
 $route['type-problem/get']['post'] = 'api/type_problem/get_type_problem';

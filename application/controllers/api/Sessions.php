@@ -65,7 +65,7 @@ class Sessions extends CI_Controller {
 			$this->email->message('Testando');
 
 			$dados = array(
-				'link' => base_url('/session/validation/'.$database['token'])
+				'link' => base_url('/recuperar/'.$database['token'])
 			);
 			$this->email->message($this->load->view('email/recuperacao',$dados,TRUE));
 
@@ -88,5 +88,42 @@ class Sessions extends CI_Controller {
 			->set_content_type('application/json')
 			->set_status_header($this->status_header)
 			->set_output(json_encode($this->response));
+	}
+
+	public function check_token($token) {
+		if ($data = $this->Session_model->existe_token( $token ) ) {
+			$this->load->view('admin/passowrd-recover',array('token' => $token));
+		}else{
+			$this->load->view('admin/erro-recover');
+		}
+	}
+
+	public function process_recover() {
+		$this->load->library('saida');
+
+		// Regras de validação do formulário
+		$this->form_validation->set_rules('token', 'Token', 'required|alpha_dash');
+		$this->form_validation->set_rules('password','Senha','required|min_length[6]');
+		$this->form_validation->set_rules('confPassword','Confirmação de Senha', 'required|matches[password]');
+
+		if ( $this->form_validation->run() ) {
+			$token = $this->input->post('token');
+			$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+
+			if ($retorna = $this->Session_model->existe_token( $token ) ) {
+				if ($data = $this->Session_model->change_password( $retorna['email'], $password, $token ) ) {
+					$this->load->view('admin/passowrd-recover',array('token' => $token));
+				}else{
+					$this->saida->set_erro('Erro ao recuperar senha.');
+				}
+			}else{
+				$this->saida->set_erro('Erro ao recuperar senha.');
+			}
+		}
+		else { // Formulário com erros
+			$this->saida->set_erro(validation_errors());
+		}
+		// Configuração de saída de dados
+		$this->saida->retorno();
 	}
 }
