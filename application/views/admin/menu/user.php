@@ -3,22 +3,52 @@
 
 	<h3 class="box-title">Usuários</h3>
 
-	<table id="user_table" class="table table-bordered table-striped" width="100%">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>Imagem</th>
-				<th>Nome</th>
-				<th>Email</th>
-				<th>Matrícula</th>
-				<th>Identidade</th>
-				<th>Nascimento</th>
-				<th>Registro</th>
-				<th>Tipo</th>
-				<th>Operações</th>
-			</tr>
-		</thead>
-	</table>
+	<ul class="nav nav-tabs" id="myTab" role="tablist">
+		<li class="nav-item">
+			<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Ativos</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Excluidos</a>
+		</li>
+	</ul>
+	<div class="tab-content" id="myTabContent">
+		<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+			<table id="user_table" class="table table-bordered table-striped" width="100%">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Imagem</th>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>Matrícula</th>
+						<th>Identidade</th>
+						<th>Nascimento</th>
+						<th>Registro</th>
+						<th>Tipo</th>
+						<th>Operações</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+			<table id="user_table_exclude" class="table table-bordered table-striped" width="100%">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Imagem</th>
+						<th>Nome</th>
+						<th>Email</th>
+						<th>Matrícula</th>
+						<th>Identidade</th>
+						<th>Nascimento</th>
+						<th>Registro</th>
+						<th>Tipo</th>
+						<th>Excluido</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
 
 <!-- *********************************************************************************************************************** -->
 

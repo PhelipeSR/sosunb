@@ -73,6 +73,7 @@ class User_model extends CI_Model {
 			'image_profile' => 'default.png',
 			'email' => 'anonimo@anonimo.com',
 			'password' => 'vazio',
+			'excluded' => 1,
 		))) {
 			return TRUE;
 		}else{

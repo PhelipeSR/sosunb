@@ -15,6 +15,7 @@ function add_demand(data, selector) {
 						}
 					html += `
 						<span class="text-muted"> - ${data.campus}</span>
+						<br><span class="text-muted"><i class="mr-1 fa fa-exclamation text-primary"></i>${data.status}</span>
 					</div>
 					<span class="float-right">
 						<div class="dropdown dropleft">
@@ -23,10 +24,10 @@ function add_demand(data, selector) {
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">`;
 								if (data.owner_demands == 'true' && data.status == 'Aberta') {
-									html += `<a data-demand_id="${data.demand_id}" class="dropdown-item  btn-apagar" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</a>`;
+									html += `<a data-demand_id="${data.demand_id}" class="dropdown-item dropdown-item-custon btn-apagar" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i> Apagar</a>`;
 								}
 								html += `
-								<a data-demand_id="${data.demand_id}" class="dropdown-item btn-denunciar" href="#"><i class="fa fa-ban" aria-hidden="true"></i> Denunciar</a>
+								<a data-demand_id="${data.demand_id}" class="dropdown-item dropdown-item-custon btn-denunciar" href="#"><i class="fa fa-ban" aria-hidden="true"></i> Denunciar</a>
 							</div>
 						</div>
 					</span>
@@ -88,7 +89,7 @@ function add_demand(data, selector) {
 									</div>
 									<div class="col-1">`
 										if (comments.owner_comment == 'true') {
-											html += `<a data-demand_id="${data.demand_id}" data-comment_id="${comments.comment_id}" class="dropdown-item float-right text-muted delete-comment" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`
+											html += `<a data-demand_id="${data.demand_id}" data-comment_id="${comments.comment_id}" class="dropdown-item dropdown-item-custon float-right text-muted delete-comment" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i></a>`
 										}
 									html += `
 									</div>
@@ -122,7 +123,7 @@ function add_comment(data, selector) {
 					<span class="text-muted" style="word-break: break-all;">${data.comment}</span>
 				</div>
 				<div class="col-1">
-					<a data-demand_id="${data.demand_id}" data-comment_id="${data.comment_id}" class="dropdown-item float-right text-muted delete-comment" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+					<a data-demand_id="${data.demand_id}" data-comment_id="${data.comment_id}" class="dropdown-item dropdown-item-custon float-right text-muted delete-comment" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
 				</div>
 			</div>
 			<span class="text-muted float-right pr-2" style="font-size: 12px;">${data.created_date}</span>

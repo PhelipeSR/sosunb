@@ -21,6 +21,16 @@ class User extends CI_Controller {
 		);
 		echo json_encode($output);
 	}
+	public function get_user_exclude() {
+		$this->load->model('admin/menu/User_model');
+		$output = array(
+			"draw" => isset ( $_POST['draw'] ) ? intval( $_POST['draw'] ) : 0,
+			"recordsTotal"    => $this->User_model->count_all_data_exclude(),
+			"recordsFiltered" => $this->User_model->count_filtered_data_exclude(),
+			"data"            => $this->User_model->data_exclude(),
+		);
+		echo json_encode($output);
+	}
 
 	public function create_user() {
 		$this->load->library('saida');

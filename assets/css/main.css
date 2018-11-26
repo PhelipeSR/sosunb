@@ -15353,11 +15353,15 @@ td{
 }
 .radius-50{
   border-radius: 50px;
-}.dropdown-item.active, .dropdown-item:active {
+}
+.dropdown-item.active.dropdown-item-custon, .dropdown-item-custon:active {
     color: #212529;
     text-decoration: none;
     background-color: transparent;
 }
-.dropdown-item:hover, .dropdown-item:focus{
+.dropdown-item-custon:hover, .dropdown-item-custon:focus{
   background-color: transparent;
+}
+.dataTables_wrapper{
+  margin-top: 20px;
 }

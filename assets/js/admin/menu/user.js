@@ -6,6 +6,45 @@ function resset_form(seletor){
 
 $(document).ready(function() {
 
+	var user_table_exclude = $('#user_table_exclude').DataTable({
+		dom: "<'row'<'col-sm-6'l><'col-sm-6'f>>B"+"<'row'<'col-sm-12'tr>>"+"<'row'<'col-sm-5'i><'col-sm-7'p>>",
+		ajax: { url: base_url('admin/menu/user/get_user_exclude'), type: "post"},
+		language: { url: base_url('assets/plugins/datatables/translation.json')},
+		processing: true, // Ativa gif de processamento
+		serverSide: true, // ativa o processamento no lado do servidor
+		responsive: true, // Deixa a tabela responsiva
+		order: [[ 0, "desc" ]], // Ordena por ID de forma decrescente
+
+		columns: [
+			{ data: "id"            },
+			{ data: "image_profile", render: function(value, type, row, meta){
+				return "<div class='text-center'><img width='50px' class='img-fluid' src='"+base_url('uploads/perfil/'+value)+"'></div>";
+			}},
+			{ data: "name"          },
+			{ data: "email"         },
+			{ data: "registry"      },
+			{ data: "identity"      },
+			{ data: "date_birth"    },
+			{ data: "register_date" },
+			{ data: "type"          },
+			{ data: "date_excluded" },
+		],
+		buttons: [
+			'colvis',
+		],
+		columnDefs: [
+			{
+				targets: [0,5,6],
+				visible: false
+			},
+			{
+				targets: [1],
+				orderable: false,
+				width: "10%",
+			}
+		],
+	}); // Fim Datatables
+
 	var user_table = $('#user_table').DataTable({
 		dom: "<'row'<'col-sm-6'l><'col-sm-6'f>>B"+"<'row'<'col-sm-12'tr>>"+"<'row'<'col-sm-5'i><'col-sm-7'p>>",
 		ajax: { url: base_url('admin/menu/user/get_user'), type: "post"},
