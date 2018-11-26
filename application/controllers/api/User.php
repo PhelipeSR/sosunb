@@ -108,11 +108,10 @@ class User extends CI_Controller {
 			$this->response['erro'] = 'token_invalido';
 			$this->status_header = 401;
 		}else{
-			
 			if( $this->form_validation->run('update_user') ) {
 				$database = array(
-						'email' => $this->input->input_stream('email'),
-					);
+					'email' => $this->input->input_stream('email'),
+				);
 				if ($dados = $this->input->post('image')) {
 					$dados = str_replace('data:image/jpeg;base64,', '', $dados);
 					$dados = str_replace('data:image/png;base64,', '', $dados);

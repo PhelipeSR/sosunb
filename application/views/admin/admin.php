@@ -159,7 +159,7 @@
 						</button>
 					</div>
 					<div class="modal-body" id="modal_body_denuncia">
-						<div id="conteudo_denuncia"></div>
+						<div id="demandsDenunciaModal"></div>
 					</div>
 				</div>
 			</div>

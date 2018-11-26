@@ -295,7 +295,7 @@ class Get_demands_model extends CI_Model {
 		}
 	}
 
-	public function single($id = 0, $demand_id = 0) {
+	public function single($id = 0, $demand_id = 0, $denuncia = TRUE) {
 		$this->db
 			->select('
 				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
@@ -322,12 +322,15 @@ class Get_demands_model extends CI_Model {
 			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
-			->where('demands.id', $demand_id)
-			->group_start()
-				->where('demands.counter <', 5)
-				->or_where('demands.resolved >', 0)
-			->group_end()
-			->order_by('demands.created_date', 'DESC');
+			->where('demands.id', $demand_id);
+			if ($denuncia) {
+				$this->db
+				->group_start()
+					->where('demands.counter <', 5)
+					->or_where('demands.resolved >', 0)
+				->group_end();
+			}
+		$this->db->order_by('demands.created_date', 'DESC');
 		if ($this->input->post('search')) {
 			$this->db->group_start()
 						->like(    'demands.title',       $this->input->post('search') )

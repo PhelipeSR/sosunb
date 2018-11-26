@@ -1,5 +1,4 @@
 function get_demand(){
-	console.log(limit)
 	var status = $('#statusFeed').val();
 	var search = $('#searchFeed').val();
 	$.ajax({

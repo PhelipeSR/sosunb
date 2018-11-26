@@ -19,17 +19,6 @@ class Demands_model extends CI_Model {
 			return FALSE;
 		}
 	}
-	public function get_demans_info_by_id($id) {
-		$this->db->select('demands.id,demands.title,demands.counter,demands.image');
-		$this->db->where('demands.id', $id);
-		$this->db->join('users', 'users.id = demands.users_id');
-		if ($result = $this->db->get('demands')->row()){
-			return $result;
-		}
-		else{
-			return FALSE;
-		}
-	}
 
 	public function process_complaint($id, $remove) {
 		if ($remove) {

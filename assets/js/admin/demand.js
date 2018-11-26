@@ -111,7 +111,6 @@ function add_demand(data, selector) {
 }
 
 function add_comment(data, selector) {
-	console.log(data)
 	var html = `
 	<div class="media d-flex align-items-center mt-2 rounded" id="sessionComentario${data.comment_id}">
 		<img class="img-fluid mr-3 ml-1 radius-50" style="max-width: 50px" src="${data.image_profile}">
@@ -301,7 +300,6 @@ $(document).ready(function($) {
 	});
 
 	$(document).off('click', '.delete-comment').on('click', '.delete-comment', function(event) {
-		console.log('vvai')
 		var comment_id = $(this).data('comment_id');
 		var demand_id = $(this).data('demand_id');
 		$.ajax({

@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Demands extends CI_Controller {
 
 	public function get_demans_info() {
-		$this->load->model('admin/Demands_model');
+		$this->load->model('api/Get_demands_model');
 		$this->load->library('saida');
 
-		$id = $this->input->post('id',TRUE);
+		$demands_id = $this->input->post('id',TRUE);
 
-		if ($result = $this->Demands_model->get_demans_info_by_id($id) ) {
+		if ($result = $this->Get_demands_model->single($this->session->user_id, $demands_id, FALSE) ) {
 			$this->saida->set_dados($result);
 		}else{
 			$this->saida->set_erro('Erro ao buscar demanda.');
