@@ -128,15 +128,17 @@
 										</div>
 									</div>
 								</div>
-								<div class="row justify-content-center">
+								<hr>
+								<div class="row justify-content-center my-5">
 									<div class="col-lg-6 col-md-3">
 										<canvas id="demandaCampus" ></canvas>
 									</div>
 									<div class="col-lg-6 col-md-3">
-										<canvas id="demandaCampus1"></canvas>
+										<canvas id="demandaTipo"></canvas>
 									</div>
 								</div>
-								<div class="row justify-content-center">
+								<hr>
+								<div class="row justify-content-center my-5">
 									<div class="col">
 										<canvas id="demandaCategoria" ></canvas>
 									</div>
@@ -269,7 +271,7 @@
 						borderColor: 'rgba(236, 107, 86, .8)',
 						data: [
 							<?php foreach ($info[4] as $row): ?>
-								'<?php echo $row['category_aberta'] ?>',
+								'<?php echo $row['count_aberta'] ?>',
 							<?php endforeach ?>
 						]
 					},{
@@ -277,9 +279,9 @@
 						backgroundColor: 'rgba(97, 188, 109, 0.6)',
 						borderColor: 'rgba(97, 188, 109, .8)',
 						data: [
-							<?php for($i = 0; $i < count($info[4]); $i++): ?>
-								1,
-							<?php endfor ?>
+							<?php foreach ($info[4] as $row): ?>
+								'<?php echo $row['count_fechado'] ?>',
+							<?php endforeach ?>
 						]
 					}]
 				},
@@ -287,6 +289,61 @@
 					title: {
 						display: true,
 						text: 'DEMANDAS RESOLVIDAS E NÃO RESOLVIDAS POR CATEGORIAS',
+					},
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							},
+							stacked: true
+						}],
+						xAxes: [{
+							stacked: true,
+						}]
+					}
+				}
+			});
+
+			var ctx1 = $('#demandaTipo');
+			var myChart = new Chart(ctx1, {
+				type: 'horizontalBar',
+				data: {
+					labels: [
+						<?php foreach ($info[5] as $row): ?>
+							'<?php echo $row['demands'] ?>',
+						<?php endforeach ?>
+					],
+					datasets: [{
+						label : 'Número de Demandas',
+						backgroundColor: 'rgba(236, 107, 86, 0.6)',
+						borderColor: 'rgba(236, 107, 86, .8)',
+						data: [
+							<?php foreach ($info[5] as $row): ?>
+								'<?php echo $row['count'] ?>',
+							<?php endforeach ?>
+						],
+						backgroundColor: [
+							'rgba(54, 162, 235, 0.8)',
+							'rgba(255, 159, 64, 0.8)',
+							'rgba(153, 102, 255, 0.8)',
+							'rgba(75, 192, 192, 0.8)',
+							'rgba(255, 206, 86, 0.8)',
+							'rgba(255, 99, 132, 0.8)',
+						],
+						borderColor: [
+							'rgba(54, 162, 235, 0.8)',
+							'rgba(255, 159, 64, 0.8)',
+							'rgba(153, 102, 255, 0.8)',
+							'rgba(75, 192, 192, 0.8)',
+							'rgba(255, 206, 86, 0.8)',
+							'rgba(255, 99, 132, 0.8)',
+						],
+					}]
+				},
+				options: {
+					title: {
+						display: true,
+						text: 'DEMANDAS POR TIPO',
 					},
 					scales: {
 						yAxes: [{

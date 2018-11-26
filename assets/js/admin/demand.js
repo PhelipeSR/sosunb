@@ -84,7 +84,7 @@ function add_demand(data, selector) {
 								<div class="row align-items-center">
 									<div class="col-11 py-2">
 										<span class="text-primary">${comments.name}</span><br>
-										<span class="text-muted">${comments.comment}</span>
+										<span class="text-muted" style="word-break: break-all;">${comments.comment}</span>
 									</div>
 									<div class="col-1">`
 										if (comments.owner_comment == 'true') {
@@ -111,6 +111,7 @@ function add_demand(data, selector) {
 }
 
 function add_comment(data, selector) {
+	console.log(data)
 	var html = `
 	<div class="media d-flex align-items-center mt-2 rounded" id="sessionComentario${data.comment_id}">
 		<img class="img-fluid mr-3 ml-1 radius-50" style="max-width: 50px" src="${data.image_profile}">
@@ -118,7 +119,7 @@ function add_comment(data, selector) {
 			<div class="row align-items-center">
 				<div class="col-11 py-2">
 					<span class="text-primary">${data.name}</span><br>
-					<span class="text-muted">${data.comment}</span>
+					<span class="text-muted" style="word-break: break-all;">${data.comment}</span>
 				</div>
 				<div class="col-1">
 					<a data-demand_id="${data.demand_id}" data-comment_id="${data.comment_id}" class="dropdown-item float-right text-muted delete-comment" href="javascript:void(0);"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
@@ -276,7 +277,7 @@ $(document).ready(function($) {
 							input.val('');
 							$('#numComentarios'+demand_id).html(parseInt($('#numComentarios'+demand_id).html()) + 1)
 							dados = {
-								'comment_id': demand_id,
+								'demand_id': demand_id,
 								'image_profile': $('.img-perfil').attr("src"),
 								'name': $('.nome-perfil').html(),
 								'comment': comment,
@@ -302,6 +303,9 @@ $(document).ready(function($) {
 	$(document).off('click', '.delete-comment').on('click', '.delete-comment', function(event) {
 		var comment_id = $(this).data('comment_id');
 		var demand_id = $(this).data('demand_id');
+		$('#numComentarios'+demand_id).html((parseInt($('#numComentarios'+demand_id).html()) - 1))
+		$('#sessionComentario'+comment_id).remove();
+
 		$.ajax({
 			url: base_url('admin/menu/demands/delete_coments/'),
 			method: 'POST',
@@ -311,9 +315,6 @@ $(document).ready(function($) {
 			success: function(data, textStatus, jqXHR) {
 				if (data.erro) {
 					toastr.error(data.msg_erro, "Falha");
-				}else{
-					$('#numComentarios'+demand_id).html(parseInt($('#numComentarios'+demand_id).html()) - 1)
-					$('#sessionComentario'+comment_id).remove();
 				}
 			},
 		}); // Fim do Ajax

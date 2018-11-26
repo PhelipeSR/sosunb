@@ -12,7 +12,16 @@ function get_demand(){
 		success: function(data, textStatus, jqXHR) {
 			liberado = true;
 			if (data.erro) {
-				toastr.error(data.msg_erro, "Falha");
+				$('#erroFeed').remove();
+				$('#demandsFeed').append(`
+					<div class="row justify-content-center mt-4" id="erroFeed">
+						<div class="col-lg-8 col-xl-6 border py-3 shadow-sm bg-white">
+							<div class="alert alert-danger" role="alert">
+								${data.msg_erro}
+							</div>
+						</div>
+					</div>
+				`);
 			}else{
 				data.dados.forEach(function(item) {
 					add_demand(item, '#demandsFeed')
@@ -31,6 +40,7 @@ $(document).ready(function($) {
 
 	$('#statusFeed').change(function(event) {
 		limit = 0
+		$('#erroFeed').remove();
 		$('#demandsFeed').empty();
 		get_demand();
 	});
@@ -51,6 +61,7 @@ $(document).ready(function($) {
 		clearTimeout(typingTimer);
 		typingTimer = setTimeout(function(){
 			limit = 0
+			$('#erroFeed').remove();
 			$('#demandsFeed').empty();
 			get_demand();
 		}, 500);
