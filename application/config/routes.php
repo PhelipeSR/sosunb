@@ -98,6 +98,9 @@ $route['like/delete']['post'] = 'api/likes/delete_like';
 // Rotas de local
 $route['local/get']['post'] = 'api/local/get_local';
 
+// Rotas de local
+$route['status/get']['post'] = 'api/status/get_status';
+
 // Rotas de Demandas
 $route['demands/add']['post']    = 'api/demands/add_demands';
 $route['demands/report']['post'] = 'api/demands/report_demands';
