@@ -39,7 +39,7 @@ class Demands extends CI_Controller {
 					'description' => $this->input->post('description'),
 					'type_problems_id' => $this->input->post('type_problems_id'),
 					'type_demand_id' => $this->input->post('type_demand_id'),
-					'local_id' => $this->input->post('local_id'),
+					'local_id' => ($this->input->post('local_id')) ? $this->input->post('local_id') : NULL,
 					'campus_id' => $this->input->post('campus_id'),
 					'environment_id' => $this->input->post('environment_id'),
 				);

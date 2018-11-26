@@ -9,11 +9,9 @@
 				</div>
 				<select name="status" id="statusFeed" class="custom-select">
 					<option value="" selected>Todos</option>
-					<option value="1">Aberta</option>
-					<option value="2">Reclassificada</option>
-					<option value="3">Em Análise</option>
-					<option value="4">Resolvida</option>
-					<option value="5">Solução Inviável</option>
+					<?php foreach ($status as $row): ?>
+						<?php echo '<option value="'.$row->id.'">'.$row->status.'</option>'; ?>
+					<?php endforeach; ?>
 				</select>
 			</div>
 		</div>

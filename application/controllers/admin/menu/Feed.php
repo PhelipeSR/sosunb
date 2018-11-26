@@ -5,7 +5,8 @@ class Feed extends CI_Controller {
 
 	public function render() {
 		$this->load->model('api/Status_model');
-		$this->load->view('admin/menu/feed');
+		$status = $this->Status_model->get_status();
+		$this->load->view('admin/menu/feed', array('status' => $status));
 	}
 
 	public function get_feed() {

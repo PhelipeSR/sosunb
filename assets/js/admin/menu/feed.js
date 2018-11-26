@@ -35,11 +35,6 @@ $(document).ready(function($) {
 		get_demand();
 	});
 
-	$('#searchFeed').keyup(function(event) {
-		limit = 0
-		$('#demandsFeed').empty();
-		get_demand();
-	});
 
 	$(window).scroll(function() {
 		if(($(window).scrollTop() + $(window).height() > $(document).height() - 300) && liberado) {
@@ -47,5 +42,17 @@ $(document).ready(function($) {
 			limit += 5;
 			get_demand();
 		}
+	});
+
+	var typingTimer; //timer identifier
+
+	//on keyup, start the countdown
+	$('#searchFeed').keyup(function(event) {
+		clearTimeout(typingTimer);
+		typingTimer = setTimeout(function(){
+			limit = 0
+			$('#demandsFeed').empty();
+			get_demand();
+		}, 500);
 	});
 });
