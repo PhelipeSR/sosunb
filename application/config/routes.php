@@ -59,6 +59,7 @@ $route['usuario']          = 'admin/login/index';
 $route['login']            = 'admin/login/index';
 $route['logout']           = 'admin/login/sign_out';
 $route['authentication']   = 'admin/login/sign_in';
+$route['recuperar']        = 'admin/login/recover_password';
 $route['cadastro/sign_up'] = 'admin/cadastro/sign_up';
 
 // Rotas de usuário

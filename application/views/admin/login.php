@@ -24,8 +24,8 @@
 						<img width="80px" src="<?php echo base_url('assets/images/logo.png') ;?>">
 						<h1 class="h3 font-weight-normal">Iniciar Sessão</h1>
 					</div>
-
 					<div id="show_mensage"></div>
+
 					<div class="form-group">
 						<div class="input-group">
 							<input type="email" name="email" class="form-control" placeholder="Email" autocomplete="username" autofocus>
@@ -54,13 +54,14 @@
 						<img width="80px" src="<?php echo base_url('assets/images/logo.png') ;?>">
 						<h1 class="h3 font-weight-normal">Esqueceu Sua Senha?</h1>
 					</div>
+					<div id="show_mensage_recuperacao"></div>
 					<div class="form-group">
 						<div class="input-group">
-							<input class="form-control" type="text" placeholder="Email">
+							<input class="form-control" type="email" name="email" placeholder="Email">
 						</div>
 					</div>
 					<div class="form-group btn-container">
-						<button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESETAR</button>
+						<button id="btnResetar" class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i> RESETAR</button>
 					</div>
 					<div class="form-group mt-3">
 						<p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Voltar Para Login</a></p>
