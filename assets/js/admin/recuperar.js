@@ -40,7 +40,6 @@ $(document).ready(function() {
 				data: $("#formRecuperar").serialize(),
 
 				success: function(data, textStatus, jqXHR) {
-					console.log(data)
 					if (data.erro) {
 						show_erros(data.msg_erro);
 					}else{

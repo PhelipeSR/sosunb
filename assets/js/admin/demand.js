@@ -117,7 +117,6 @@ function add_demand(data, selector, viewcompact = true) {
 }
 
 function add_comment(data, selector) {
-	console.log(data)
 	var html = `
 	<div class="media d-flex align-items-center mt-2 rounded" id="sessionComentario${data.comment_id}">
 		<img class="img-fluid mr-3 ml-1 radius-50" style="max-width: 50px" src="${data.image_profile}">

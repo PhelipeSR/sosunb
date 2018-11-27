@@ -46,8 +46,8 @@ $(document).ready(function($) {
 		get_demand();
 	});
 
-
 	$(window).scroll(function() {
+		console.log('foi')
 		if(($(window).scrollTop() + $(window).height() > $(document).height() - 300) && liberado) {
 			liberado = false;
 			limit += 5;

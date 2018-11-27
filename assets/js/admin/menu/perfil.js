@@ -113,7 +113,6 @@ $(document).ready(function() {
 					if (data.erro) {
 						toastr.error(data.msg_erro, "Falha");
 					}else{
-						console.log(data)
 						$('.img-perfil').attr("src", base_url('uploads/perfil/'+data.dados.image_name));
 						$('.form-control').removeClass('is-valid');
 						$('#image_profile').val('');

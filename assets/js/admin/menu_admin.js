@@ -1,6 +1,7 @@
 $(document).ready( function() {
 
 	$('#usuarios').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'usuarios'}, 'usuarios', '#usuarios');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -17,6 +18,7 @@ $(document).ready( function() {
 	});
 
 	$('#status').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'status'}, 'status', '#status');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -33,6 +35,7 @@ $(document).ready( function() {
 	});
 
 	$('#perfil').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'perfil'}, 'perfil', '#perfil');
 		$('ul>li>a').removeClass('active');
 		// Remove visualizações anteriores
@@ -48,6 +51,7 @@ $(document).ready( function() {
 	});
 
 	$('#tipo-demanda').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'tipo-demanda'}, 'tipo-demanda', '#tipo-demanda');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -64,6 +68,7 @@ $(document).ready( function() {
 	});
 
 	$('#local').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'local'}, 'local', '#local');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -80,6 +85,7 @@ $(document).ready( function() {
 	});
 
 	$('#campus').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'campus'}, 'campus', '#campus');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -96,6 +102,7 @@ $(document).ready( function() {
 	});
 
 	$('#area').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'area'}, 'area', '#area');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -112,6 +119,7 @@ $(document).ready( function() {
 	});
 
 	$('#ambiente').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'ambiente'}, 'ambiente', '#ambiente');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -128,6 +136,7 @@ $(document).ready( function() {
 	});
 
 	$('#tipo-problema').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'tipo-problema'}, 'tipo-problema', '#tipo-problema');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -144,6 +153,7 @@ $(document).ready( function() {
 	});
 
 	$('#categoria').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'categoria'}, 'categoria', '#categoria');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -160,6 +170,7 @@ $(document).ready( function() {
 	});
 
 	$('#ranking').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'ranking'}, 'ranking', '#ranking');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -176,6 +187,7 @@ $(document).ready( function() {
 	});
 
 	$('#feed').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'feed'}, 'feed', '#feed');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
@@ -192,6 +204,7 @@ $(document).ready( function() {
 	});
 
 	$('#lista').click(function() {
+		$(window).unbind('scroll');
 		window.history.replaceState({page: 'lista'}, 'lista', '#lista');
 		$('ul>li>a').removeClass('active');
 		$(this).addClass('active');
