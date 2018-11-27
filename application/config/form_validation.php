@@ -361,7 +361,7 @@ $config = array(
 		),
 		array(
 			'field' => 'campus',
-			'label' => 'Id do Capus',
+			'label' => 'Id do Campus',
 			'rules' => 'required|numeric',
 			'errors' => array(
 				'required' => 1,
