@@ -225,4 +225,17 @@ class Perfil extends CI_Controller {
 		// Configuração de saída de dados
 		$this->saida->retorno();
 	}
+
+	public function get_demands(){
+		$this->load->library('saida');
+		$this->load->model('api/Get_demands_model');
+
+		if ($result = $this->Get_demands_model->profile( $this->session->user_id ) ) {
+			$this->saida->set_dados($result);
+		}else {
+			$this->saida->set_erro('Erro ao pegar demandas.');
+		}
+		// Configuração de saída de dados
+		$this->saida->retorno();
+	}
 }

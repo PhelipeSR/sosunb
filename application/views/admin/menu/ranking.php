@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <div class="box">
 	<h3 class="box-title">Ranking</h3>
-	<div class="row justify-content-center">
+	<div class="row justify-content-center mb-3">
 		<div class="col-lg-8 col-xl-6 p-0">
 			<div class="input-group">
 				<div class="input-group-prepend">

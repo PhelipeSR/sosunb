@@ -145,7 +145,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p><small class="text-muted">Isso mudara o status da demanda para o escolhido</small></p>
+					<p><small class="text-muted">Isso mudara o status da demanda para <span class="badge badge-warning" id="badgeStatus">Reclassificada</span></small></p>
 					<form id="formEditStatus" method="post">
 						<div class="form-row">
 							<div class="form-group col">
@@ -178,9 +178,9 @@
 <!-- *********************************************************************************************************************** -->
 	<!-- Modal Ver Demanda-->
 	<div class="modal fade" id="modalVerDemanda" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-dialog modal-lg bg-light" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
+				<div class="modal-header pb-0 border-0">
 					<h5 class="modal-title">Ver Demanda</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -189,7 +189,7 @@
 				<div class="modal-body">
 					<div id="demandsVerLista"></div>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer border-0 pt-0">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
 				</div>
 			</div>

@@ -28,7 +28,7 @@ class Lista_model extends CI_Model {
 		'demands.type_problems_id',
 
 	);
-	private $order_column = array('demands.id', NULL,'users.name','users.email','users.registry','users.identity','users.date_birth','users.register_date','profile_type.type',NULL,'users.excluded','users.profile_type_id');
+	private $order_column = array('demands.id', NULL,'demands.title','status.name','type_demand.demands','category.category',NULL,'campus.campus',null);
 
 	/*
 	* =====================================================================

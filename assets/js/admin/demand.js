@@ -1,7 +1,7 @@
 function add_demand(data, selector, viewcompact = true) {
 
 	var html =`
-		<div class="row justify-content-center mt-3" id="divDemanda${data.demand_id}">`;
+		<div class="row justify-content-center mb-3" id="divDemanda${data.demand_id}">`;
 		if (viewcompact) {
 			html += `<div class="col-lg-8 col-xl-6 border py-3 shadow-sm bg-white">`;
 		}else{

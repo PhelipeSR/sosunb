@@ -49,6 +49,20 @@ function get_environment(campus, area, environment_id = '', local_id = ''){
 	}); // Fim do Ajax
 }
 
+function define_status() {
+	var id_status_select = $('#status_edit').val();
+	if (id_status_select == 1) {
+		$('#badgeStatus').removeClass('badge-warning badge-success badge-primary badge-danger').addClass('badge-primary');
+	}else if (id_status_select == 2 || id_status_select == 3) {
+		$('#badgeStatus').removeClass('badge-warning badge-success badge-primary badge-danger').addClass('badge-warning');
+	}else if (id_status_select == 4) {
+		$('#badgeStatus').removeClass('badge-warning badge-success badge-primary badge-danger').addClass('badge-success');
+	}else if (id_status_select == 5) {
+		$('#badgeStatus').removeClass('badge-warning badge-success badge-primary badge-danger').addClass('badge-danger');
+	}
+	$('#badgeStatus').html($('#status_edit :selected').text());
+}
+
 $(document).ready(function() {
 
 	var lista_table = $('#lista_table').DataTable({
@@ -117,6 +131,10 @@ $(document).ready(function() {
 				orderable: false,
 				width: "10%",
 			},
+			{
+				targets: [6],
+				orderable: false,
+			},
 		],
 	}); // Fim Datatables
 
@@ -171,6 +189,7 @@ $(document).ready(function() {
 		var row = lista_table.row( $('[data-row="'+$(this).data('btn')+'"]') ).data();
 		$('#id_idit_status').val(row.id);
 		$('#status_edit').val(row.status_id);
+		define_status();
 		$('#modalVerStatus').modal('show');
 	});
 
@@ -200,6 +219,9 @@ $(document).ready(function() {
 	});
 	$('#area_edit').change(function(event) {
 		get_environment($('#campus_edit').val(),$('#area_edit').val());
+	});
+	$('#status_edit').change(function(event) {
+		define_status();
 	});
 
 	/* =====================================================================

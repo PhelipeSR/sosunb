@@ -1,3 +1,14 @@
+function show_erro(msg, selector){
+	$(selector).append(`
+		<div class="row justify-content-center" id="erroFeed">
+			<div class="col border py-3 shadow-sm bg-white">
+				<div class="alert alert-danger" role="alert">
+					${msg}
+				</div>
+			</div>
+		</div>
+	`);
+}
 $(document).ready(function() {
 
 	$( "#formPerfil" ).validate( {
@@ -152,4 +163,71 @@ $(document).ready(function() {
 			}); // Fim do Ajax
 		},
 	});
+	var demands_perfil;
+	$.ajax({
+		url: base_url('admin/menu/perfil/get_demands'),
+		method: 'post',
+		dataType: 'json',
+		data: $('#formPerfil').serialize(),
+		success: function(data, textStatus, jqXHR) {
+			if (data.erro) {
+				toastr.error(data.msg_erro, "Falha");
+			}else {
+				demands_perfil = data.dados;
+				if (demands_perfil.reclamacao.length) {
+					demands_perfil.reclamacao.forEach(function(item) {
+						add_demand(item, '#feedPerfilReclamacoes', false);
+					});
+				}else{
+					show_erro('Nenhuma reclamação foi feita.','#feedPerfilReclamacoes');
+				}
+			}
+		},
+	});
+
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+		var id = e.target.id;
+		$('#feedPerfilReclamacoes').empty();
+		$('#feedPerfilSugestoes').empty();
+		$('#feedPerfilCurtidas').empty();
+		$('#feedPerfilComentadas').empty();
+
+		if (id == 'v-pills-reclamacoes-tab') {
+			if (demands_perfil.reclamacao.length) {
+				demands_perfil.reclamacao.forEach(function(item) {
+					add_demand(item, '#feedPerfilReclamacoes', false);
+				});
+			}else{
+				show_erro('Nenhuma reclamação foi feita.','#feedPerfilReclamacoes');
+			}
+		}
+		if (id == 'v-pills-sugestoes-tab') {
+			if (demands_perfil.sugestao.length) {
+				demands_perfil.sugestao.forEach(function(item) {
+					add_demand(item, '#feedPerfilSugestoes', false);
+				});
+			}else{
+				show_erro('Nenhuma sugestão foi feita.','#feedPerfilSugestoes');
+			}
+		}
+		if (id == 'v-pills-curtidas-tab') {
+			if (demands_perfil.likes.length) {
+				demands_perfil.likes.forEach(function(item) {
+					add_demand(item, '#feedPerfilCurtidas', false);
+				});
+			}else{
+				show_erro('Nenhuma demanda foi curtida.','#feedPerfilCurtidas');
+			}
+		}
+		if (id == 'v-pills-comentadas-tab') {
+			if (demands_perfil.comentarios.length) {
+				demands_perfil.comentarios.forEach(function(item) {
+					add_demand(item, '#feedPerfilComentadas', false);
+				});
+			}else{
+				show_erro('Nenhuma demanda foi comentada.','#feedPerfilComentadas');
+			}
+		}
+	});
+
 });

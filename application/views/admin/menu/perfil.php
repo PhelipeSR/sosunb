@@ -13,13 +13,25 @@
 					<h5 class="nome-perfil"><?php echo $dados->name;?></h5>
 				</div>
 				<div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical">
-					<a class="nav-link rounded-0 active" id="v-pills-interests-tab" data-toggle="pill" href="#v-pills-interests" role="tab" aria-controls="v-pills-interests">
+					<a class="nav-link rounded-0 active" id="v-pills-reclamacoes-tab" data-toggle="tab" href="#v-pills-reclamacoes" role="tab" aria-controls="v-pills-reclamacoes">
+						<i class="fa fa-exclamation"></i> Reclamações
+					</a>
+					<a class="nav-link rounded-0" id="v-pills-sugestoes-tab" data-toggle="tab" href="#v-pills-sugestoes" role="tab" aria-controls="v-pills-sugestoes">
+						<i class="fa fa-question-circle-o"></i> Sugestões
+					</a>
+					<a class="nav-link rounded-0" id="v-pills-curtidas-tab" data-toggle="tab" href="#v-pills-curtidas" role="tab" aria-controls="v-pills-curtidas">
+						<i class="fa fa-thumbs-up"></i> Curtidas
+					</a>
+					<a class="nav-link rounded-0" id="v-pills-comentadas-tab" data-toggle="tab" href="#v-pills-comentadas" role="tab" aria-controls="v-pills-comentadas">
+						<i class="fa fa-comments-o"></i> Comentadas
+					</a>
+					<a class="nav-link rounded-0" id="v-pills-interests-tab" data-toggle="tab" href="#v-pills-interests" role="tab" aria-controls="v-pills-interests">
 						<i class="fa fa-pencil-square-o"></i> Dados
 					</a>
-					<a class="nav-link rounded-0" id="v-pills-personal-tab" data-toggle="pill" href="#v-pills-personal" role="tab" aria-controls="v-pills-personal">
+					<a class="nav-link rounded-0" id="v-pills-personal-tab" data-toggle="tab" href="#v-pills-personal" role="tab" aria-controls="v-pills-personal">
 						<i class="fa fa-lock"></i> Trocar Senha
 					</a>
-					<a class="nav-link rounded-0" id="v-pills-password-tab" data-toggle="pill" href="#v-pills-password" role="tab" aria-controls="v-pills-password">
+					<a class="nav-link rounded-0" id="v-pills-password-tab" data-toggle="tab" href="#v-pills-password" role="tab" aria-controls="v-pills-password">
 						<i class="fa fa-picture-o"></i> Imagem de Perfil</a>
 					</a>
 				</div>
@@ -29,8 +41,28 @@
 		<div class="col-lg-8 col-xl-9">
 			<div class="tab-content">
 
+				<!-- Reclamações -->
+				<div class="tab-pane fade show active" id="v-pills-reclamacoes" role="tabpanel" aria-labelledby="v-pills-reclamacoes-tab">
+					<div id="feedPerfilReclamacoes"></div>
+				</div>
+
+				<!-- Sugestão -->
+				<div class="tab-pane fade " id="v-pills-sugestoes" role="tabpanel" aria-labelledby="v-pills-sugestoes-tab">
+					<div id="feedPerfilSugestoes">sugestaa</div>
+				</div>
+
+				<!-- Curtidas -->
+				<div class="tab-pane fade " id="v-pills-curtidas" role="tabpanel" aria-labelledby="v-pills-curtidas-tab">
+					<div id="feedPerfilCurtidas">curtidas</div>
+				</div>
+
+				<!-- Comentadas -->
+				<div class="tab-pane fade " id="v-pills-comentadas" role="tabpanel" aria-labelledby="v-pills-comentadas-tab">
+					<div id="feedPerfilComentadas">curtidas</div>
+				</div>
+
 				<!-- Mudança de informações -->
-				<div class="tab-pane fade show active" id="v-pills-interests" role="tabpanel" aria-labelledby="v-pills-interests-tab">
+				<div class="tab-pane fade" id="v-pills-interests" role="tabpanel" aria-labelledby="v-pills-interests-tab">
 					<form id="formPerfil" method="post">
 						<div class="form-row">
 							<div class="form-group col-md-12">

@@ -17,7 +17,7 @@
 		</div>
 	</div>
 
-	<div class="row justify-content-center mt-3">
+	<div class="row justify-content-center my-3">
 		<div class="col-lg-8 col-xl-6 p-0">
 			<div class="input-group">
 				<div class="input-group-prepend">
