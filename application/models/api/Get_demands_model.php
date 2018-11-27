@@ -9,7 +9,7 @@ class Get_demands_model extends CI_Model {
 
 	public function ranking($id = 0, $campus = NULL) {
 		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
-		$exclude = array();
+		$exclude = array(0);
 		foreach ($report as $key => $value) {
 			array_push($exclude, $value['demands_id']);
 		}
@@ -101,7 +101,7 @@ class Get_demands_model extends CI_Model {
 
 	public function feed($id = 0, $limit = 0, $status = NULL) {
 		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
-		$exclude = array();
+		$exclude = array(0);
 		foreach ($report as $key => $value) {
 			array_push($exclude, $value['demands_id']);
 		}
@@ -225,7 +225,7 @@ class Get_demands_model extends CI_Model {
 
 	public function similar($id = 0, $campus = NULL, $environment = NULL, $local = NULL) {
 		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
-		$exclude = array();
+		$exclude = array(0);
 		foreach ($report as $key => $value) {
 			array_push($exclude, $value['demands_id']);
 		}
@@ -314,7 +314,7 @@ class Get_demands_model extends CI_Model {
 
 	public function single($id = 0, $demand_id = 0, $denuncia = TRUE) {
 		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
-		$exclude = array();
+		$exclude = array(0);
 		foreach ($report as $key => $value) {
 			array_push($exclude, $value['demands_id']);
 		}
@@ -427,7 +427,7 @@ class Get_demands_model extends CI_Model {
 
 	public function profile_data($id, $type_demand){
 		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
-		$exclude = array();
+		$exclude = array(0);
 		foreach ($report as $key => $value) {
 			array_push($exclude, $value['demands_id']);
 		}
@@ -511,7 +511,7 @@ class Get_demands_model extends CI_Model {
 
 	public function profile_interaction_comments($id){
 		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
-		$exclude = array();
+		$exclude = array(0);
 		foreach ($report as $key => $value) {
 			array_push($exclude, $value['demands_id']);
 		}
@@ -596,7 +596,7 @@ class Get_demands_model extends CI_Model {
 
 	public function profile_interaction_likes($id){
 		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
-		$exclude = array();
+		$exclude = array(0);
 		foreach ($report as $key => $value) {
 			array_push($exclude, $value['demands_id']);
 		}
