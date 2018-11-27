@@ -183,6 +183,7 @@ Não há parâmetro de entrada
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Dados cadastrados|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -211,6 +212,7 @@ Não há parâmetro de entrada
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Dados excluídos|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -240,6 +242,7 @@ Não há parâmetro de entrada
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Dados Cadastrado|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -262,13 +265,13 @@ Não há parâmetro de entrada
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
 | --- |--- |--- |---|
 |comment_id |numeric | sim | Id do comentário|
-|users_id | numeric | sim | Id do Usuário|
 
 
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Comentário Excluído|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -277,11 +280,11 @@ Não há parâmetro de entrada
 
 ```json
  {
-   "demands_id":"1"
+   "comment_id":"5"
  }
 ```
 
-## api/local (GET)
+## api/local/get (POST)
 
 ### Parametros de entrada
 
@@ -295,6 +298,7 @@ Não há parâmetro de entrada
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Local cadastrado|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -318,6 +322,7 @@ Não há parâmetro de entrada
 |image |base64 | sim |Imagem da Demanda|
 |title | string | sim | Título da Demanda|
 |description | string | sim | Descrição da Demanda|
+|local_id | numeric | não | Id do local|
 |type_problems_id | numeric | sim | Id do tipo de problema|
 |type_demand_id | numeric | sim | Id do tipo de demanda|
 |campus_id | numeric | sim | Id do campus do demanda|
@@ -326,7 +331,8 @@ Não há parâmetro de entrada
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
-|200 | OK |Demanda cadastrada|
+|200 | OK |Demanda adicionada|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -344,7 +350,8 @@ Não há parâmetro de entrada
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
-|200 | OK |Demanda cadastrada|
+|200 | OK |Demanda reportada|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -369,7 +376,8 @@ Não há parâmetro de entrada
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
-|200 | OK |Demanda cadastrada|
+|200 | OK |Demanda deletada|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -394,6 +402,8 @@ Não há parâmetro de entrada
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Demanda ok|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
+|4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
 
 > Exemplos de requisição
@@ -412,13 +422,14 @@ Não há parâmetro de entrada
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
 | --- |--- |--- |---|
-|status | string | sim | Status da demanda|
+|status | numeric | não | Status da demanda|
 |limit | numeric | sim | Limites da demanda|
 
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Demanda cadastrada|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -427,7 +438,7 @@ Não há parâmetro de entrada
 
 ```json
  {
-   "status":"em aberta",
+   "status":"1",
    "limit":"100"
  }
 ```
@@ -441,9 +452,8 @@ Não há parâmetro de entrada
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Demanda ok|
-|3 | ? |Parâmetro obrigatório|
-|4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 
 ## api/get-demands/resolved (POST)
 
@@ -455,6 +465,7 @@ Não há parâmetro de entrada
 | --- |---| ---|
 |200 | OK |Demanda ok|
 |9 | ? |Erro genérico do banco|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 
 ## api/get-demands/similar (POST)
 >Autenticação Requerida
@@ -463,8 +474,9 @@ Não há parâmetro de entrada
 
 |Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
 | --- |--- |--- |---|
-|campus | string | sim | Nome do campus|
-|environment | string | sim | Ambiente|
+|campus | numeric | sim | Id do Campus|
+|environment | numeric | sim | Id do Ambiente|
+|local | string | não | Local|
 
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
@@ -472,13 +484,16 @@ Não há parâmetro de entrada
 |200 | OK |Demanda ok|
 |3 | ? |Parâmetro obrigatório|
 |9 | ? |Erro genérico do banco|
+|4 | ? |Parâmetro numérico|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 
 > Exemplos de requisição
 
 ```json
  {
-   "campus":"Darcy Ribeiro",
-   "environment":"externo"
+   "campus":"4",
+   "environment":"1",
+   "local":"externo"
  }
 ```
 ## api/get-demands/single (POST)
@@ -493,7 +508,8 @@ Não há parâmetro de entrada
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
-|200 | OK |Demanda cadastrada|
+|200 | OK |Demanda ok|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |3 | ? |Parâmetro obrigatório|
 |4 | ? |Parâmetro numérico|
 |9 | ? |Erro genérico do banco|
@@ -516,30 +532,18 @@ Não há parâmetro de entrada
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
 |200 | OK |Campus ok|
-|3 | ? |Parâmetro obrigatório|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 |9 | ? |Erro genérico do banco|
 
 ## api/area/get (POST)
 >Autenticação Requerida
 
 ### Parametros de entrada
-
-|Nome do Parametro| Tipo de entrada | Obrigatório | Detalhe|
-| --- |--- |--- |---|
-|demands_id | numeric | sim | Id da demanda|
+>Não há parâmetro de entrada
 
 ### Tipos de Retorno
 |STATUS | TYPE |Descrição|
 | --- |---| ---|
-|200 | OK |Demanda cadastrada|
-|3 | ? |Parâmetro obrigatório|
-|4 | ? |Parâmetro numérico|
+|200 | OK |Area ok|
 |9 | ? |Erro genérico do banco|
-
-> Exemplos de requisição
-
-```json
- {
-   "demands_id":"1"
- }
-```
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
