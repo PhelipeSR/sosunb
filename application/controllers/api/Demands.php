@@ -45,7 +45,7 @@ class Demands extends CI_Controller {
 				);
 				if ($id = $this->Demands_model->create_demands($database) ) {
 					$this->response['dados'] = array(
-						'comment_id' => $id
+						'demand_id' => $id
 					);
 					$this->status_header = 200;
 				}else {

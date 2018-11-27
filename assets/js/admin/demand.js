@@ -1,8 +1,13 @@
-function add_demand(data, selector) {
+function add_demand(data, selector, viewcompact = true) {
 
 	var html =`
-		<div class="row justify-content-center mt-4" id="divDemanda${data.demand_id}">
-			<div class="col-lg-8 col-xl-6 border py-3 shadow-sm bg-white">
+		<div class="row justify-content-center mt-3" id="divDemanda${data.demand_id}">`;
+		if (viewcompact) {
+			html += `<div class="col-lg-8 col-xl-6 border py-3 shadow-sm bg-white">`;
+		}else{
+			html += `<div class="col-lg-12 col-xl-12 border py-3 shadow-sm bg-white">`;
+		}
+		html += `
 				<div class="media d-flex align-items-center">
 					<img class="img-fluid mr-3 radius-50" style="max-width: 50px" src="${data.image_profile}">
 					<div class="media-body">
