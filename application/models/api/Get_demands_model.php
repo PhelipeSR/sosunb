@@ -8,7 +8,11 @@ class Get_demands_model extends CI_Model {
 	}
 
 	public function ranking($id = 0, $campus = NULL) {
-
+		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
+		$exclude = array();
+		foreach ($report as $key => $value) {
+			array_push($exclude, $value['demands_id']);
+		}
 		$this->db
 			->select('
 				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
@@ -31,6 +35,7 @@ class Get_demands_model extends CI_Model {
 			->where('demands.excluded', 0)
 			->where('status.id !=', 4)
 			->where('status.id !=', 5)
+			->where_not_in('demands.id',$exclude)
 			->group_by("likes.demands_id")
 			->join('demands', 'likes.demands_id = demands.id')
 			->join('users', 'demands.users_id = users.id')
@@ -95,6 +100,11 @@ class Get_demands_model extends CI_Model {
 	}
 
 	public function feed($id = 0, $limit = 0, $status = NULL) {
+		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
+		$exclude = array();
+		foreach ($report as $key => $value) {
+			array_push($exclude, $value['demands_id']);
+		}
 		$this->db
 			->select('
 				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
@@ -121,6 +131,7 @@ class Get_demands_model extends CI_Model {
 			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
+			->where_not_in('demands.id',$exclude)
 			->group_start()
 				->where('demands.counter <', 5)
 				->or_where('demands.resolved >', 0)
@@ -213,6 +224,11 @@ class Get_demands_model extends CI_Model {
 	}
 
 	public function similar($id = 0, $campus = NULL, $environment = NULL, $local = NULL) {
+		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
+		$exclude = array();
+		foreach ($report as $key => $value) {
+			array_push($exclude, $value['demands_id']);
+		}
 		$this->db
 			->select('
 				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
@@ -241,6 +257,7 @@ class Get_demands_model extends CI_Model {
 			->where('demands.excluded', 0)
 			->where('demands.campus_id', $campus)
 			->where('demands.environment_id', $environment)
+			->where_not_in('demands.id',$exclude)
 			->group_start()
 				->where('demands.counter <', 5)
 				->or_where('demands.resolved >', 0)
@@ -296,6 +313,11 @@ class Get_demands_model extends CI_Model {
 	}
 
 	public function single($id = 0, $demand_id = 0, $denuncia = TRUE) {
+		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
+		$exclude = array();
+		foreach ($report as $key => $value) {
+			array_push($exclude, $value['demands_id']);
+		}
 		$this->db
 			->select('
 				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
@@ -322,6 +344,7 @@ class Get_demands_model extends CI_Model {
 			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
+			->where_not_in('demands.id',$exclude)
 			->where('demands.id', $demand_id);
 			if ($denuncia) {
 				$this->db
@@ -403,6 +426,11 @@ class Get_demands_model extends CI_Model {
 	}
 
 	public function profile_data($id, $type_demand){
+		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
+		$exclude = array();
+		foreach ($report as $key => $value) {
+			array_push($exclude, $value['demands_id']);
+		}
 		$this->db
 			->select('
 				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
@@ -429,6 +457,7 @@ class Get_demands_model extends CI_Model {
 			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
+			->where_not_in('demands.id',$exclude)
 			->where('demands.users_id', $id)
 			->where('demands.type_demand_id', $type_demand)
 			->group_start()
@@ -481,6 +510,11 @@ class Get_demands_model extends CI_Model {
 	}
 
 	public function profile_interaction_comments($id){
+		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
+		$exclude = array();
+		foreach ($report as $key => $value) {
+			array_push($exclude, $value['demands_id']);
+		}
 		$this->db
 			->select('
 				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
@@ -508,6 +542,7 @@ class Get_demands_model extends CI_Model {
 			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
+			->where_not_in('demands.id',$exclude)
 			->where('comments.users_id', $id)
 			->group_start()
 				->where('demands.counter <', 5)
@@ -560,6 +595,11 @@ class Get_demands_model extends CI_Model {
 	}
 
 	public function profile_interaction_likes($id){
+		$report = $this->db->select('report_historic.demands_id')->where('report_historic.users_id', $id)->get('report_historic')->result_array();
+		$exclude = array();
+		foreach ($report as $key => $value) {
+			array_push($exclude, $value['demands_id']);
+		}
 		$this->db
 			->select('
 				CONCAT("'.base_url('uploads/demandas/').'",demands.image) AS image_demand,
@@ -587,6 +627,7 @@ class Get_demands_model extends CI_Model {
 			->join('environment', 'demands.environment_id = environment.id')
 			->join('type_demand', 'demands.type_demand_id = type_demand.id')
 			->where('demands.excluded', 0)
+			->where_not_in('demands.id',$exclude)
 			->where('likes.users_id', $id)
 			->group_start()
 				->where('demands.counter <', 5)
