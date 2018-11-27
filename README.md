@@ -71,8 +71,8 @@ Exemplo:
 |STATUS | TYPE |DESCRIÇÃO|
 | --- | --- | --- |
 | 200 | OK | Cadastro enviado |
+|3 |  |Parâmetro obrigatório|
 | 10 | ? | Dados incorretos |
-| 400 | BAD_REQUEST | Algum parâmetro do tipo errado espaço em ou vazio|
 
 > Exemplos de requisição
 
@@ -82,6 +82,19 @@ Exemplo:
  "password":"12345678",
 }
 ```
+## api/area/get (POST)
+>Autenticação Requerida
+
+### Parametros de entrada
+>Não há parâmetro de entrada
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Area ok|
+|9 | ? |Erro genérico do banco|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
+
 
 ## api/user/register (POST)
 
@@ -151,7 +164,7 @@ Não há parâmetro de entrada
 
 ```json
 {
- "email":"pedrolindo@gmail.com",
+ "email":"pedro@gmail.com",
 }
 ```
 ## api/user/delete (POST)
@@ -166,6 +179,30 @@ Não há parâmetro de entrada
 |200 |OK |Novo email confirmado|
 |401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
 
+## api/user/update/password (POST)
+>Autenticação Requerida
+
+### Parâmetros de entrada
+
+|Parâmetros de retorno| Tipo de entrada | Obrigatório | Detalhe|
+| --- |--- |--- |---|
+| password| string | sim | Nova senha do usuário |
+
+### Tipos de Retorno
+|STATUS | TYPE |Descrição|
+| --- |---| ---|
+|200 | OK |Nova senha confirmada|
+|401 | UNAUTHORIZED |Senha atual errada ou o token do usuário é inválido|
+|9 | ? |Erro genérico do banco|
+|3 | ? |Parâmetro obrigatório|
+
+> Exemplos de requisição
+
+```json
+{
+ "password":"asdjkl",
+}
+```
 
 ## api/like/add (POST)
 >Autenticação Requerida
