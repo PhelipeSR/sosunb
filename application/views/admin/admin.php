@@ -63,7 +63,7 @@
 		<aside class="app-sidebar">
 			<div class="app-sidebar__user mb-0">
 				<figure class="figure m-0">
-					<img class="img-fluid img-perfil" src="<?php echo base_url("uploads/perfil/".$this->session->user_image);?>" alt="Imagem do usuário">
+					<img class="img-fluid img-perfil rounded" src="<?php echo base_url("uploads/perfil/".$this->session->user_image);?>" alt="Imagem do usuário">
 					<figcaption class="app-sidebar__user-name text-center mt-1 nome-perfil"><?php echo $this->session->user_name;?></figcaption>
 				</figure>
 			</div>

@@ -190,6 +190,22 @@ $(document).ready( function() {
 			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
 		});
 	});
+
+	$('#lista').click(function() {
+		window.history.replaceState({page: 'lista'}, 'lista', '#lista');
+		$('ul>li>a').removeClass('active');
+		$(this).addClass('active');
+		// Remove visualizações anteriores
+		$('.box').remove();
+		// Adiciona o gif de loading
+		$('#loading').html("<div id='loadingMenu' class='d-flex justify-content-center'><span class='border p-3 border-secondary h3 rounded shadow m-0'><i class='fa fa-spinner fa-spin'></i>&nbsp; Carregando conteúdo</span></div>");
+		// Carrega o arquivo
+		$('#ajax-content').load( base_url('admin/menu/lista/render/'),function( response, status, xhr ){
+			$('#loadingMenu').remove(); // Retira o gif de loading
+			$.getScript( base_url('assets/js/admin/menu/lista.js') )
+			.fail(function( jqxhr, settings, exception ) { console.log( 'Erro' ) });
+		});
+	});
 });
 
 toastr.options = {
