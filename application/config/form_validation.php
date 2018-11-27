@@ -207,6 +207,15 @@ $config = array(
 	// ========================================
 	'add_demands' => array(
 		array(
+			'field' => 'title',
+			'label' => 'Título',
+			'rules' => 'required|max_length[80]',
+			'errors' => array(
+				'required' => 1,
+				'max_length' => 2
+			),
+		),
+		array(
 			'field' => 'environment_id',
 			'label' => 'Id do ambiente',
 			'rules' => 'required|numeric',

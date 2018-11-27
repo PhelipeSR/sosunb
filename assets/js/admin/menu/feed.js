@@ -36,6 +36,7 @@ var liberado = false;
 
 $(document).ready(function($) {
 
+	$('#erroFeed').remove();
 	get_demand();
 
 	$('#statusFeed').change(function(event) {
