@@ -26,7 +26,7 @@
 						<i class="fa fa-comments-o"></i> Comentadas
 					</a>
 					<a class="nav-link rounded-0" id="v-pills-interests-tab" data-toggle="tab" href="#v-pills-interests" role="tab" aria-controls="v-pills-interests">
-						<i class="fa fa-pencil-square-o"></i> Dados
+						<i class="fa fa-pencil-square-o"></i> Dados Pessoais
 					</a>
 					<a class="nav-link rounded-0" id="v-pills-personal-tab" data-toggle="tab" href="#v-pills-personal" role="tab" aria-controls="v-pills-personal">
 						<i class="fa fa-lock"></i> Trocar Senha

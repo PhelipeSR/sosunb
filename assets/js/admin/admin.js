@@ -87,7 +87,7 @@ function add_demand_denuncia(data, selector){
 	</div>
 	<div class="modal-footer">
 		<button data-id="${data.demand_id}" class="btn btn-danger btn-remove-denuncia mr-1">Remover</button>
-		<button data-id="${data.demand_id}" class="btn btn-success btn-mater-denuncia">Mater</button>
+		<button data-id="${data.demand_id}" class="btn btn-success btn-mater-denuncia">Manter</button>
 	</div>
 	`;
 
