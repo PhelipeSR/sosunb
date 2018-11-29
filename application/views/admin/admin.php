@@ -67,32 +67,48 @@
 					<figcaption class="app-sidebar__user-name text-center mt-1 nome-perfil"><?php echo $this->session->user_name;?></figcaption>
 				</figure>
 			</div>
-			<ul class="app-menu">
-				<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Demandas</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-					<ul class="treeview-menu">
-						<li><a class="treeview-item" id="ranking" href="#ranking"><i class="icon fa fa-circle-o"></i> Ranking</a></li>
-						<li><a class="treeview-item" id="feed" href="#feed"><i class="icon fa fa-circle-o"></i> Feed</a></li>
-						<li><a class="treeview-item" id="lista" href="#lista"><i class="icon fa fa-circle-o"></i> Lista de Demandas</a></li>
-					</ul>
-				</li>
-				<li><a class="app-menu__item" id="usuarios" href="#usuarios"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Usuários</span></a></li>
-				<li><a class="app-menu__item" id="status" href="#status"><i class="app-menu__icon fa fa-toggle-on"></i><span class="app-menu__label">Status</span></a></li>
-				<li><a class="app-menu__item" id="tipo-demanda" href="#tipo-demanda"><i class="app-menu__icon fa fa-tag"></i><span class="app-menu__label">Tipo de Demanda</span></a></li>
-				<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-map-marker"></i><span class="app-menu__label">Local</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-					<ul class="treeview-menu">
-						<li><a class="treeview-item" id="local" href="#local"><i class="icon fa fa-circle-o"></i> Local</a></li>
-						<li><a class="treeview-item" id="ambiente" href="#ambiente"><i class="icon fa fa-circle-o"></i> Ambiente</a></li>
-						<li><a class="treeview-item" id="campus" href="#campus"><i class="icon fa fa-circle-o"></i> Campus</a></li>
-						<li><a class="treeview-item" id="area" href="#area"><i class="icon fa fa-circle-o"></i> Área</a></li>
-					</ul>
-				</li>
-				<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-exclamation-triangle"></i><span class="app-menu__label">Tipo de Problema</span><i class="treeview-indicator fa fa-angle-right"></i></a>
-					<ul class="treeview-menu">
-						<li><a class="treeview-item" id="tipo-problema" href="#tipo-problema"><i class="icon fa fa-circle-o"></i> Tipo de Problema</a></li>
-						<li><a class="treeview-item" id="categoria" href="#categoria"><i class="icon fa fa-circle-o"></i> Categoria</a></li>
-					</ul>
-				</li>
-			</ul>
+			<?php if($this->session->user_type == 2): ?>
+				<ul class="app-menu">
+					<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Demandas</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+						<ul class="treeview-menu">
+							<li><a class="treeview-item" id="ranking" href="#ranking"><i class="app-menu__icon  fa fa-circle-o"></i>Ranking</a></li>
+							<li><a class="treeview-item" id="feed" href="#feed"><i class="app-menu__icon  fa fa-circle-o"></i>Feed</a></li>
+							<li><a class="treeview-item" id="lista" href="#lista"><i class="app-menu__icon  fa fa-circle-o"></i>Lista de Demandas</a></li>
+						</ul>
+					</li>
+					<li><a class="app-menu__item" id="usuarios" href="#usuarios"><i class="app-menu__icon fa fa-user"></i><span class="app-menu__label">Usuários</span></a></li>
+					<li><a class="app-menu__item" id="status" href="#status"><i class="app-menu__icon fa fa-toggle-on"></i><span class="app-menu__label">Status</span></a></li>
+					<li><a class="app-menu__item" id="tipo-demanda" href="#tipo-demanda"><i class="app-menu__icon fa fa-tag"></i><span class="app-menu__label">Tipo de Demanda</span></a></li>
+					<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-map-marker"></i><span class="app-menu__label">Local</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+						<ul class="treeview-menu">
+							<li><a class="treeview-item" id="local" href="#local"><i class="app-menu__icon  fa fa-circle-o"></i>Local</a></li>
+							<li><a class="treeview-item" id="ambiente" href="#ambiente"><i class="app-menu__icon  fa fa-circle-o"></i>Ambiente</a></li>
+							<li><a class="treeview-item" id="campus" href="#campus"><i class="app-menu__icon  fa fa-circle-o"></i>Campus</a></li>
+							<li><a class="treeview-item" id="area" href="#area"><i class="app-menu__icon  fa fa-circle-o"></i>Área</a></li>
+						</ul>
+					</li>
+					<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-exclamation-triangle"></i><span class="app-menu__label">Tipo de Problema</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+						<ul class="treeview-menu">
+							<li><a class="treeview-item" id="tipo-problema" href="#tipo-problema"><i class="app-menu__icon  fa fa-circle-o"></i>Tipo de Problema</a></li>
+							<li><a class="treeview-item" id="categoria" href="#categoria"><i class="app-menu__icon fa fa-circle-o"></i>Categoria</a></li>
+						</ul>
+					</li>
+				</ul>
+			<?php else: ?>
+				<ul class="app-menu">
+					<li><a class="app-menu__item" id="ranking" href="#ranking"><i class="app-menu__icon  fa fa-list-ol"></i><span class="app-menu__label">Ranking</span></a></li>
+					<li><a class="app-menu__item" id="feed" href="#feed"><i class="app-menu__icon  fa fa-bars"></i><span class="app-menu__label">Feed</span></a></li>
+					<li><a class="app-menu__item" id="lista" href="#lista"><i class="app-menu__icon  fa fa-edit"></i><span class="app-menu__label">Lista de Demandas</span></a></li>
+					<li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-map-marker"></i><span class="app-menu__label">Local</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+						<ul class="treeview-menu">
+							<li><a class="treeview-item" id="local" href="#local"><i class="app-menu__icon  fa fa-circle-o"></i>Local</a></li>
+							<li><a class="treeview-item" id="ambiente" href="#ambiente"><i class="app-menu__icon  fa fa-circle-o"></i>Ambiente</a></li>
+							<li><a class="treeview-item" id="campus" href="#campus"><i class="app-menu__icon  fa fa-circle-o"></i>Campus</a></li>
+							<li><a class="treeview-item" id="area" href="#area"><i class="app-menu__icon  fa fa-circle-o"></i>Área</a></li>
+						</ul>
+					</li>
+				</ul>
+			<?php endif; ?>
 		</aside>
 
 		<main class="app-content">

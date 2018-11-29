@@ -108,14 +108,14 @@ $(document).ready(function() {
 			}},
 		],
 		buttons: [
-			{
-				className: 'btn btn-primary text-white',
-				text: '<span class="glyphicon glyphicon-edit"> Adicionar</span>',
-				action: function ( e, dt, type, indexes ) {
-					resset_form('#formAddUser');
-					$('#modalAdd').modal('show');
-				}
-			},
+			// {
+			// 	className: 'btn btn-primary text-white',
+			// 	text: '<span class="glyphicon glyphicon-edit"> Adicionar</span>',
+			// 	action: function ( e, dt, type, indexes ) {
+			// 		resset_form('#formAddUser');
+			// 		$('#modalAdd').modal('show');
+			// 	}
+			// },
 			'colvis',
 		],
 		createdRow: function ( row, data, index ) {
